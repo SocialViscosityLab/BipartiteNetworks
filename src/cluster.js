@@ -14,10 +14,23 @@ class Cluster {
         this.categories.push(cat);
     }
 
+    setLabel(label){
+        this.label = label;
+    }
+
+    setDescription(text){
+        this.description = text;
+    }
+
     show() {
-        globalP5.textAlign(globalP5.CENTER, globalP5.CENTER);
+        globalP5.textAlign(globalP5.LEFT, globalP5.TOP);
         if (this.label) {
-            globalP5.text(this.label, this.pos.x + this.width / 2, this.pos.y);
+            globalP5.textSize(12);
+            globalP5.fill(0);
+            globalP5.noStroke();
+            globalP5.text(this.label, this.pos.x , this.pos.y, this.width, 20);
+            globalP5.textSize(9);
+            globalP5.text(this.description, this.pos.x , this.pos.y+15, this.width, 30);
         }
 
         this.categories.forEach(cat => {
@@ -28,6 +41,8 @@ class Cluster {
     mouseOverEvents() {
         this.categories.forEach(cat => {
             cat.mouseOver();
+            cat.mouseOverEvents();
+            cat.mouseMovedEvents();
             cat.connectors.forEach(connector => {
                 connector.mouseOver();
             });

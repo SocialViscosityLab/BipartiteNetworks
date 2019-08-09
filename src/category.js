@@ -3,11 +3,13 @@ class Category extends Button {
         super(0, 0, 10, height);
         this.idCat = { cluster: undefined, index: undefined };
         this.connectors = [];
-        this.color = '#f4f4f4';
+        this.color = '#d2d2d2';
         this.label = "void";
-        this.description = "void";
+        this.description = "No description yet";
         this.categoryGap = 5;
         this.kind = kind;
+        this.inPropagation = false;
+        this.clicked = false;
     }
 
     addPositiveConnector(n) {
@@ -134,14 +136,24 @@ class Category extends Button {
     }
 
     show() {
-        globalP5.noFill();
-        globalP5.stroke(250);
+        globalP5.strokeWeight(1);
+        if (this.inPropagation) {
+            globalP5.fill(this.color.concat('30'));
+        } else {
+            globalP5.noFill();
+        }
+        if (this.clicked | this.mouseIsOver){
+            globalP5.stroke(200); 
+        } else {
+            globalP5.stroke(250);
+        }
+        
         globalP5.rect(this.pos.x, this.pos.y, this.width, this.height);
         globalP5.fill("#000000");
         globalP5.textAlign(globalP5.CENTER, globalP5.CENTER);
         globalP5.noStroke();
         globalP5.textSize(10);
-        globalP5.text(this.label, this.pos.x , this.pos.y ,this.width, this.height);
+        globalP5.text(this.label, this.pos.x, this.pos.y, this.width, this.height);
 
         let positives = this.getConnectors(true);
         for (let index = 0; index < positives.length; index++) {
@@ -161,6 +173,22 @@ class Category extends Button {
                 element.show()
             }
         }
+
+        if (this.mouseIsOver){
+            this.showDescription();
+        }
+    }
+
+    showDescription(){
+        globalP5.fill("#000000");
+        globalP5.textAlign(globalP5.LEFT, globalP5.TOP);
+        globalP5.strokeWeight(0.5);
+        globalP5.textSize(12);
+        globalP5.text(this.label, 95, globalP5.height - 80 , globalP5.width - 200, 97);
+        globalP5.noStroke();
+        globalP5.textSize(11);
+        globalP5.text(this.description, 100, globalP5.height - 62 , globalP5.width - 200, 97);
+
     }
 
     splitConnectors(edge) {
@@ -188,7 +216,57 @@ class Category extends Button {
         }
     }
 
+    propagateForward(cat, prop) {
+        try {
+            // i) retrive a subset of edges whose SOURCE is this category
+            let edgesTmp = [];
+            cat.inPropagation = prop;
+            edges.forEach(edg => {
+                let observers = edg.source.observers;
+                observers.forEach(obs => {
+                    if (obs.idCat == cat.idCat) {
+                        // console.log(obs.label);
+                        edgesTmp.push(edg);
+                    }
+                });
+            });
+            // ii) retrieve the list of target categories linked to this category
+            let targetsTmp = [];
+            edgesTmp.forEach(edg => {
+                if (edg.target == undefined) {
+                    return false;
+                }
+                let observers = edg.target.observers;
+                observers.forEach(obs => {
+                    targetsTmp.push(obs);
+                    //console.log(obs.label);
+                    obs.inPropagation = prop;
+                    // for each of those categories, repeat i), ii)
+                    this.propagateForward(obs, prop);
+                });
+            });
+        } catch (error) {
+            if (error instanceof RangeError) {
+                console.log("WARNING: INFINTE RECURSION. The path of edges draw a closed loop!!!!")
+            }
+        }
+    }
+
+    mouseMovedEvents() {
+        if (this.clicked) {
+            this.propagateForward(this, true);
+        }
+    }
+
+    mouseOverEvents() {
+
+    }
+
     mouseClickedEvents() {
+        if (this.mouseIsOver) {
+            this.clicked = !this.clicked;
+            this.propagateForward(this, this.clicked);
+        }
         this.connectors.forEach(connector => {
             connector.mouseClickedEvents();
         });

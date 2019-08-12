@@ -3,6 +3,8 @@ class Category extends Button {
         super(0, 0, 10, height);
         this.idCat = { cluster: undefined, index: undefined };
         this.connectors = [];
+        this.positives = [];
+        this.negatives = [];
         this.color = '#d2d2d2';
         this.label = "void";
         this.description = "No description yet";
@@ -23,6 +25,7 @@ class Category extends Button {
                 tmp.setColor(this.color);
             }
             this.connectors.push(tmp);
+            this.positives.push(tmp);
         }
         this.updateConnectorsCoords();
         if (this.idCat) {
@@ -41,6 +44,7 @@ class Category extends Button {
                 tmp.setColor(this.color);
             }
             this.connectors.push(tmp);
+            this.negatives.push(tmp);
         }
         this.updateConnectorsCoords();
         if (this.idCat) {
@@ -63,13 +67,13 @@ class Category extends Button {
 
     setColorConnectors(color) {
         if (this.kind == 'POSITIVE') {
-            let positives = this.getConnectors(true);
-            positives.forEach(connector => {
+            //let positives = this.getConnectors(true);
+            this.positives.forEach(connector => {
                 connector.setColor(this.color);
             });
         } else if (this.kind == 'NEGATIVE') {
-            let negatives = this.getConnectors(true);
-            negatives.forEach(connector => {
+            //let negatives = this.getConnectors(true);
+            this.negatives.forEach(connector => {
                 connector.setColor(this.color);
             });
         } else if (this.kind == 'BOTH') {
@@ -87,15 +91,15 @@ class Category extends Button {
 
     updateConnectorsId(categoryID) {
         let count = 0;
-        let positives = this.getConnectors(true);
-        positives.forEach(element => {
+        //let positives = this.getConnectors(true);
+        this.positives.forEach(element => {
             element.setId(categoryID, count);
             count++;
         });
 
         count = 0;
-        let negatives = this.getConnectors(false);
-        negatives.forEach(element => {
+        //let negatives = this.getConnectors(false);
+        this.negatives.forEach(element => {
             element.setId(categoryID, count);
             count++;
         });
@@ -121,16 +125,16 @@ class Category extends Button {
     updateConnectorsCoords() {
         // right
         let counter = 0;
-        let positives = this.getConnectors(true);
-        positives.forEach(connector => {
-            connector.updateCoords(this.pos, this.width, counter, this.height / positives.length);
+        //let positives = this.getConnectors(true);
+        this.positives.forEach(connector => {
+            connector.updateCoords(this.pos, this.width, counter, this.height / this.positives.length);
             counter++;
         });
         // left
         counter = 0;
-        let negatives = this.getConnectors(false);
-        negatives.forEach(connector => {
-            connector.updateCoords(this.pos, this.width, counter, this.height / negatives.length);
+        //let negatives = this.getConnectors(false);
+        this.negatives.forEach(connector => {
+            connector.updateCoords(this.pos, this.width, counter, this.height / this.negatives.length);
             counter++;
         });
     }
@@ -142,12 +146,12 @@ class Category extends Button {
         } else {
             globalP5.noFill();
         }
-        if (this.clicked | this.mouseIsOver){
-            globalP5.stroke(200); 
+        if (this.clicked | this.mouseIsOver) {
+            globalP5.stroke(200);
         } else {
             globalP5.stroke(250);
         }
-        
+
         globalP5.rect(this.pos.x, this.pos.y, this.width, this.height);
         globalP5.fill("#000000");
         globalP5.textAlign(globalP5.CENTER, globalP5.CENTER);
@@ -155,39 +159,39 @@ class Category extends Button {
         globalP5.textSize(10);
         globalP5.text(this.label, this.pos.x, this.pos.y, this.width, this.height);
 
-        let positives = this.getConnectors(true);
-        for (let index = 0; index < positives.length; index++) {
-            const element = positives[index];
-            if (index == positives.length - 1) {
+        //let positives = this.getConnectors(true);
+        for (let index = 0; index < this.positives.length; index++) {
+            const element = this.positives[index];
+            if (index == this.positives.length - 1) {
                 element.showAsButton();
             } else {
                 element.show()
             }
         }
-        let negatives = this.getConnectors(false);
-        for (let index = 0; index < negatives.length; index++) {
-            const element = negatives[index];
-            if (index == negatives.length - 1) {
+        //let negatives = this.getConnectors(false);
+        for (let index = 0; index < this.negatives.length; index++) {
+            const element = this.negatives[index];
+            if (index == this.negatives.length - 1) {
                 element.showAsButton();
             } else {
                 element.show()
             }
         }
 
-        if (this.mouseIsOver){
+        if (this.mouseIsOver) {
             this.showDescription();
         }
     }
 
-    showDescription(){
+    showDescription() {
         globalP5.fill("#000000");
         globalP5.textAlign(globalP5.LEFT, globalP5.TOP);
         globalP5.strokeWeight(0.5);
         globalP5.textSize(12);
-        globalP5.text(this.label, 95, globalP5.height - 80 , globalP5.width - 200, 97);
+        globalP5.text(this.label, 95, globalP5.height - 80, globalP5.width - 200, 97);
         globalP5.noStroke();
         globalP5.textSize(11);
-        globalP5.text(this.description, 100, globalP5.height - 62 , globalP5.width - 200, 97);
+        globalP5.text(this.description, 100, globalP5.height - 62, globalP5.width - 200, 97);
 
     }
 
@@ -217,6 +221,7 @@ class Category extends Button {
     }
 
     propagateForward(cat, prop) {
+        let issuesAt;
         try {
             // i) retrive a subset of edges whose SOURCE is this category
             let edgesTmp = [];
@@ -231,14 +236,13 @@ class Category extends Button {
                 });
             });
             // ii) retrieve the list of target categories linked to this category
-            let targetsTmp = [];
             edgesTmp.forEach(edg => {
                 if (edg.target == undefined) {
                     return false;
                 }
                 let observers = edg.target.observers;
                 observers.forEach(obs => {
-                    targetsTmp.push(obs);
+                    issuesAt = obs.label;
                     //console.log(obs.label);
                     obs.inPropagation = prop;
                     // for each of those categories, repeat i), ii)
@@ -247,14 +251,55 @@ class Category extends Button {
             });
         } catch (error) {
             if (error instanceof RangeError) {
-                console.log("WARNING: INFINTE RECURSION. The path of edges draw a closed loop!!!!")
+                console.log("WARNING: INFINTE RECURSION. The path of edges draw a closed loop. Check: "+ issuesAt)
+            }
+        }
+    }
+
+    propagateBackward(cat, prop) {
+        let issuesAt;
+        try {
+            // i) retrive a subset of edges whose TARGET is this category
+            let edgesTmp = [];
+            cat.inPropagation = prop;
+            edges.forEach(edg => {
+                let observers = edg.target.observers;
+                observers.forEach(obs => {
+                    if (obs.idCat == cat.idCat) {
+                        // console.log(obs.label);
+                        edgesTmp.push(edg);
+                    }
+                });
+            });
+            // ii) retrieve the list of source categories linked to this category
+            edgesTmp.forEach(edg => {
+                if (edg.target == undefined) {
+                    return false;
+                }
+                let observers = edg.source.observers;
+                observers.forEach(obs => {
+                    issuesAt = obs.label;
+                    // console.log(obs.label);
+                    obs.inPropagation = prop;
+                    // for each of those categories, repeat i), ii)
+                    this.propagateBackward(obs, prop);
+                });
+            });
+        } catch (error) {
+            if (error instanceof RangeError) {
+                console.log("WARNING: INFINTE RECURSION. The path of edges draw a closed loop. Check Category: " + issuesAt)
             }
         }
     }
 
     mouseMovedEvents() {
         if (this.clicked) {
-            this.propagateForward(this, true);
+            if (document.getElementById("forward").checked) {
+                this.propagateForward(this, this.clicked);
+            }
+            if (document.getElementById("backward").checked) {
+                this.propagateBackward(this, this.clicked);
+            }
         }
     }
 
@@ -265,7 +310,12 @@ class Category extends Button {
     mouseClickedEvents() {
         if (this.mouseIsOver) {
             this.clicked = !this.clicked;
-            this.propagateForward(this, this.clicked);
+            if (document.getElementById("forward").checked) {
+               this.propagateForward(this, this.clicked);
+            }
+            if (document.getElementById("backward").checked) {
+                this.propagateBackward(this, this.clicked);
+            }
         }
         this.connectors.forEach(connector => {
             connector.mouseClickedEvents();

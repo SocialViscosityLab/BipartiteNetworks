@@ -1,28 +1,36 @@
 var edges = [];
+let clusters = [];
 
 var main = function (p5) {
 
-	var clusterA;
-	var clusterB;
-	var clusterC;
-	var clusterD;
+
+	let edgs;
+
+	p5.preload = function () {
+		edgs = p5.loadJSON('./files/edges.json', gotData, noData);
+	}
 
 	// Only once
 	p5.setup = function () {
-		p5.createCanvas(900, 700);
+		p5.createCanvas(920, 700);
 		let gutter = 110;
-		let wdth = 130;
+		let wdth = 140;
 		let x = wdth + gutter;
 		// create clusters
-		clusterA = new ClusterA('A', 15, 20, wdth);
-		clusterB = new ClusterB('B', 15 + x, 20, wdth);
-		clusterC = new ClusterC('C', 15 + 2 * x, 20, wdth);
-		clusterD = new ClusterD('D', 15 + 3 * x, 20, wdth);
+		clusters.push(new ClusterA('A', 15, 20, wdth));
+		clusters.push(new ClusterB('B', 15 + x, 20, wdth));
+		clusters.push(new ClusterC('C', 15 + 2 * x, 20, wdth));
+		clusters.push(new ClusterD('D', 15 + 3 * x, 20, wdth));
+
+		if (edgs) {
+			EdgeFactory.buildEdges(edgs, clusters);
+		}
+
+		document.getElementById("saveEdges").onclick = EdgeFactory.recordJSON;
 	}
 
-	//loop
 	p5.draw = function () {
-		p5.background(255);
+		p5.background(250);
 
 		// description box
 		p5.fill(250);
@@ -34,14 +42,10 @@ var main = function (p5) {
 		p5.noStroke();
 		p5.rect(0, p5.height - 15, p5.width, 15)
 		p5.fill(210);
-		p5.textAlign(p5.LEFT, p5.BOTTOM)
-		p5.textSize(9)
-		p5.text("Salamanca, Briggs, Mercer  |  University of Illinois at Urbana-Champaign  |  2019  |  Made with p5.js    ", 100, p5.height - 3)
 
-		clusterA.cluster.show();
-		clusterB.cluster.show();
-		clusterC.cluster.show();
-		clusterD.cluster.show();
+		clusters.forEach(element => {
+			element.cluster.show();
+		});
 
 		edges.forEach(edge => {
 			edge.show();
@@ -50,17 +54,23 @@ var main = function (p5) {
 	}
 
 	p5.mouseMoved = function () {
-		clusterA.cluster.mouseOverEvents();
-		clusterB.cluster.mouseOverEvents();
-		clusterC.cluster.mouseOverEvents();
-		clusterD.cluster.mouseOverEvents();
+		clusters.forEach(element => {
+			element.cluster.mouseOverEvents();
+		});
 	}
 
 	p5.mouseClicked = function () {
-		clusterA.cluster.mouseClickedEvents()
-		clusterB.cluster.mouseClickedEvents();
-		clusterC.cluster.mouseClickedEvents();
-		clusterD.cluster.mouseClickedEvents();
+		clusters.forEach(element => {
+			element.cluster.mouseClickedEvents();
+		});
+	}
+
+	gotData = function () {
+		console.log("file loaded");
+	}
+
+	noData = function () {
+		console.log("No file")
 	}
 }
 

@@ -3,18 +3,31 @@ class Edge {
         this.source = source
         this.target;
         this.color;
-        this.alpha = 50
+        this.alpha = 30
         this.id;
         this.open = true;
-        console.log("new edge from " + this.source.id);
+        //console.log("new edge from " + this.source.id);
     }
 
     show() {
-        if (this.source.observers[0].inPropagation) {
-            globalP5.strokeWeight(5);
-        } else {
-            globalP5.strokeWeight(1);
+        if (document.getElementById("forward").checked) {
+            if (this.source.observers[0].inPropagation) {
+                globalP5.strokeWeight(5);
+                this.alpha = '99';
+            } else {
+                globalP5.strokeWeight(1);
+                this.alpha = 30;
+            }
+
         }
+        if (document.getElementById("backward").checked) {
+            if (this.target && this.target.observers[0].inPropagation) {
+                globalP5.strokeWeight(5);
+            } else {
+                globalP5.strokeWeight(1);
+            }
+        }
+
         if (!this.target) {
             globalP5.stroke(this.source.color);
             let org = globalP5.createVector(this.source.pos.x + (this.source.width / 2), this.source.pos.y + (this.source.height / 2));
@@ -25,14 +38,14 @@ class Edge {
                 globalP5.beginShape();
                 globalP5.vertex(org.x, org.y);
                 globalP5.vertex(org.x - arm, org.y);
-                globalP5.bezierVertex(org.x - (3* arm), org.y, end.x + (3 * arm), end.y, end.x + arm, end.y);
+                globalP5.bezierVertex(org.x - (3 * arm), org.y, end.x + (3 * arm), end.y, end.x + arm, end.y);
                 globalP5.vertex(end.x, end.y);
                 globalP5.endShape();
             } else {
                 globalP5.beginShape();
                 globalP5.vertex(org.x, org.y);
                 globalP5.vertex(org.x + arm, org.y);
-                globalP5.bezierVertex(org.x + (3* arm), org.y, end.x - (3 * arm), end.y, end.x - arm, end.y);
+                globalP5.bezierVertex(org.x + (3 * arm), org.y, end.x - (3 * arm), end.y, end.x - arm, end.y);
                 globalP5.vertex(end.x, end.y);
                 globalP5.endShape();
             }
@@ -46,14 +59,14 @@ class Edge {
                 globalP5.beginShape();
                 globalP5.vertex(org.x, org.y);
                 globalP5.vertex(org.x - arm, org.y);
-                globalP5.bezierVertex(org.x - (3* arm), org.y, end.x + (3 * arm), end.y, end.x + arm, end.y);
+                globalP5.bezierVertex(org.x - (3 * arm), org.y, end.x + (3 * arm), end.y, end.x + arm, end.y);
                 globalP5.vertex(end.x, end.y);
                 globalP5.endShape();
             } else {
                 globalP5.beginShape();
                 globalP5.vertex(org.x, org.y);
                 globalP5.vertex(org.x + arm, org.y);
-                globalP5.bezierVertex(org.x + (3* arm), org.y, end.x - (3 * arm), end.y, end.x - arm, end.y);
+                globalP5.bezierVertex(org.x + (3 * arm), org.y, end.x - (3 * arm), end.y, end.x - arm, end.y);
                 globalP5.vertex(end.x, end.y);
                 globalP5.endShape();
             }

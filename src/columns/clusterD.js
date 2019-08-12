@@ -2,8 +2,8 @@ class ClusterD {
     constructor(id, x, y, width) {
         this.cluster = new Cluster(id, x, y, width);
         this.cluster.setLabel("Methods of Design Action");
-        this.cluster.setDescription("How designers instantiate solutions");
-        this.makeCategories(9);
+        this.cluster.setDescription("");
+        this.makeCategories(10);
     }
 
     makeCategories(n) {
@@ -25,6 +25,7 @@ class ClusterD {
         catTemp[6].setLabel("Visual narratives");
         catTemp[7].setLabel("Information visualization");
         catTemp[8].setLabel("Critical design");
+        catTemp[9].setLabel("Empathic design");
 
         // add categories to clusters
         for (let index = 0; index < catTemp.length; index++) {

@@ -51,7 +51,11 @@ class Connector extends Button {
     showAsButton() {
         globalP5.fill(this.color.concat('ff'));
         globalP5.stroke(200);
-        //globalP5.noStroke()
+        if (this.mouseIsOver) {
+            globalP5.stroke("#333333")
+        } else {
+            globalP5.stroke(this.color)
+        }
         globalP5.rect(this.pos.x, this.pos.y, this.width, this.height);
         globalP5.textAlign(globalP5.CENTER, globalP5.CENTER);
         globalP5.fill('#000000');
@@ -62,38 +66,51 @@ class Connector extends Button {
     }
 
     sproutEdge() {
-        if (this.mouseIsOver && !this.connectorTaken) {
+        if (document.getElementById("edit").checked) {
 
-            // get the last edge in edges collection.
-            let lastEdge = edges.slice(-1)[0];
+            if (!this.connectorTaken) { //this.mouseIsOver && 
 
-            // if the retrieved edge is open then close it
-            if (lastEdge) {
-                if (lastEdge.open) {
-                    // evaluate source and target cluster difference
-                    if (lastEdge.source.id.cluster != this.id.cluster) {
-                        // set target
-                        if (lastEdge.setTarget(this)) {
-                            // disable connector
-                            this.connectorTaken = true;
-                            // close edge
-                            lastEdge.open = false;
-                            // return polarity object
-                            return lastEdge;
+                // get the last edge in edges collection.
+                let lastEdge = edges.slice(-1)[0];
+
+                // if the retrieved edge is open then close it
+                if (lastEdge) {
+                    if (lastEdge.open) {
+                        // evaluate source and target cluster difference
+                        if (lastEdge.source.id.cluster != this.id.cluster) {
+                            // set target
+                            if (lastEdge.setTarget(this)) {
+                                // disable connector
+                                this.connectorTaken = true;
+                                // close edge
+                                lastEdge.open = false;
+                                // return polarity object
+                                return lastEdge;
+                            }
+                        } else {
+                            console.log("Impossible edge. Equal source and target category. Source: "
+                                + lastEdge.source.id.cluster
+                                + " target: "
+                                + this.id.cluster);
+                            // Enable source connector
+                            lastEdge.source.connectorTaken = false;
+                            // remove temporary edge
+                            edges.pop();
+                            this.connectorTaken = false;
                         }
+                        // If the edge is not open
                     } else {
-                        console.log("Impossible edge. Equal source and target category. Source: "
-                            + lastEdge.source.id.cluster
-                            + " target: "
-                            + this.id.cluster);
-                        // Enable source connector
-                        lastEdge.source.connectorTaken = false;
-                        // remove temporary edge
-                        edges.pop();
-                        this.connectorTaken = false;
+                        // create a new one
+                        edges.push(new Edge(this));
+                        // dissable this connector
+                        this.connectorTaken = true;
+                        // return polarity object
+                        return false;
                     }
-                    // If the edge is not open
-                } else {
+                }
+
+                // If this is the first edge, create a new open one
+                if (!lastEdge) {
                     // create a new one
                     edges.push(new Edge(this));
                     // dissable this connector
@@ -101,22 +118,12 @@ class Connector extends Button {
                     // return polarity object
                     return false;
                 }
+            } else {
+                console.log("Connector taken, click on the + to add one connector to that category");
             }
 
-            // If this is the first edge, create a new open one
-            if (!lastEdge) {
-                // create a new one
-                edges.push(new Edge(this));
-                // dissable this connector
-                this.connectorTaken = true;
-                // return polarity object
-                return false;
-            }
-        } else {
-            console.log("Connector taken, click on the + to add one connector to that category");
+            return false;
         }
-
-        return false;
     }
 
     mouseClickedEvents() {

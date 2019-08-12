@@ -28,7 +28,7 @@ class Cluster {
             globalP5.textSize(12);
             globalP5.fill(0);
             globalP5.noStroke();
-            globalP5.text(this.label, this.pos.x , this.pos.y, this.width, 20);
+            globalP5.text(this.label, this.pos.x , this.pos.y, this.width, 35);
             globalP5.textSize(9);
             globalP5.text(this.description, this.pos.x , this.pos.y+15, this.width, 30);
         }

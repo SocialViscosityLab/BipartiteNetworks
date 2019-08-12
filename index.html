@@ -34,10 +34,11 @@
   <script src="src/connector.js"></script>
   <script src="src/edge.js"></script>
   <script src="src/cluster.js"></script>
-  <script src="src/clusters/clusterA.js"></script>
-  <script src="src/clusters/clusterB.js"></script>
-  <script src="src/clusters/clusterC.js"></script>
-  <script src="src/clusters/clusterD.js"></script>
+  <script src="src/edgeFactory.js"></script>
+  <script src="src/columns/clusterA.js"></script>
+  <script src="src/columns/clusterB.js"></script>
+  <script src="src/columns/clusterC.js"></script>
+  <script src="src/columns/clusterD.js"></script>
 
 </head>
 
@@ -53,8 +54,8 @@
       </div>
       <div class="col-sm-5">
         <br><br>
-        <p>Juan Salamanca, Molly Briggs, Lisa Mercer <br> School of Art and Design <br>University of Illinois at
-          Urbana-Champaign<br>2019</p>
+        <p>Juan Salamanca, Molly Briggs, Lisa Mercer <br>University of Illinois at
+          Urbana-Champaign<br> School of Art and Design<br>2019</p>
       </div>
       <div class="col-sm-1"></div>
     </div>
@@ -93,12 +94,43 @@
       </div>
       <div class="col-sm-1"></div>
     </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-8">
+        <div>
+          <input type="checkbox" id="forward" name="fwd" style="margin-left:35px" checked>
+          <label for="forward" style="font-size:10px">Forward propagation</label>
+          <input type="checkbox" id="backward" name="bws" >
+          <label for="backward" style="font-size:10px">Backward propagation</label>
+          <input type="button" id="saveEdges" name="saveEdgs">
+          <label for="saveEdges" style="font-size:10px">Save edges</label>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <input type="checkbox" id="edit" name="drone" checked>
+        <label for="edit" style="font-size:10px">Edit mode</label>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
 
     <div class="row">
       <div id="bipartiteDiagram" align="center"></div>
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <p style="margin-left:20px"> Salamanca, Briggs, Mercer | University of Illinois at Urbana-Champaign | 2019 |
+          Made with p5.js </p>
+      </div>
+      <div class="col-sm-1"></div>
     </div>
+  </div>
+
+  <div class="container">
 
   </div>
+
 
 </body>
 

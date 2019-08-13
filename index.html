@@ -2,58 +2,58 @@
 <html>
 
 <head>
-  <!-- Enable responsiveness on mobile devices-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Responsible Innovation: A Model for Holistic Design Pedagogy</title>
+  <head profile="http://www.w3.org/2005/10/profile">
+    <link rel="icon" type="image/ico" href="files/favicon.ico">
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <!-- CSS -->
-  <style>
-    p {
-      font-size: 11px;
-    }
-  </style>
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Responsible Innovation: A Model for Holistic Design Pedagogy</title>
 
-
-
-  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
-  <style>
-    body {
-      padding: 0;
-      margin: 0;
-    }
-  </style>
-  
-  <script src="libs/p5.js"></script>
-
-  <!-- Control -->
-  <script src="src/control/main.js"></script>
-
-  <!-- Model -->
-  <script src="src/model/node.js"></script>
-  <script src="src/model/connector.js"></script>
-  <script src="src/model/edge.js"></script>
-  <script src="src/model/cluster.js"></script>
-  <script src="src/model/edgeFactory.js"></script>
-  <script src="src/model/columns/clusterA.js"></script>
-  <script src="src/model/columns/clusterB.js"></script>
-  <script src="src/model/columns/clusterC.js"></script>
-  <script src="src/model/columns/clusterD.js"></script>
-
-  <!-- View -->
-  <script src="src/view/button.js"></script>
-  <script src="src/view/vNode.js"></script>
-  <script src="src/view/vConnector.js"></script>
-  <script src="src/view/vEdge.js"></script>
-  <script src="src/view/vCluster.js"></script>
+    <!-- CSS -->
+    <style>
+      p {
+        font-size: 11px;
+      }
+    </style>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 
 
-</head>
+    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+
+    <script src="libs/p5.js"></script>
+
+    <!-- Control -->
+    <script src="src/main.js"></script>
+
+    <!-- Model -->
+    <script src="src/model/node.js"></script>
+    <script src="src/model/connector.js"></script>
+    <script src="src/model/edge.js"></script>
+    <script src="src/model/cluster.js"></script>
+    <script src="src/model/edgeFactory.js"></script>
+    <script src="src/model/clusterFactory.js"></script>
+
+    <!-- View -->
+    <script src="src/view/button.js"></script>
+    <script src="src/view/vNode.js"></script>
+    <script src="src/view/vConnector.js"></script>
+    <script src="src/view/vEdge.js"></script>
+    <script src="src/view/vCluster.js"></script>
+
+
+
+  </head>
 
 <body>
   <div class="container"
@@ -116,10 +116,13 @@
         <div>
           <input type="checkbox" id="forward" name="fwd" style="margin-left:35px" checked>
           <label for="forward" style="font-size:10px">Forward propagation</label>
-          <input type="checkbox" id="backward" name="bws" >
+          <input type="checkbox" id="backward" name="bws">
           <label for="backward" style="font-size:10px">Backward propagation</label>
+          <input type="button" id="clearEdges" name="clearEdgs">
+          <label for="clearEdges" style="font-size:10px">Clear edges</label>
           <input type="button" id="saveEdges" name="saveEdgs">
           <label for="saveEdges" style="font-size:10px">Save edges</label>
+          <label id="warning" style="font-size:11px; color:#FF0000"> </label>
         </div>
       </div>
       <div class="col-sm-2">

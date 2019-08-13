@@ -57,21 +57,17 @@ class VConnector extends Button {
             if (lastVEdge) {
                 if (lastVEdge.open) {
                     
-
                     if (edges[edges.length-1] == edge){
                         lastVEdge.setVTarget(this);
                         lastVEdge.open = false;
                     } else {
                         vEdges.pop();
                     }
-                    // if edge does not link nodes in teh same cluster
+                    // if edge does not link nodes in the same cluster
                     if (edge.source.id.cluster != this.connector.id.cluster){
                         lastVEdge.setVTarget(this);
                         lastVEdge.open = false;
-                    } else {
-                        vEdges.pop();
-                    }
-
+                    } 
 
                 } else {
                     lastVEdge = new VEdge(edge);

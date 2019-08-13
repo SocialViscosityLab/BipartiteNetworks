@@ -47,13 +47,11 @@ class Node {
     splitConnectors(edge) {
         let connSource = edge.source;
         let connTarget = edge.target; // might be undefined
-
         if (!connSource.taken) {
             this.recallConnectors(connSource);
         } else {
 
             if (edge.open) {
-
                 if (connSource.polarity == true) {
                     let conctr = connSource.nodeObserver.addPositiveConnector(this.positives.length);
                     this.vNodeObserver.addPositiveVConnector(conctr);
@@ -127,6 +125,7 @@ class Node {
         } catch (error) {
             if (error instanceof RangeError) {
                 console.log("WARNING: INFINTE RECURSION. The path of edges draw a closed loop. Check: " + issuesAt)
+                document.getElementById('warning').innerHTML = "WARNING: Infinite Recursion. Dissable propagation";
             }
         }
     }

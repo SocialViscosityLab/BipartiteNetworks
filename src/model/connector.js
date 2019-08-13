@@ -60,7 +60,7 @@ class Connector {
 
     closeEdge(lastEdge) {
         // evaluate source and target cluster difference
-        if (lastEdge.source.id.cluster != this.id.cluster) {
+        if (lastEdge.source.id.cluster != this.id.cluster && lastEdge.source.id.polarity != this.id.polarity) {
             // set target
             if (lastEdge.setTarget(this)) {
                 // disable connector
@@ -69,12 +69,12 @@ class Connector {
                 lastEdge.open = false;
             } else {
                 console.log("Issues clossing edge");
+                this.recallEdge(lastEdge);
             }
         } else {
-            console.log("Impossible edge. Equal source and target category. Source: "
-                + lastEdge.source.id.cluster
-                + " target: "
-                + this.id.cluster);
+            console.log("Impossible edge. Equal source and target category or polarity.")
+             console.log(lastEdge.source.id);
+             console.log(this.id);
             this.recallEdge(lastEdge);
         }
     }

@@ -122,12 +122,7 @@ class VNode extends Button {
     // **** EVENTS *****
     mouseMovedEvents() {
         if (this.clicked) {
-            if (document.getElementById("forward").checked) {
-                this.node.propagateForward(this.node, this.clicked);
-            }
-            if (document.getElementById("backward").checked) {
-                this.node.propagateBackward(this.node, this.clicked);
-            }
+            this.node.propagate(this.node, this.clicked);
         }
     }
 
@@ -146,6 +141,9 @@ class VNode extends Button {
         this.vNegatives.forEach(connector => {
             connector.mouseClickedEvents();
         });
+        if (!document.getElementById("forward").checked && !document.getElementById("backward").checked) {
+            document.getElementById('warning').innerHTML = "";
+        }
     }
 
 }

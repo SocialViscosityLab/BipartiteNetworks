@@ -1,0 +1,229 @@
+[
+  {
+    "clusterID": "A",
+    "clusterLabel": "Categories of Awareness",
+    "clusterDescription": "Reasons that justify the design of improved futures",
+    "nodes": [
+      {
+        "id": 0,
+        "nodeLabel": "Impact of manufacturing & consumption",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 1,
+        "nodeLabel": "Controversiality of truth",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 2,
+        "nodeLabel": "Global warming and climate change",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 3,
+        "nodeLabel": "Sustainable urban sociality",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 4,
+        "nodeLabel": "Respect of beliefs",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 5,
+        "nodeLabel": "Commodification and exploitation",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 6,
+        "nodeLabel": "Reduction of agency",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 7,
+        "nodeLabel": "Imbalance of power",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 8,
+        "nodeLabel": "Subjectification & stigmatization",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 9,
+        "nodeLabel": "Opacity of accessibility",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 10,
+        "nodeLabel": "Narrow social mobility and inequity",
+        "nodeDescription": "node description"
+      }
+    ],
+    "polarity": "RIGHT"
+  },
+  {
+    "clusterID": "B",
+    "clusterLabel": "Topics of Concern",
+    "clusterDescription": "Central topics at the core of unsettling issues of awareness",
+    "nodes": [
+      {
+        "id": 0,
+        "nodeLabel": "Sustainability and conservation",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 1,
+        "nodeLabel": "Ecology",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 2,
+        "nodeLabel": "Urban social practices",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 3,
+        "nodeLabel": "Ethics, morals and values",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 4,
+        "nodeLabel": "Honesty and trust",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 5,
+        "nodeLabel": "Justice3",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 6,
+        "nodeLabel": "Identity",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 7,
+        "nodeLabel": "Infrastructures",
+        "nodeDescription": "node description"
+      }
+    ],
+    "polarity": "BOTH"
+  },
+  {
+    "clusterID": "C",
+    "clusterLabel": "Modes of Inquiry",
+    "clusterDescription": "Research traditions used to explore topics of concern",
+    "nodes": [
+      {
+        "id": 0,
+        "nodeLabel": "Sytems thinking",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 1,
+        "nodeLabel": "Ethnography",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 2,
+        "nodeLabel": "Ethnomethodology",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 3,
+        "nodeLabel": "Complexity and emergence",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 4,
+        "nodeLabel": "Urban studies",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 5,
+        "nodeLabel": "Environmental semantics",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 6,
+        "nodeLabel": "Feminist studies",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 7,
+        "nodeLabel": "Game theory",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 8,
+        "nodeLabel": "Grounded theory",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 9,
+        "nodeLabel": "Posthumanism and Object Oriented Ontology",
+        "nodeDescription": "node description"
+      }
+    ],
+    "polarity": "BOTH"
+  },
+  {
+    "clusterID": "D",
+    "clusterLabel": "Methods of Design Action",
+    "clusterDescription": "",
+    "nodes": [
+      {
+        "id": 0,
+        "nodeLabel": "Participatory design",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 1,
+        "nodeLabel": "Empirical interventions",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 2,
+        "nodeLabel": "Modeling and simulation",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 3,
+        "nodeLabel": "Interaction design",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 4,
+        "nodeLabel": "Visual and cultural studies",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 5,
+        "nodeLabel": "Information design",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 6,
+        "nodeLabel": "Visual narratives",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 7,
+        "nodeLabel": "Information visualization",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 8,
+        "nodeLabel": "Critical design",
+        "nodeDescription": "node description"
+      },
+      {
+        "id": 9,
+        "nodeLabel": "Empathic design",
+        "nodeDescription": "node description"
+      }
+    ],
+    "polarity": "LEFT"
+  }
+]

@@ -15,12 +15,12 @@ class EdgeFactory {
             let targetTemp;
             for (const c of clusters) {
                 let foundST = { source: false, target: false };
-                if (c.cluster.id == e.source.cluster) {
-                    sourceTemp = c.cluster;
+                if (c.id == e.source.cluster) {
+                    sourceTemp = c;
                     foundST.source = true;
                 }
-                if (c.cluster.id == e.target.cluster) {
-                    targetTemp = c.cluster;
+                if (c.id == e.target.cluster) {
+                    targetTemp = c;
                     foundST.target = true;
                 }
                 if (foundST.source && foundST.target) {

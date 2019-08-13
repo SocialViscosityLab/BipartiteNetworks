@@ -11,9 +11,9 @@ class ClusterC {
 
         // create categories
         for (let index = 0; index < n; index++) {
-            const element = new Category(40, 'POSITIVE');
-            element.addPositiveConnector();
-            element.addNegativeConnector();
+            const element = new Node('C', index);
+            element.addPositiveConnector(element.positives.length);
+            element.addNegativeConnector(element.negatives.length);
             catTemp.push(element);
         }
 
@@ -28,12 +28,7 @@ class ClusterC {
         catTemp[8].setLabel("Grounded theory");
         catTemp[9].setLabel("Posthumanism and Object Oriented Ontology");
 
-        let palette = ["#90302e",
-            "#f5c378", "#735226", "#a9a08e", "#9b717d", "#bdb06d", "#222e32", "#738b92", "#6a6748", "#e88b33"]
 
-        for (let index = 0; index < palette.length; index++) {
-            catTemp[index].setColor(palette[index]);
-        }
 
         // add categories to clusters
         for (let index = 0; index < catTemp.length; index++) {

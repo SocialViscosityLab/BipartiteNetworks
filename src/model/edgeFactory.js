@@ -4,9 +4,12 @@ class EdgeFactory {
     }
 
     static buildEdges = function (edgs, clusters) {
+
         for (let index = 0; index < Object.keys(edgs).length; index++) {
+            
             // take the source ID: cluster, cat and polarity
             let e = edgs[index];
+
             // look for the  cluster X in the clusters collection
             let sourceTemp;
             let targetTemp;
@@ -33,6 +36,8 @@ class EdgeFactory {
                     break;
                 }
             }
+
+
             // get categories connector generator
             let connSource;
             if (e.source.polarity == true) {
@@ -40,8 +45,12 @@ class EdgeFactory {
             } else {
                 connSource = sourceCtgTemp.negatives[sourceCtgTemp.negatives.length - 1];
             }
+            
             // ask the connector to sproutEdge
-            connSource.notifyObservers(connSource.sproutEdge());
+            let edge = connSource.workOnLastEdge();
+            connSource.notifyObserver(edge);
+            connSource.vConnectorObserver.workOnLastVEdge(edge);
+            
 
             // look for the category in the X' categories
             let targetCtgTemp;
@@ -51,6 +60,7 @@ class EdgeFactory {
                     break;
                 }
             }
+
             // get categories connector generator
             let connTarget;
             if (e.target.polarity == true) {
@@ -58,9 +68,11 @@ class EdgeFactory {
             } else {
                 connTarget = targetCtgTemp.negatives[targetCtgTemp.negatives.length - 1];
             }
-            // ask the connector to sproutEdge
-            connTarget.notifyObservers(connTarget.sproutEdge());
 
+            // ask the connector to sproutEdge
+            edge = connTarget.workOnLastEdge();
+            connTarget.notifyObserver(edge);
+            connTarget.vConnectorObserver.workOnLastVEdge(edge);
         }
     }
 

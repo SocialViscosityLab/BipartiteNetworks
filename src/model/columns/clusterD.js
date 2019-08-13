@@ -11,8 +11,8 @@ class ClusterD {
 
         // create categories
         for (let index = 0; index < n; index++) {
-            const element = new Category(40);
-            element.addNegativeConnector();
+            const element = new Node('D', index);
+            element.addNegativeConnector(element.negatives.length);
             catTemp.push(element);
         }
         // set Labels

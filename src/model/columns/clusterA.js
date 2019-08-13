@@ -1,6 +1,6 @@
 class ClusterA {
-    constructor(id, x, y, width) {
-        this.cluster = new Cluster(id, x, y, width);
+    constructor(id) {
+        this.cluster = new Cluster(id);
         this.cluster.setLabel("Categories of Awareness")
         this.cluster.setDescription("Reasons that justify the design of improved futures")
         this.makeCategories(11);
@@ -11,8 +11,12 @@ class ClusterA {
 
         // create categories
         for (let index = 0; index < n; index++) {
-            const element = new Category(40);
-            element.addPositiveConnector();
+            const element = new Node('A',index);
+
+            // create connectors
+            element.addPositiveConnector(element.positives.length);
+
+            // add connectors
             catTemp.push(element);
         }
 

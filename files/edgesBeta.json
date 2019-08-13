@@ -1,0 +1,30 @@
+[
+  {
+    "source": {
+      "cluster": "B",
+      "cat": 0,
+      "index": 0,
+      "polarity": false
+    },
+    "target": {
+      "cluster": "A",
+      "cat": 0,
+      "index": 0,
+      "polarity": true
+    }
+  },
+  {
+    "source": {
+      "cluster": "B",
+      "cat": 0,
+      "index": 1,
+      "polarity": false
+    },
+    "target": {
+      "cluster": "A",
+      "cat": 2,
+      "index": 0,
+      "polarity": true
+    }
+  }
+]

@@ -11,9 +11,9 @@ class ClusterB {
 
         // create categories
         for (let index = 0; index < n; index++) {
-            const element = new Category(40, 'BOTH');
-            element.addPositiveConnector();
-            element.addNegativeConnector();
+            const element = new Node('B', index);
+            element.addPositiveConnector(element.positives.length);
+            element.addNegativeConnector(element.negatives.length);
             catTemp.push(element);
         }
 
@@ -28,11 +28,11 @@ class ClusterB {
         catTemp[7].setLabel("Infrastructures")
 
         // add colors
-        let palette = ["#91c05b", "#0e5b3b", "#20a6cc", "#de5337", "#802c7d", "#d1267b", "#967554", "#edaa53"]
+        // let palette = ["#91c05b", "#0e5b3b", "#20a6cc", "#de5337", "#802c7d", "#d1267b", "#967554", "#edaa53"]
 
-        for (let index = 0; index < palette.length; index++) {
-            catTemp[index].setColor(palette[index]);
-        }
+        // for (let index = 0; index < palette.length; index++) {
+        //     catTemp[index].setColor(palette[index]);
+        // }
 
         // add categories to clusters
         for (let index = 0; index < catTemp.length; index++) {

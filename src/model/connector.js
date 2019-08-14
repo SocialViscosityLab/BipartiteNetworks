@@ -87,4 +87,13 @@ class Connector {
         //vEdges.pop();
         this.taken = false;
     }
+
+    getJSON(){
+        let rtn = {
+            id: {
+                index:this.id.index,
+            },
+        }
+        return rtn;
+    }
 }

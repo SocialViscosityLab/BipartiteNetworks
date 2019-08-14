@@ -17,4 +17,17 @@ class Cluster {
     setDescription(text){
         this.description = text;
     }
+
+    getJSON(){
+        let rtn = {clusterID:this.id, 
+            clusterLabel: this.label,
+            clusterDescription: this.description,
+            nodes:[]
+        }
+        this.categories.forEach(element => {
+            let tmpN = element.getJSON();
+            rtn.nodes.push(tmpN);
+        });
+        return rtn;
+    }
 }

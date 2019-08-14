@@ -7,60 +7,70 @@
       {
         "id": 0,
         "nodeLabel": "Impact of manufacturing & consumption",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "RIGHT"
       },
       {
         "id": 1,
         "nodeLabel": "Controversiality of truth",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "RIGHT"
       },
       {
         "id": 2,
         "nodeLabel": "Global warming and climate change",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "RIGHT"
       },
       {
         "id": 3,
         "nodeLabel": "Sustainable urban sociality",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "RIGHT"
       },
       {
         "id": 4,
         "nodeLabel": "Respect of beliefs",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "RIGHT"
       },
       {
         "id": 5,
         "nodeLabel": "Commodification and exploitation",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "RIGHT"
       },
       {
         "id": 6,
         "nodeLabel": "Reduction of agency",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "RIGHT"
       },
       {
         "id": 7,
         "nodeLabel": "Imbalance of power",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "RIGHT"
       },
       {
         "id": 8,
         "nodeLabel": "Subjectification & stigmatization",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "RIGHT"
       },
       {
         "id": 9,
         "nodeLabel": "Opacity of accessibility",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "RIGHT"
       },
       {
         "id": 10,
         "nodeLabel": "Narrow social mobility and inequity",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "RIGHT"
       }
-    ],
-    "polarity": "RIGHT"
+    ]
   },
   {
     "clusterID": "B",
@@ -70,45 +80,52 @@
       {
         "id": 0,
         "nodeLabel": "Sustainability and conservation",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 1,
         "nodeLabel": "Ecology",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 2,
         "nodeLabel": "Urban social practices",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 3,
         "nodeLabel": "Ethics, morals and values",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 4,
         "nodeLabel": "Honesty and trust",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 5,
-        "nodeLabel": "Justice3",
-        "nodeDescription": "node description"
+        "nodeLabel": "Justice",
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 6,
         "nodeLabel": "Identity",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 7,
         "nodeLabel": "Infrastructures",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       }
-    ],
-    "polarity": "BOTH"
+    ]
   },
   {
     "clusterID": "C",
@@ -118,55 +135,64 @@
       {
         "id": 0,
         "nodeLabel": "Sytems thinking",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 1,
         "nodeLabel": "Ethnography",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 2,
         "nodeLabel": "Ethnomethodology",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 3,
         "nodeLabel": "Complexity and emergence",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 4,
         "nodeLabel": "Urban studies",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 5,
         "nodeLabel": "Environmental semantics",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 6,
         "nodeLabel": "Feminist studies",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 7,
         "nodeLabel": "Game theory",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 8,
         "nodeLabel": "Grounded theory",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       },
       {
         "id": 9,
         "nodeLabel": "Posthumanism and Object Oriented Ontology",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "BOTH"
       }
-    ],
-    "polarity": "BOTH"
+    ]
   },
   {
     "clusterID": "D",
@@ -176,54 +202,63 @@
       {
         "id": 0,
         "nodeLabel": "Participatory design",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "LEFT"
       },
       {
         "id": 1,
         "nodeLabel": "Empirical interventions",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "LEFT"
       },
       {
         "id": 2,
         "nodeLabel": "Modeling and simulation",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "LEFT"
       },
       {
         "id": 3,
         "nodeLabel": "Interaction design",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "LEFT"
       },
       {
         "id": 4,
         "nodeLabel": "Visual and cultural studies",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "LEFT"
       },
       {
         "id": 5,
         "nodeLabel": "Information design",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "LEFT"
       },
       {
         "id": 6,
         "nodeLabel": "Visual narratives",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "LEFT"
       },
       {
         "id": 7,
         "nodeLabel": "Information visualization",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "LEFT"
       },
       {
         "id": 8,
         "nodeLabel": "Critical design",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "LEFT"
       },
       {
         "id": 9,
         "nodeLabel": "Empathic design",
-        "nodeDescription": "node description"
+        "nodeDescription": "node description",
+        "polarity": "LEFT"
       }
-    ],
-    "polarity": "LEFT"
+    ]
   }
 ]

@@ -2,39 +2,47 @@ class ClusterFactory {
     constructor() {
     }
 
-    static makeClusters(clusters, vClusters, data){
+    static clusters = [];
+	static vClusters = [];
+
+    static makeClusters(data){
+        ClusterFactory.clusters = [];
+        this.vClusters = [];
         for (let index = 0; index < Object.keys(data).length; index++) {
-            this.instantiateCluster(clusters, data[index]);
+            this.instantiateCluster(data[index]);
         }
 
         let gutter = 110;
         let wdth = 140;
-        let hght = 20;
+        let hght = 35;
         let x = wdth + gutter;
         
-        for (let index = 0; index < clusters.length; index++) {
-            vClusters.push(new VCluster(clusters[index], 15 + x*index, 20, wdth, hght));
+        for (let index = 0; index < ClusterFactory.clusters.length; index++) {
+            ClusterFactory.vClusters.push(new VCluster(ClusterFactory.clusters[index], 15 + x*index, 20, wdth, hght));
         }
     }
 
-    static instantiateCluster(clusters, data) {
+    static instantiateCluster(data) {
         let cluster = new Cluster(data.clusterID);
         cluster.setLabel(data.clusterLabel);
         cluster.setDescription(data.clusterDescription);
-        this.makeCategories(cluster, data);
-       clusters.push(cluster);
+        this.makeCategories(cluster,data);
+       ClusterFactory.clusters.push(cluster);
     }
 
 
-    static makeCategories(cluster, data) {
+    static makeCategories(cluster,data) {
         // create categories
         for (let index = 0; index < data.nodes.length; index++) {
             const category = new Node(cluster.id, data.nodes[index].id);
             category.setLabel(data.nodes[index].nodeLabel);
             category.setDescription(data.nodes[index].nodeDescription);
+            //category.setPolarity(data.polarity);
+            category.setPolarity(data.nodes[index].polarity);
 
             // create connectors
-            switch (data.polarity) {
+            //switch (data.polarity) {
+            switch (data.nodes[index].polarity) {
                 case 'LEFT':
                     category.addNegativeConnector(category.negatives.length);
                     break;
@@ -51,6 +59,15 @@ class ClusterFactory {
             // add connectors
             cluster.addCategory(category);
         }
+    }
+
+    static recordJSON() {
+        let filename = "nodes.json";
+        let output = [];
+        for (let index = 0; index < ClusterFactory.clusters.length; index++) {
+            output.push (ClusterFactory.clusters[index].getJSON());
+        }
+        globalP5.saveJSON(output,filename);
     }
 }
 

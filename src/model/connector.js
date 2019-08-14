@@ -27,7 +27,7 @@ class Connector {
         if (document.getElementById("edit").checked) {
             if (!this.taken) {
                 // get the last edge in edges collection.
-                lastEdge = edges.slice(-1)[0];
+                lastEdge = EdgeFactory.edges.slice(-1)[0];
 
                 // If there is at least one edge
                 if (lastEdge) {
@@ -52,7 +52,7 @@ class Connector {
     sproutEdge() {
         // create a new one
         let tmpEdge = new Edge(this);
-        edges.push(tmpEdge);
+        EdgeFactory.edges.push(tmpEdge);
         // dissable this connector
         this.taken = true;
         return tmpEdge;
@@ -83,7 +83,7 @@ class Connector {
         // Enable source connector
         lastEdge.source.taken = false;
         // remove temporary edge
-        edges.pop();
+        EdgeFactory.edges.pop();
         //vEdges.pop();
         this.taken = false;
     }

@@ -8,11 +8,12 @@ class ClusterFactory {
         }
 
         let gutter = 110;
-		let wdth = 140;
+        let wdth = 140;
+        let hght = 20;
         let x = wdth + gutter;
         
         for (let index = 0; index < clusters.length; index++) {
-            vClusters.push(new VCluster(clusters[index], 15 + x*index, 20, wdth, 40));
+            vClusters.push(new VCluster(clusters[index], 15 + x*index, 20, wdth, hght));
         }
     }
 

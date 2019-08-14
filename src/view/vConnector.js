@@ -51,17 +51,17 @@ class VConnector extends Button {
         if (document.getElementById("edit").checked) {
 
             // get the last edge in edges collection.
-            lastVEdge = vEdges.slice(-1)[0];
+            lastVEdge = EdgeFactory.vEdges.slice(-1)[0];
 
             // If there is at least one edge
             if (lastVEdge) {
                 if (lastVEdge.open) {
                     
-                    if (edges[edges.length-1] == edge){
+                    if (EdgeFactory.edges[EdgeFactory.edges.length-1] == edge){
                         lastVEdge.setVTarget(this);
                         lastVEdge.open = false;
                     } else {
-                        vEdges.pop();
+                        EdgeFactory.vEdges.pop();
                     }
                     // if edge does not link nodes in the same cluster
                     if (edge.source.id.cluster != this.connector.id.cluster){
@@ -73,7 +73,7 @@ class VConnector extends Button {
                     lastVEdge = new VEdge(edge);
                     lastVEdge.setVSource(this);
                     lastVEdge.open = true;
-                    vEdges.push(lastVEdge);
+                    EdgeFactory.vEdges.push(lastVEdge);
 
                 }
             } else {
@@ -81,7 +81,7 @@ class VConnector extends Button {
                 lastVEdge = new VEdge(edge);
                 lastVEdge.setVSource(this);
                 lastVEdge.open = true;
-                vEdges.push(lastVEdge);
+                EdgeFactory.vEdges.push(lastVEdge);
             }
         }
     }

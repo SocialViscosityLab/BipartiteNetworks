@@ -2,6 +2,8 @@ class EdgeFactory {
     constructor() {
 
     }
+    static  edges = [];
+	static  vEdges = [];
 
     static buildEdges = function (edgs, clusters) {
 
@@ -79,8 +81,8 @@ class EdgeFactory {
     static recordJSON() {
         let filename = "edges.json";
         let output = [];
-        for (let index = 0; index < edges.length; index++) {
-            output.push (edges[index].id);
+        for (let index = 0; index < EdgeFactory.edges.length; index++) {
+            output.push (EdgeFactory.edges[index].id);
         }
         globalP5.saveJSON(output,filename);
     }

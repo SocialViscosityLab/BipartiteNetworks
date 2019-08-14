@@ -41,7 +41,7 @@ class VNode extends Button {
     }
 
     updateCoords(pos, sequence) {
-        this.setPos(globalP5.createVector(pos.x, pos.y + (sequence * this.height) + (sequence * this.categoryGap)));
+        this.setPos(globalP5.createVector(pos.x, pos.y + this.height + (sequence * this.height) + (sequence * this.categoryGap)));
         this.updateConnectorsCoords();
     }
 

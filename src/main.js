@@ -1,30 +1,32 @@
-// global variables
-var edges = [];
-var vEdges = [];
-var clusters = [];
-var vClusters = [];
 
+
+// main function
 var main = function (p5) {
-	
+
+	// global variables
+	// var edges = [];
+	// var vEdges = [];
+	var clusters = [];
+	var vClusters = [];
+
 	let edgesTemp;
 	let nodesTemp;
 
 	p5.preload = function () {
-		edgesTemp = p5.loadJSON('../files/edges.json', gotData('edges.json'));
-		nodesTemp = p5.loadJSON('../files/nodes.json', gotData('nodes.json'));
+		edgesTemp = p5.loadJSON('./files/edges.json', gotData('edges.json'));
+		nodesTemp = p5.loadJSON('./files/nodes.json', gotData('nodes.json'));
 	}
 
 	// Only once
 	p5.setup = function () {
 		p5.createCanvas(920, 700);
 
-		ClusterFactory.makeClusters(clusters, vClusters,nodesTemp);
+		ClusterFactory.makeClusters(clusters, vClusters, nodesTemp);
 
-		let paletteB = ["#91c05b", "#0e5b3b", "#20a6cc", "#de5337", "#802c7d", "#d1267b", "#967554", "#edaa53"]
-		let paletteC = ["#90302e", "#f5c378", "#735226", "#a9a08e", "#9b717d", "#bdb06d", "#222e32", "#738b92", "#6a6748", "#e88b33"]
+		let paletteB = ["#91c05b", "#0e5b3b", "#20a6cc", "#de5337", "#802c7d", "#d1267b", "#967554", "#edaa53", "#90302e", "#f5c378", "#735226", "#a9a08e", "#9b717d", "#bdb06d", "#222e32", "#738b92", "#6a6748", "#e88b33", "#91c05b", "#0e5b3b", "#20a6cc", "#de5337", "#802c7d", "#d1267b", "#967554", "#edaa53", "#90302e", "#f5c378", "#735226", "#a9a08e", "#9b717d", "#bdb06d",]
 
-		vClusters[1].setPalette(paletteB);
-		vClusters[2].setPalette(paletteC);
+		vClusters[0].setPalette(paletteB);
+		//vClusters[2].setPalette(paletteC);
 
 		if (edgesTemp) {
 			EdgeFactory.buildEdges(edgesTemp, clusters);
@@ -52,20 +54,20 @@ var main = function (p5) {
 		vClusters.forEach(element => { element.show(p5) });
 
 		// show edges
-		vEdges.forEach(element => { element.show(p5) });
+		EdgeFactory.vEdges.forEach(element => { element.show(p5) });
 	}
 
-	clearEdges = function(){
-        edges = [];
-		vEdges = [];
+	clearEdges = function () {
+		EdgeFactory.edges = [];
+		EdgeFactory.vEdges = [];
 		clusters = [];
 		vClusters = [];
-		ClusterFactory.makeClusters(clusters, vClusters,nodesTemp);
-		let paletteB = ["#91c05b", "#0e5b3b", "#20a6cc", "#de5337", "#802c7d", "#d1267b", "#967554", "#edaa53"]
-		let paletteC = ["#90302e", "#f5c378", "#735226", "#a9a08e", "#9b717d", "#bdb06d", "#222e32", "#738b92", "#6a6748", "#e88b33"]
-		vClusters[1].setPalette(paletteB);
-		vClusters[2].setPalette(paletteC);
-    }
+		ClusterFactory.makeClusters(clusters, vClusters, nodesTemp);
+		// let paletteB = ["#91c05b", "#0e5b3b", "#20a6cc", "#de5337", "#802c7d", "#d1267b", "#967554", "#edaa53"]
+		// let paletteC = ["#90302e", "#f5c378", "#735226", "#a9a08e", "#9b717d", "#bdb06d", "#222e32", "#738b92", "#6a6748", "#e88b33"]
+		// vClusters[1].setPalette(paletteB);
+		// vClusters[2].setPalette(paletteC);
+	}
 
 	p5.mouseMoved = function () {
 		vClusters.forEach(element => {
@@ -80,8 +82,7 @@ var main = function (p5) {
 	}
 
 	gotData = function (data) {
-		console.log("File loaded: "+ data);
+		console.log("File loaded: " + data);
 	}
 }
-
 var globalP5 = new p5(main, "bipartiteDiagram");

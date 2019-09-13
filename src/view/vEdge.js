@@ -33,7 +33,7 @@ class VEdge {
                 builder.strokeWeight(5);
                 this.alpha = '99';
             } else {
-                builder.strokeWeight(1);
+                builder.strokeWeight(3);
                 this.alpha = 30;
             }
 
@@ -41,8 +41,10 @@ class VEdge {
         if (document.getElementById("backward").checked) {
             if (this.edge.target && this.edge.target.nodeObserver.inPropagation) {
                 builder.strokeWeight(5);
+                this.alpha = '99';
             } else {
-                builder.strokeWeight(1);
+                builder.strokeWeight(3);
+                this.alpha = 30;
             }
         }
 

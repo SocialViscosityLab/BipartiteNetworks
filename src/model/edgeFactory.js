@@ -1,14 +1,10 @@
+
 class EdgeFactory {
-    constructor() {
 
-    }
-    static  edges = [];
-	static  vEdges = [];
-
-    static buildEdges = function (edgs, clusters) {
+    static buildEdges(edgs, clusters) {
 
         for (let index = 0; index < Object.keys(edgs).length; index++) {
-            
+
             // take the source ID: cluster, cat and polarity
             let e = edgs[index];
 
@@ -47,12 +43,12 @@ class EdgeFactory {
             } else {
                 connSource = sourceCtgTemp.negatives[sourceCtgTemp.negatives.length - 1];
             }
-            
+
             // ask the connector to sproutEdge
             let edge = connSource.workOnLastEdge();
             connSource.notifyObserver(edge);
             connSource.vConnectorObserver.workOnLastVEdge(edge);
-            
+
 
             // look for the category in the X' categories
             let targetCtgTemp;
@@ -78,12 +74,25 @@ class EdgeFactory {
         }
     }
 
+    static get EDGES(){
+        return EdgeFactory.edges;
+    }
+
     static recordJSON() {
         let filename = "edges.json";
         let output = [];
         for (let index = 0; index < EdgeFactory.edges.length; index++) {
-            output.push (EdgeFactory.edges[index].id);
+            output.push(EdgeFactory.edges[index].id);
         }
-        globalP5.saveJSON(output,filename);
+        globalP5.saveJSON(output, filename);
+    }
+
+    static reset(){
+        console.log('Edges re-initialized');
+        EdgeFactory.edges = [];
+        EdgeFactory.vEdges = [];
     }
 }
+
+EdgeFactory.edges = [];
+EdgeFactory.vEdges = [];

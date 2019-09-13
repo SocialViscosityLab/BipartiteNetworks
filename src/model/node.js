@@ -108,7 +108,7 @@ class Node {
             // i) retrive a subset of edges whose SOURCE is this category
             let edgesTmp = [];
             cat.inPropagation = clicked;
-            edges.forEach(edg => {
+            EdgeFactory.edges.forEach(edg => {
                 let obs = edg.source.nodeObserver;
                 if (obs.idCat == cat.idCat) {
                     // console.log(obs.label);
@@ -131,6 +131,8 @@ class Node {
             if (error instanceof RangeError) {
                 console.log("WARNING: INFINTE RECURSION. The path of edges draw a closed loop. Check: " + issuesAt)
                 document.getElementById('warning').innerHTML = "WARNING: Infinite Recursion. Dissable propagation";
+            } else {
+                console.log(error)
             }
         }
     }
@@ -141,7 +143,7 @@ class Node {
             // i) retrive a subset of edges whose TARGET is this category
             let edgesTmp = [];
             cat.inPropagation = clicked;
-            edges.forEach(edg => {
+            EdgeFactory.edges.forEach(edg => {
                 let obs = edg.target.nodeObserver;
                 if (obs.idCat == cat.idCat) {
                     // console.log(obs.label);
@@ -163,6 +165,8 @@ class Node {
         } catch (error) {
             if (error instanceof RangeError) {
                 console.log("WARNING: INFINTE RECURSION. The path of edges draw a closed loop. Check Category: " + issuesAt)
+            }  else {
+                console.log(error)
             }
         }
     }

@@ -1,11 +1,6 @@
 class ClusterFactory {
-    constructor() {
-    }
 
-    static clusters = [];
-	static vClusters = [];
-
-    static makeClusters(data){
+    static makeClusters(data) {
         ClusterFactory.clusters = [];
         this.vClusters = [];
         for (let index = 0; index < Object.keys(data).length; index++) {
@@ -16,9 +11,9 @@ class ClusterFactory {
         let wdth = 140;
         let hght = 35;
         let x = wdth + gutter;
-        
+
         for (let index = 0; index < ClusterFactory.clusters.length; index++) {
-            ClusterFactory.vClusters.push(new VCluster(ClusterFactory.clusters[index], 15 + x*index, 20, wdth, hght));
+            ClusterFactory.vClusters.push(new VCluster(ClusterFactory.clusters[index], 15 + x * index, 20, wdth, hght));
         }
     }
 
@@ -26,12 +21,12 @@ class ClusterFactory {
         let cluster = new Cluster(data.clusterID);
         cluster.setLabel(data.clusterLabel);
         cluster.setDescription(data.clusterDescription);
-        this.makeCategories(cluster,data);
-       ClusterFactory.clusters.push(cluster);
+        this.makeCategories(cluster, data);
+        ClusterFactory.clusters.push(cluster);
     }
 
 
-    static makeCategories(cluster,data) {
+    static makeCategories(cluster, data) {
         // create categories
         for (let index = 0; index < data.nodes.length; index++) {
             const category = new Node(cluster.id, data.nodes[index].id);
@@ -65,9 +60,18 @@ class ClusterFactory {
         let filename = "nodes.json";
         let output = [];
         for (let index = 0; index < ClusterFactory.clusters.length; index++) {
-            output.push (ClusterFactory.clusters[index].getJSON());
+            output.push(ClusterFactory.clusters[index].getJSON());
         }
-        globalP5.saveJSON(output,filename);
+        globalP5.saveJSON(output, filename);
+    }
+
+    static reset() {
+        console.log("Clusters re-intialized")
+        ClusterFactory.clusters = [];
+        ClusterFactory.vClusters = [];
     }
 }
+
+ClusterFactory.clusters = [];
+ClusterFactory.vClusters = [];
 

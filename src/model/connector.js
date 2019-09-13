@@ -27,7 +27,7 @@ class Connector {
         if (document.getElementById("edit").checked) {
             if (!this.taken) {
                 // get the last edge in edges collection.
-                lastEdge = EdgeFactory.edges.slice(-1)[0];
+                lastEdge = EdgeFactory.EDGES.slice(-1)[0];
 
                 // If there is at least one edge
                 if (lastEdge) {

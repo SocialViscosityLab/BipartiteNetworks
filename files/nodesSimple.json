@@ -191,18 +191,6 @@
         "nodeLabel": "Posthumanism and Object Oriented Ontology",
         "nodeDescription": "Object-oriented ontology maintains that objects exist independently of human perception and are not ontologically exhausted by their relations with humans or other objects. For object-oriented ontologists, all relations, including those between nonhumans, distort their related objects in the same basic manner as human consciousness and exist on an equal footing with one another. Source: Wikipedia",
         "polarity": "BOTH"
-      },
-      {
-        "id": 10,
-        "nodeLabel": "Visual theory",
-        "nodeDescription": "Visual Theory coalesced as a critical discourse in the late 1980s as an alternative to art historical discourses predicated on connoisseurship and biography. This literature synthesizes psychology (e.g. gestalt psychology; psychoanalysis) with semiotics (as developed in critical literary theory) in order to examine communication, representation, production, reception, and objecthood.",
-        "polarity": "BOTH"
-      },
-      {
-        "id": 11,
-        "nodeLabel": "Psychoanalytic theory",
-        "nodeDescription": "The theory of personality organization and the dynamics of personality development that guides psychoanalysis, a clinical method for treating psychopathology developed by Freud. Scholars of literary and visual culture have drawn on later psychoanalytical theories by Jacques Lacan to develop critical discourses on cognition, perception, communication, representation, and reception in words and images. Adapted from: Wikipedia",
-        "polarity": "BOTH"
       }
     ]
   },

@@ -112,10 +112,10 @@ class VNode extends Button {
         builder.textAlign(globalP5.LEFT, globalP5.TOP);
         builder.strokeWeight(0.5);
         builder.textSize(12);
-        builder.text(this.node.label, 95, builder.height - 80, builder.width - 200, 97);
+        builder.text(this.node.label, 95, globalP5.height - 80, globalP5.width - 200, 97);
         builder.noStroke();
         builder.textSize(11);
-        builder.text(this.node.description, 100, builder.height - 62, builder.width - 200, 97);
+        builder.text(this.node.description, 100, globalP5.height - 62, globalP5.width - 200, 97);
 
     }
 

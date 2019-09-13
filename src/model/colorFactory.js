@@ -1,7 +1,4 @@
 class ColorFactory {
-    constructor() { }
-
-    static palettes = [];
 
     static loadPalette(fileName) {
         globalP5.loadStrings(fileName, ColorFactory.splitTokens);
@@ -19,3 +16,4 @@ class ColorFactory {
         }
     }
 }
+ColorFactory.palettes = [];

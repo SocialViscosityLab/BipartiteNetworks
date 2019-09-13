@@ -1,16 +1,21 @@
 
+
 // main function
 var main = function (p5) {
 
-	// global variables
-
+	// variables
 	let edgesTemp;
 	let nodesTemp;
+	let graphics;
+
+	// Control rendering loop
+	let renderGate;
+	let rendered;
 
 	p5.preload = function () {
 		// Load edge and node files
-		edgesTemp = p5.loadJSON('./files/edges.json', gotData('edges.json'));
-		nodesTemp = p5.loadJSON('./files/nodes.json', gotData('nodes.json'));
+		nodesTemp = p5.loadJSON('./files/nodesSImple.json');
+		edgesTemp = [];//p5.loadJSON('./files/edges.json');
 
 		// Load color palettes
 		ColorFactory.loadPalette("./files/colorPalettes/palette1.txt");
@@ -21,13 +26,10 @@ var main = function (p5) {
 	p5.setup = function () {
 		// Create cavas
 		p5.createCanvas(920, 700);
+		graphics = p5.createGraphics(p5.width * p5.pixelDensity(), p5.height * p5.pixelDensity());
 
-		// Create clustres of nodes and VNodes
-		ClusterFactory.makeClusters(nodesTemp);
-
-		// Set colors to clusters
-		ClusterFactory.vClusters[1].setPalette(ColorFactory.palettes[0]);
-		ClusterFactory.vClusters[2].setPalette(ColorFactory.palettes[1]);
+		// Create clusters of nodes and VNod
+		//buildClusters2(nodesTemp);
 
 		// Create edges and vEdges
 		if (edgesTemp) {
@@ -38,11 +40,110 @@ var main = function (p5) {
 		document.getElementById("saveEdges").onclick = EdgeFactory.recordJSON;
 		document.getElementById("saveNodes").onclick = ClusterFactory.recordJSON;
 		document.getElementById("clearEdges").onclick = clearEdges;
+		let model = document.getElementById("model");
+		model.addEventListener('change', () => {
+			switchModel(model.value);
+		})
+		// Create clusters of nodes and VNod
+		switchModel(model.value);
 	}
 
+	// In a loop
 	p5.draw = function () {
 		p5.background(250);
 
+		if (renderGate) {
+			renderOnP5();
+		} else {
+			renderOnGraphics();
+			p5.image(graphics, 0, 0, p5.width, p5.height);
+		}
+		renderGate = false;
+	}
+
+	/** Delete edges and re-initialize nodes */
+	clearEdges = function () {
+		EdgeFactory.reset();
+		buildClusters2(nodesTemp);
+	}
+
+	// Move events
+	p5.mouseMoved = function () {
+		renderGate = true;
+
+		ClusterFactory.vClusters.forEach(element => {
+			element.mouseOverEvents();
+		});
+	}
+
+	// click events
+	p5.mouseClicked = function () {
+		renderGate = true;
+
+		ClusterFactory.vClusters.forEach(element => {
+			element.mouseClickedEvents();
+		});
+	}
+
+	switchModel = function (currentModel) {
+		buildClusters2(nodesTemp)
+		switch (currentModel) {
+			case 'empty':
+				edgesTemp = [];
+				buildEdges2(edgesTemp);
+				break;
+			// Masters
+			case 'sustainable':
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/sustainable.json', buildEdges2);
+				break;
+			case 'race':
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/criticalRace.json', buildEdges2);
+				break;
+			case 'visual':
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/visualAndCultural.json', buildEdges2);
+				break;
+			case 'applied':
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/appliedResearch.json', buildEdges2);
+				break;
+			case 'full':
+				edgesTemp = p5.loadJSON('./files/edges.json', buildEdges2);
+				break;
+			// Faculty
+			case 'briggs':
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/briggsEdges.json', buildEdges2);
+				break;
+			case 'salamanca':
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/salamanca.json', buildEdges2);
+				break;
+			case 'mercer':
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/mercer.json', buildEdges2);
+				break;
+
+				case 'ruecker':
+					edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/ruecker.json', buildEdges2);
+					break;
+			// Students
+			case 'moon':
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/moon.json', buildEdges2);
+				break;
+		}
+	}
+
+	buildEdges2 = function (result) {
+		EdgeFactory.reset();
+		EdgeFactory.buildEdges(result, ClusterFactory.clusters)
+		renderGate = true;
+	}
+
+	buildClusters2 = function (result) {
+		ClusterFactory.reset();
+		ClusterFactory.makeClusters(result);
+		ClusterFactory.vClusters[1].setPalette(ColorFactory.palettes[0]);
+		ClusterFactory.vClusters[2].setPalette(ColorFactory.palettes[1]);
+	}
+
+	// render on original p5.Renderer
+	renderOnP5 = function () {
 		// draw description box
 		p5.fill(250);
 		p5.noStroke();
@@ -53,39 +154,40 @@ var main = function (p5) {
 		p5.noStroke();
 		p5.rect(0, p5.height - 15, p5.width, 15)
 		p5.fill(210);
-
 		// show clusters
 		ClusterFactory.vClusters.forEach(element => { element.show(p5) });
 
 		// show edges
 		EdgeFactory.vEdges.forEach(element => { element.show(p5) });
+
+		rendered = false;
 	}
 
-	/** Delete edges and re-initialize nodes */
-	clearEdges = function () {
-		EdgeFactory.edges = [];
-		EdgeFactory.vEdges = [];
+	// render on custom p5.Renderer
+	renderOnGraphics = function () {
 
-		ClusterFactory.makeClusters(nodesTemp);
+		if (!rendered) {
+			graphics.background(250);
 
-		ClusterFactory.vClusters[1].setPalette(ColorFactory.palettes[0]);
-		ClusterFactory.vClusters[2].setPalette(ColorFactory.palettes[1]);
-	}
+			// draw description box
+			graphics.fill(250);
+			graphics.noStroke();
+			graphics.rect(0, p5.height - 90, p5.width, 90)
 
-	p5.mouseMoved = function () {
-		ClusterFactory.vClusters.forEach(element => {
-			element.mouseOverEvents();
-		});
-	}
+			// draw hem
+			graphics.fill(150);
+			graphics.noStroke();
+			graphics.rect(0, p5.height - 15, p5.width, 15)
+			graphics.fill(210);
 
-	p5.mouseClicked = function () {
-		ClusterFactory.vClusters.forEach(element => {
-			element.mouseClickedEvents();
-		});
-	}
+			// show clusters
+			ClusterFactory.vClusters.forEach(element => { element.show(graphics) });
 
-	gotData = function (data) {
-		console.log(data + " loaded");
+			// show edges
+			EdgeFactory.vEdges.forEach(element => { element.show(graphics) });
+
+			rendered = true;
+		}
 	}
 }
 var globalP5 = new p5(main, "firstDiagram");

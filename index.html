@@ -83,8 +83,7 @@
         </p>
         <p>While
           enriched product and service portfolios benefit those who partake in the marketplace, innovations undertaken
-          for
-          innovation’s sake have been seen to undermine some social and environmental conditions for the general public.
+          for innovation's sake have been seen to undermine some social and environmental conditions for the general public.
           We argue for a holistic view of responsible innovation that deals with the design, reification,
           and maintenance of positive, equitable, and meaningful futures desired by sustainable networks of human and
           non-human actors.
@@ -103,6 +102,8 @@
           also
           serves as a pedagogical tool to help faculty engage the opportunities and challenges of responsible
           innovation.
+
+         
         </p>
       </div>
       <div class="col-sm-1"></div>
@@ -110,30 +111,53 @@
   </div>
 
   <div class="container">
-    
+
     <div class="row">
       <div class="col-sm-1"></div>
-      <div class="col-sm-8">
+      <div class="col-sm-7">
         <div>
-          <input type="checkbox" id="forward" name="fwd" style="margin-left:35px" checked>
-          <label for="forward" style="font-size:10px">Forward propagation</label>
 
-          <input type="checkbox" id="backward" name="bws">
-          <label for="backward" style="font-size:10px">Backward propagation</label>
-          &nbsp;| &nbsp;
-          <input type="button" id="saveNodes" name="saveNds">
-          <label for="saveNodes" style="font-size:10px">Export nodes</label>
-          &nbsp;
-          <input type="button" id="clearEdges" name="clearEdgs">
-          <label for="clearEdges" style="font-size:10px">Clear edges</label>
+          <input type="checkbox" id="forward" name="fwd" style="margin-left:35px; visibility:hidden" checked>
+          <!--<label for="forward" style="font-size:10px">Forward propagation</label>-->
+
+          <input type="checkbox" id="backward" name="bws" style="visibility:hidden" checked>
+          <!--<label for="backward" style="font-size:10px">Backward propagation</label>-->
+          <!--&nbsp;| &nbsp;-->
+
+          <input type="button" id="saveNodes" name="saveNds" style="visibility:hidden">
+          <!--<label for="saveNodes" style="font-size:10px">Export nodes</label>-->
           &nbsp;
           <input type="button" id="saveEdges" name="saveEdgs">
           <label for="saveEdges" style="font-size:10px">Export edges</label>
+          &nbsp;| &nbsp;
+          <input type="button" id="clearEdges" name="clearEdgs">
+          <label for="clearEdges" style="font-size:10px">Clear edges</label>
 
           <label id="warning" style="font-size:11px; color:#FF0000"> </label>
+
         </div>
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm-3">
+        <div>
+          <select id="model" style="font-size:10px; color:grey;">
+            <!-- Empty DYI -->
+            <option value="empty">Empty model | DIY</option>
+            <!-- Master tracks -->
+            <option> * Master's tracks *</option>
+            <option value="sustainable">Sustainable and regenerative design</option>
+            <option value="race">Urban sociology and critical race </option>
+            <option value="visual" selected>Visual and cultural studies</option>
+            <option value="applied">Applied research in responsible innovation</option>
+            <!-- Faculty tracks -->
+            <option> * Faculty research *</option>
+            <option value="briggs">Briggs</option>
+            <option value="salamanca">Salamanca</option>
+            <option value="mercer">Mercer</option>
+            <option value="ruecker">Ruecker</option>
+             <!-- Students research -->
+             <option> * MFA students research *</option>
+            <option value="moon">Moon_2019</option>
+          </select></div>
         <input type="checkbox" id="edit" name="drone" checked>
         <label for="edit" style="font-size:10px">Edit mode</label>
       </div>
@@ -145,7 +169,7 @@
       <div class="col-sm-1"></div>
       <div class="col-sm-10">
         <p style="margin-left:20px"> Salamanca, Briggs, Mercer | University of Illinois at Urbana-Champaign | 2019 |
-          Made with p5.js </p>
+          Made with p5.js |  Contact: jsal@illinois.edu </p>
       </div>
       <div class="col-sm-1"></div>
     </div>

@@ -14,7 +14,7 @@ var main = function (p5) {
 
 	p5.preload = function () {
 		// Load edge and node files
-		nodesTemp = p5.loadJSON('./files/nodesSImple.json');
+		nodesTemp = p5.loadJSON('./files/nodes.json');
 		edgesTemp = [];//p5.loadJSON('./files/edges.json');
 
 		// Load color palettes

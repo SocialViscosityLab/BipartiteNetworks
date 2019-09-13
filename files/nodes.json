@@ -124,6 +124,12 @@
         "nodeLabel": "Infrastructures",
         "nodeDescription": "The term infrastructure evokes vast sets of collective equipment necessary to human activities, such as buildings, roads, bridges, rail tracks, channels, ports, communications networks. Beyond bricks, mortar, pipes or wires, infrastructure also encompasses more abstract entities, such as protocols (human and computer), standards, and memory. Source: Toward Information Infrastructure Studies. Bowker, Baker, Millerand, Ribes",
         "polarity": "BOTH"
+      },
+      {
+        "id": 8,
+        "nodeLabel": "Well-being",
+        "nodeDescription": "According to Naci and Ioannidis, \"Wellness refers to diverse and interconnected dimensions of physical, mental, and social well-being that extend beyond the traditional definition of health. It includes choices and activities aimed at achieving physical vitality, mental alacrity, social satisfaction, a sense of accomplishment, and personal fulfillment\". Source: Wikipedia",
+        "polarity": "BOTH"
       }
     ]
   },

@@ -13,6 +13,24 @@
     p {
       font-size: 11px;
     }
+
+    .button {
+      background-color: rgb(223, 223, 223);
+      border: none;
+      color: rgb(120,120,120);
+      padding: 5px 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 8px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+    }
   </style>
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -23,10 +41,7 @@
 
   <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
   <style>
-    body {
-      padding: 0;
-      margin: 0;
-    }
+
   </style>
 
   <script src="libs/p5.js"></script>
@@ -83,7 +98,8 @@
         </p>
         <p>While
           enriched product and service portfolios benefit those who partake in the marketplace, innovations undertaken
-          for innovation's sake have been seen to undermine some social and environmental conditions for the general public.
+          for innovation's sake have been seen to undermine some social and environmental conditions for the general
+          public.
           We argue for a holistic view of responsible innovation that deals with the design, reification,
           and maintenance of positive, equitable, and meaningful futures desired by sustainable networks of human and
           non-human actors.
@@ -103,7 +119,7 @@
           serves as a pedagogical tool to help faculty engage the opportunities and challenges of responsible
           innovation.
 
-         
+
         </p>
       </div>
       <div class="col-sm-1"></div>
@@ -124,14 +140,14 @@
           <!--<label for="backward" style="font-size:10px">Backward propagation</label>-->
           <!--&nbsp;| &nbsp;-->
 
-          <input type="button" id="saveNodes" name="saveNds" style="visibility:hidden">
+          <button class="button" id="saveNodes" name="saveNds"> Export nodes</button>
           <!--<label for="saveNodes" style="font-size:10px">Export nodes</label>-->
           &nbsp;
-          <input type="button" id="saveEdges" name="saveEdgs">
-          <label for="saveEdges" style="font-size:10px">Export edges</label>
+          <button class="button" id="saveEdges" name="saveEdgs">Export edges</button>
+          <!--<label for="saveEdges" style="font-size:10px">Export edges</label>-->
           &nbsp;| &nbsp;
-          <input type="button" id="clearEdges" name="clearEdgs">
-          <label for="clearEdges" style="font-size:10px">Clear edges</label>
+          <button class="button" id="clearEdges" name="clearEdgs">Clear edges</button>
+          <!--<label for="clearEdges" style="font-size:10px">Clear edges</label>-->
 
           <label id="warning" style="font-size:11px; color:#FF0000"> </label>
 
@@ -154,8 +170,8 @@
             <option value="salamanca">Salamanca</option>
             <option value="mercer">Mercer</option>
             <option value="ruecker">Ruecker</option>
-             <!-- Students research -->
-             <option> * MFA students research *</option>
+            <!-- Students research -->
+            <option> * MFA students research *</option>
             <option value="moon">Moon_2019</option>
           </select></div>
         <input type="checkbox" id="edit" name="drone" checked>
@@ -169,7 +185,7 @@
       <div class="col-sm-1"></div>
       <div class="col-sm-10">
         <p style="margin-left:20px"> Salamanca, Briggs, Mercer | University of Illinois at Urbana-Champaign | 2019 |
-          Made with p5.js |  Contact: jsal@illinois.edu </p>
+          Made with p5.js | Contact: jsal@illinois.edu </p>
       </div>
       <div class="col-sm-1"></div>
     </div>

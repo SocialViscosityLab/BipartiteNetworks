@@ -8,6 +8,11 @@
 
   <title>Responsible Innovation: A Model for Holistic Design Pedagogy</title>
 
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
   <!-- CSS -->
   <style>
     p {
@@ -17,12 +22,12 @@
     .button {
       background-color: rgb(223, 223, 223);
       border: none;
-      color: rgb(120,120,120);
+      color: rgb(120, 120, 120);
       padding: 5px 5px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
-      font-size: 8px;
+      font-size: 10px;
       margin: 4px 2px;
       cursor: pointer;
     }
@@ -32,22 +37,13 @@
       margin: 0;
     }
   </style>
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-
-
-  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
-  <style>
-
-  </style>
 
   <script src="libs/p5.js"></script>
 
   <!-- Control -->
   <script src="src/main.js"></script>
+
+  <script src="modalForm.js"></script>
 
   <!-- Model -->
   <script src="src/model/node.js"></script>
@@ -125,6 +121,7 @@
       <div class="col-sm-1"></div>
     </div>
   </div>
+  <hr>
 
   <div class="container">
 
@@ -133,18 +130,24 @@
       <div class="col-sm-7">
         <div>
 
+
+
           <input type="checkbox" id="forward" name="fwd" style="margin-left:35px; visibility:hidden" checked>
           <!--<label for="forward" style="font-size:10px">Forward propagation</label>-->
 
           <input type="checkbox" id="backward" name="bws" style="visibility:hidden" checked>
           <!--<label for="backward" style="font-size:10px">Backward propagation</label>-->
+
           <!--&nbsp;| &nbsp;-->
+          <button class="button" id="myBtn" data-toggle="modal" data-target="#exampleModal" >Add category</button>
+          &nbsp;| &nbsp;
 
           <button class="button" id="saveNodes" name="saveNds"> Export nodes</button>
           <!--<label for="saveNodes" style="font-size:10px">Export nodes</label>-->
           &nbsp;
           <button class="button" id="saveEdges" name="saveEdgs">Export edges</button>
           <!--<label for="saveEdges" style="font-size:10px">Export edges</label>-->
+
           &nbsp;| &nbsp;
           <button class="button" id="clearEdges" name="clearEdgs">Clear edges</button>
           <!--<label for="clearEdges" style="font-size:10px">Clear edges</label>-->
@@ -191,6 +194,51 @@
     </div>
   </div>
 
+
+
+  <!-- The Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Add a category to clusters</h3>
+        </div>
+        <div class="modal-body">
+
+          <h4>Choose a cluster</h4>
+          <p> Please choose the cluster to which you want to add the category</p>
+          <form action="" id= "clusterChoice">
+            <p>
+              <input type="radio" name="cluster" value="1"> 1 Categories of Awarness
+              <input type="radio" name="cluster" value="2"> 2 Topics of Concern
+              <input type="radio" name="cluster" value="3"> 3 Modes of Inquiry
+              <input type="radio" name="cluster" value="4"> 4 Methods of Design Action
+            </p>
+          </form>
+          <hr>
+          <h4>Category name</h4>
+          <p>The categories in each cluster are <b> mutually exlusive</b>. Verify that none of the current categories encompass the category you inted to add </p>
+          <input id="catName" value="Category name"></input>
+          <hr>
+
+          <h4>Category description</h4>
+          <p>Describe briefly the content of the new category. Give credits to third parties if any. </p>
+          <textarea class="form-control" rows="5" id="catDescription">Category description</textarea>
+          <hr>
+          <h4>Polarity</h4>
+          <p>The polarity of a category enables it to connect with categories from the adjacent clusters. These boxes create a connector on either the left,
+             right or on both sides of the category. Connectors can only be linked with others with oposite polarity.</p>
+          <input type='checkbox' id="negative"  checked> negative (enable left connectors)</input>     <br>
+          <input type='checkbox' id="positive"  checked> positive (enable right connectors)</input>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="Submit">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

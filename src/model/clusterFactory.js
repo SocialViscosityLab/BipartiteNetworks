@@ -25,35 +25,35 @@ class ClusterFactory {
         ClusterFactory.clusters.push(cluster);
     }
 
-
     static makeCategories(cluster, data) {
         // create categories
         for (let index = 0; index < data.nodes.length; index++) {
-            const category = new Node(cluster.id, data.nodes[index].id);
-            category.setLabel(data.nodes[index].nodeLabel);
-            category.setDescription(data.nodes[index].nodeDescription);
-            //category.setPolarity(data.polarity);
-            category.setPolarity(data.nodes[index].polarity);
-
-            // create connectors
-            //switch (data.polarity) {
-            switch (data.nodes[index].polarity) {
-                case 'LEFT':
-                    category.addNegativeConnector(category.negatives.length);
-                    break;
-                    ;
-                case 'RIGHT':
-                    category.addPositiveConnector(category.positives.length);
-                    break;
-                    ;
-                default:
-                    category.addNegativeConnector(category.negatives.length);
-                    category.addPositiveConnector(category.positives.length);
-            }
-
-            // add connectors
+            let category = this.makeCategory(cluster, data.nodes[index]);
             cluster.addCategory(category);
         }
+    }
+
+    static makeCategory = function (cluster, data) {
+        let category = new Node(cluster.id, data.id);
+        category.setLabel(data.nodeLabel);
+        category.setDescription(data.nodeDescription);
+        category.setPolarity(data.polarity);
+    
+        // create connectors
+        switch (data.polarity) {
+            case 'LEFT':
+                category.addNegativeConnector(category.negatives.length);
+                break;
+                ;
+            case 'RIGHT':
+                category.addPositiveConnector(category.positives.length);
+                break;
+                ;
+            default:
+                category.addNegativeConnector(category.negatives.length);
+                category.addPositiveConnector(category.positives.length);
+        }
+        return category;
     }
 
     static recordJSON() {
@@ -69,6 +69,17 @@ class ClusterFactory {
         console.log("Clusters re-intialized")
         ClusterFactory.clusters = [];
         ClusterFactory.vClusters = [];
+    }
+
+    static getVClusterOf(cluster){
+        for (const vClust of ClusterFactory.vClusters) {
+            if(vClust.cluster.id == cluster.id)
+            return vClust;
+        }
+    }
+
+    static refreshColors(clusterIndex, palette){
+        ClusterFactory.vClusters[clusterIndex].setPalette(palette);
     }
 }
 

@@ -15,7 +15,6 @@ class VNode extends Button {
         tmpVConnector.setColor(this.color);
         this.vPositives.push(tmpVConnector);
         this.updateConnectorsCoords();
-
     }
 
     addNegativeVConnector(connector) {
@@ -23,7 +22,6 @@ class VNode extends Button {
         tmpVConnector.setColor(this.color);
         this.vNegatives.push(tmpVConnector);
         this.updateConnectorsCoords();
-
     }
 
     setColor(color) {

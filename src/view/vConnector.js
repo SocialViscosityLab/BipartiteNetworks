@@ -28,6 +28,10 @@ class VConnector extends Button {
     }
 
     showAsButton(builder) {
+        // in case the color palette runs out of colors
+        if (!this.color){
+            this.color = '#d4d4d4';
+        }
         builder.fill(this.color.concat('ff'));
         builder.stroke(200);
         if (this.mouseIsOver) {
@@ -65,8 +69,11 @@ class VConnector extends Button {
                     }
                     // if edge does not link nodes in the same cluster
                     if (edge.source.id.cluster != this.connector.id.cluster){
-                        lastVEdge.setVTarget(this);
-                        lastVEdge.open = false;
+                        // check connectors polarity
+                        if (this.connector.polarity != edge.source.polarity) {
+                            lastVEdge.setVTarget(this);
+                            lastVEdge.open = false;
+                        }
                     } 
 
                 } else {

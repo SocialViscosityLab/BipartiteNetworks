@@ -81,6 +81,23 @@ class Node {
         }
     }
 
+    resetConnectors(){
+        this.positives=[];
+        this.negatives =[];
+
+        if (this.polarity == "RIGHT") {
+            this.addPositiveConnector(0);
+        }
+        if (this.polarity == "LEFT") {
+            this.addNegativeConnector(0);
+        }
+        if (this.polarity == "BOTH") {
+            this.addPositiveConnector(0);
+            this.addNegativeConnector(0);
+        }
+        this.vNodeObserver.resetVConnectors();
+    }
+
     recallConnectors(connSource) {
         if (connSource.polarity) {
             this.positives.pop();

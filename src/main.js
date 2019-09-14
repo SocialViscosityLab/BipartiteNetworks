@@ -45,7 +45,7 @@ var main = function (p5) {
 			switchModel(model.value);
 		})
 		// Create clusters of nodes and VNod
-		//buildClusters2(nodesTemp);
+		//buildClusters(nodesTemp);
 		switchModel(model.value);
 
 		// form
@@ -68,7 +68,7 @@ var main = function (p5) {
 	/** Delete edges and re-initialize nodes */
 	clearEdges = function () {
 		EdgeFactory.reset();
-		buildClusters2(nodesTemp);
+		ClusterFactory.resetAllConnectors();
 	}
 
 	// Move events
@@ -90,56 +90,56 @@ var main = function (p5) {
 	}
 
 	switchModel = function (currentModel) {
-		buildClusters2(nodesTemp)
+		buildClusters(nodesTemp)
 		switch (currentModel) {
 			case 'empty':
 				edgesTemp = [];
-				buildEdges2(edgesTemp);
+				buildEdges(edgesTemp);
 				break;
 			// Masters
 			case 'sustainable':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/sustainable.json', buildEdges2);
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/sustainable.json', buildEdges);
 				break;
 			case 'race':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/criticalRace.json', buildEdges2);
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/criticalRace.json', buildEdges);
 				break;
 			case 'visual':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/visualAndCultural.json', buildEdges2);
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/visualAndCultural.json', buildEdges);
 				break;
 			case 'applied':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/appliedResearch.json', buildEdges2);
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/appliedResearch.json', buildEdges);
 				break;
 			case 'full':
-				edgesTemp = p5.loadJSON('./files/edges.json', buildEdges2);
+				edgesTemp = p5.loadJSON('./files/edges.json', buildEdges);
 				break;
 			// Faculty
 			case 'briggs':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/briggsEdges.json', buildEdges2);
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/briggsEdges.json', buildEdges);
 				break;
 			case 'salamanca':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/salamanca.json', buildEdges2);
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/salamanca.json', buildEdges);
 				break;
 			case 'mercer':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/mercer.json', buildEdges2);
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/mercer.json', buildEdges);
 				break;
 
 				case 'ruecker':
-					edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/ruecker.json', buildEdges2);
+					edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/ruecker.json', buildEdges);
 					break;
 			// Students
 			case 'moon':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/moon.json', buildEdges2);
+				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/moon.json', buildEdges);
 				break;
 		}
 	}
 
-	buildEdges2 = function (result) {
+	buildEdges = function (result) {
 		EdgeFactory.reset();
 		EdgeFactory.buildEdges(result, ClusterFactory.clusters)
 		renderGate = true;
 	}
 
-	buildClusters2 = function (result) {
+	buildClusters = function (result) {
 		ClusterFactory.reset();
 		ClusterFactory.makeClusters(result);
 		ClusterFactory.refreshColors(1,ColorFactory.palettes[0]);

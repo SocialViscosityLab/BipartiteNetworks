@@ -24,6 +24,21 @@ class VNode extends Button {
         this.updateConnectorsCoords();
     }
 
+    resetVConnectors(){
+        this.vPositives = [];
+        this.vNegatives = [];
+        if(this.node.polarity == "RIGHT"){
+            this.addPositiveVConnector(this.node.positives[0]);
+        }
+        if (this.node.polarity == "LEFT"){
+            this.addNegativeVConnector(this.node.negatives[0]);
+        }
+        if (this.node.polarity == "BOTH"){
+            this.addPositiveVConnector(this.node.positives[0]);
+            this.addNegativeVConnector(this.node.negatives[0]);
+        }
+    }
+
     setColor(color) {
         this.color = color;
         this.setColorConnectors(this.color);

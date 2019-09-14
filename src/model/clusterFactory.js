@@ -81,6 +81,14 @@ class ClusterFactory {
     static refreshColors(clusterIndex, palette){
         ClusterFactory.vClusters[clusterIndex].setPalette(palette);
     }
+
+    static resetAllConnectors(){
+        for (const cluster of ClusterFactory.clusters) {
+            for (const node of cluster.categories) {
+                node.resetConnectors();
+            }
+        }
+    }
 }
 
 ClusterFactory.clusters = [];

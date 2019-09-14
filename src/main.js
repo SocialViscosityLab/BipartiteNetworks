@@ -12,6 +12,9 @@ var main = function (p5) {
 	let renderGate;
 	let rendered;
 
+	// form
+	let button,fieldA, fieldB;
+
 	p5.preload = function () {
 		// Load edge and node files
 		nodesTemp = p5.loadJSON('./files/nodes.json');
@@ -28,9 +31,6 @@ var main = function (p5) {
 		p5.createCanvas(920, 700);
 		graphics = p5.createGraphics(p5.width * p5.pixelDensity(), p5.height * p5.pixelDensity());
 
-		// Create clusters of nodes and VNod
-		//buildClusters2(nodesTemp);
-
 		// Create edges and vEdges
 		if (edgesTemp) {
 			EdgeFactory.buildEdges(edgesTemp, ClusterFactory.clusters);
@@ -45,7 +45,11 @@ var main = function (p5) {
 			switchModel(model.value);
 		})
 		// Create clusters of nodes and VNod
+		//buildClusters2(nodesTemp);
 		switchModel(model.value);
+
+		// form
+		modalFormSetup();
 	}
 
 	// In a loop
@@ -138,8 +142,8 @@ var main = function (p5) {
 	buildClusters2 = function (result) {
 		ClusterFactory.reset();
 		ClusterFactory.makeClusters(result);
-		ClusterFactory.vClusters[1].setPalette(ColorFactory.palettes[0]);
-		ClusterFactory.vClusters[2].setPalette(ColorFactory.palettes[1]);
+		ClusterFactory.refreshColors(1,ColorFactory.palettes[0]);
+		ClusterFactory.refreshColors(2,ColorFactory.palettes[1]);
 	}
 
 	// render on original p5.Renderer

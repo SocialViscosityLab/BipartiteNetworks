@@ -78,8 +78,11 @@ class EdgeFactory {
         return EdgeFactory.edges;
     }
 
-    static recordJSON() {
+    static recordJSON(suffix) {
         let filename = "edges.json";
+        if (suffix){
+            filename = suffix+"_"+filename;
+        }
         let output = [];
         for (let index = 0; index < EdgeFactory.edges.length; index++) {
             output.push(EdgeFactory.edges[index].id);

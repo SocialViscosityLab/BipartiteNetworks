@@ -42,7 +42,9 @@
 
   <!-- Control -->
   <script src="src/main.js"></script>
-  <script src="src/modalForm.js"></script>
+  <script src="src/addCategoryModalForm.js"></script>
+  <script src="src/exportModalForm.js"></script>
+  <script src="src/importModalForm.js"></script>
 
   <!-- Model -->
   <script src="src/model/node.js"></script>
@@ -126,10 +128,8 @@
 
     <div class="row">
       <div class="col-sm-1"></div>
-      <div class="col-sm-7">
+      <div class="col-sm-5">
         <div>
-
-
 
           <input type="checkbox" id="forward" name="fwd" style="margin-left:35px; visibility:hidden" checked>
           <!--<label for="forward" style="font-size:10px">Forward propagation</label>-->
@@ -138,18 +138,16 @@
           <!--<label for="backward" style="font-size:10px">Backward propagation</label>-->
 
           <!--&nbsp;| &nbsp;-->
-          <button class="button" id="myBtn" data-toggle="modal" data-target="#exampleModal" >Add category</button>
-          &nbsp;| &nbsp;
-
-          <button class="button" id="saveNodes" name="saveNds"> Export nodes</button>
-          <!--<label for="saveNodes" style="font-size:10px">Export nodes</label>-->
-          &nbsp;
-          <button class="button" id="saveEdges" name="saveEdgs">Export edges</button>
-          <!--<label for="saveEdges" style="font-size:10px">Export edges</label>-->
-
-          &nbsp;| &nbsp;
+          <button class="button" id="myBtn" data-toggle="modal" data-target="#addCategoryModal">Add category</button>
+          |
           <button class="button" id="clearEdges" name="clearEdgs">Clear edges</button>
-          <!--<label for="clearEdges" style="font-size:10px">Clear edges</label>-->
+
+          &nbsp; &nbsp; &nbsp;
+          <button class="button" id="myBtn" data-toggle="modal" data-target="#exportNetworkModal">Export
+            network</button>
+          |
+          <button class="button" id="myBtn" data-toggle="modal" data-target="#importNetworkModal">Import
+            network</button>
 
           <label id="warning" style="font-size:11px; color:#FF0000"> </label>
 
@@ -176,10 +174,11 @@
             <option> * MFA students research *</option>
             <option value="moon">Moon_2019</option>
           </select></div>
-        <input type="checkbox" id="edit" name="drone" checked>
-        <label for="edit" style="font-size:10px">Edit mode</label>
+
       </div>
-      <div class="col-sm-1"></div>
+      <div class="col-sm-1"> <input type="checkbox" id="edit" checked>
+        <label for="edit" style="font-size:10px">Edit mode</label></div>
+      <div class="col-sm-2"></div>
     </div>
 
     <div class="row">
@@ -195,28 +194,29 @@
 
 
 
-  <!-- The Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <!-- ADD CATEGORY MODAL FORM -->
+  <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModal"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title" id="exampleModalLabel">Add a category to clusters</h3>
+          <h3 class="modal-title">Add a category to clusters</h3>
         </div>
         <div class="modal-body">
 
           <h4>Choose the cluster you want to add a category</h4>
-          <form action="" id= "clusterChoice">
+          <form action="" id="clusterChoice">
             <p>
-              <input type="radio" name="cluster" value="1"> 1 Categories of Awarness
-              <input type="radio" name="cluster" value="2"> 2 Topics of Concern
-              <input type="radio" name="cluster" value="3"> 3 Modes of Inquiry
-              <input type="radio" name="cluster" value="4"> 4 Methods of Design Action
+              <input type="radio" name="cluster" value="0"> 1 Categories of Awarness
+              <input type="radio" name="cluster" value="1"> 2 Topics of Concern
+              <input type="radio" name="cluster" value="2"> 3 Modes of Inquiry
+              <input type="radio" name="cluster" value="3"> 4 Methods of Design Action
             </p>
           </form>
           <hr>
           <h4>Category name</h4>
-          <p>The categories in each cluster are <b> mutually exlusive</b>. Verify that none of the current categories encompass the category you inted to add </p>
+          <p>The categories in each cluster are <b> mutually exlusive</b>. Verify that none of the current categories
+            encompass the category you inted to add </p>
           <input id="catName" value="Category name"></input>
           <hr>
 
@@ -225,18 +225,79 @@
           <textarea class="form-control" rows="5" id="catDescription">Category description</textarea>
           <hr>
           <h4>Polarity</h4>
-          <p>The polarity of a category enables it to connect with categories from the adjacent clusters. These boxes create a connector on either the left,
-             right or on both sides of the category. Connectors can only be linked with others with oposite polarity.</p>
-          <input type='checkbox' id="negative"  checked> negative (enable left connectors)</input>     <br>
-          <input type='checkbox' id="positive"  checked> positive (enable right connectors)</input>
+          <p>The polarity of a category enables it to connect with categories from the adjacent clusters. These boxes
+            create a connector on either the left,
+            right or on both sides of the category. Connectors can only be linked with others with oposite polarity.</p>
+          <input type='checkbox' id="negative" checked> negative (enable left connectors)</input> <br>
+          <input type='checkbox' id="positive" checked> positive (enable right connectors)</input>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="Submit">Submit</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="SubmitAddCategoryModal">Submit</button>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- EXPORT NETWORK MODAL FORM -->
+  <div class="modal fade" id="exportNetworkModal" tabindex="-1" role="dialog" aria-labelledby="exportNetworkModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Export network</h3>
+        </div>
+        <div class="modal-body">
+          <p>Export the current network in json format</p>
+          <input type='checkbox' id="includeNodes" checked> Include nodes</input>
+          &nbsp;
+          <input type='checkbox' id="includeEdges" checked> Include edges</input>
+          <hr>
+          <input id="exportFileSuffix" value="File name"></input>
+          <p>This is the sufix of two separate files, one for nodes and one for edges</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="exportNetwork">Export Network</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPORT NETWORK MODAL FORM -->
+  <div class="modal fade" id="importNetworkModal" tabindex="-1" role="dialog" aria-labelledby="importNetworkModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Import network</h3>
+        </div>
+        <div class="modal-body">
+          <style>
+            .droppable {
+              background: #08c;
+              color: #fff;
+              padding: 50px 0;
+              text-align: center;
+            }
+
+            .droppable.dragover {
+              background: #00CC71;
+            }
+          </style>
+          <div class="droppable" id ="dragDropNodes">Drag and drop the <b>nodes</b> file here
+          <p id="nodesFileName"> no file yet</p>
+        </div>
+          <br>
+          <div class="droppable" id ="dragDropEdges">Drag and drop the <b>edges</b> files here
+          <p id="edgesFileName">no file yet</p></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="importNetwork">Import network</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>

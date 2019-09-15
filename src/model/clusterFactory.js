@@ -56,8 +56,11 @@ class ClusterFactory {
         return category;
     }
 
-    static recordJSON() {
+    static recordJSON(suffix) {
         let filename = "nodes.json";
+        if (suffix){
+            filename = suffix+"_"+filename;
+        }
         let output = [];
         for (let index = 0; index < ClusterFactory.clusters.length; index++) {
             output.push(ClusterFactory.clusters[index].getJSON());

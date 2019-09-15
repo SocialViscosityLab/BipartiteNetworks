@@ -1,7 +1,7 @@
 
-modalFormSetup = function () {
+addCategoryModalForm = function () {
 
-    document.getElementById("Submit").onclick = getData
+    document.getElementById("SubmitAddCategoryModal").onclick = getData
 }
 
 getData = function () {
@@ -12,7 +12,7 @@ getData = function () {
     let negative = document.getElementById("negative").checked
 
     if (cluster) {
-        let clusterTmp = ClusterFactory.clusters[cluster.value - 1];
+        let clusterTmp = ClusterFactory.clusters[cluster.value];
         let polarityTmp;
         if (positive & !negative) {
             polarityTmp = 'RIGHT'
@@ -49,7 +49,6 @@ getData = function () {
     } else {
         alert("You forgot to choose a cluster. Please try again, your data is not lost.")
     }
-
 
 }
 

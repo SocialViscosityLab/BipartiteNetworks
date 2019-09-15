@@ -37,8 +37,6 @@ var main = function (p5) {
 		}
 
 		// Connect with HTML GUI
-		document.getElementById("saveEdges").onclick = EdgeFactory.recordJSON;
-		document.getElementById("saveNodes").onclick = ClusterFactory.recordJSON;
 		document.getElementById("clearEdges").onclick = clearEdges;
 		let model = document.getElementById("model");
 		model.addEventListener('change', () => {
@@ -49,7 +47,9 @@ var main = function (p5) {
 		switchModel(model.value);
 
 		// form
-		modalFormSetup();
+		addCategoryModalForm();
+		exportNetworkModalForm();
+		importNetworkModalForm();
 	}
 
 	// In a loop

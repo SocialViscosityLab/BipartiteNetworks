@@ -6,7 +6,7 @@
   <!-- Enable responsiveness on mobile devices-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Responsible Innovation: A Model for Holistic Design Pedagogy</title>
+  <title>Multi-partite networks</title>
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -38,9 +38,11 @@
     }
   </style>
 
-  <script src="libs/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
 
   <!-- Control -->
+
+
   <script src="src/main.js"></script>
   <script src="src/addCategoryModalForm.js"></script>
   <script src="src/exportModalForm.js"></script>
@@ -68,235 +70,223 @@
 
 <body>
   <div class="container"
-    style="margin-top:10px; position: sticky; background-color: rgb(255, 255, 255); top: 0px; height: 125px; z-index: 100">
+    style="margin-top:10px; position: sticky; background-color: rgb(255, 255, 255); top: 0px; z-index: 100">
 
     <div class="row">
-      <div class="col-sm-1"></div>
+      <!--<div class="col-sm-1"></div>-->
       <div class="col-sm-5">
-        <h1>Responsible Innovation</h1>
-        <h4>A Model for Holistic Design Pedagogy</h4>
+        <h1>Multi-partite networks</h1>
       </div>
       <div class="col-sm-5">
         <br><br>
-        <p>Juan Salamanca, Molly Briggs, Lisa Mercer <br>University of Illinois at
-          Urbana-Champaign<br> School of Art and Design<br>2019</p>
+        <p>Juan Salamanca <br> School of Art and Design<br> University of Illinois, 2019</p>
       </div>
-      <div class="col-sm-1"></div>
     </div>
+    <hr>
   </div>
+
 
   <div class="container">
     <div class="row">
-      <div class="col-sm-1"></div>
+      <!--<div class="col-sm-1"></div>-->
       <div class="col-sm-5">
         <p>
-          Current discourse around innovation has aroused global interest on the part of corporations, governments, and
-          non-profit organizations in applying human-centered design methods to renovate or expand their offerings.
-        </p>
-        <p>While
-          enriched product and service portfolios benefit those who partake in the marketplace, innovations undertaken
-          for innovation's sake have been seen to undermine some social and environmental conditions for the general
-          public.
-          We argue for a holistic view of responsible innovation that deals with the design, reification,
-          and maintenance of positive, equitable, and meaningful futures desired by sustainable networks of human and
-          non-human actors.
+          Description
         </p>
 
       </div>
       <div class="col-sm-5">
         <p>
-          This conceptual model of responsible innovation is organized around clusters of topics,
-          theories, methodologies, and modes of design action. The model offers designers a systemic perspective on the
-          often-overlooked implications of innovative offerings.
-        </p>
-        <p>The model acts as a scaffold for students to construct research paths across topics and methods,
-          thereby
-          empowering them to outline their learning experiences and develop sustainable solutions. The holistic model
-          also
-          serves as a pedagogical tool to help faculty engage the opportunities and challenges of responsible
-          innovation.
-
-
+          Description
         </p>
       </div>
       <div class="col-sm-1"></div>
+
     </div>
+    <hr>
   </div>
-  <hr>
 
   <div class="container">
 
     <div class="row">
-      <div class="col-sm-1"></div>
-      <div class="col-sm-5">
+      <div class="col-sm-6">
         <div>
 
-          <input type="checkbox" id="forward" name="fwd" style="margin-left:35px; visibility:hidden" checked>
-          <!--<label for="forward" style="font-size:10px">Forward propagation</label>-->
-
-          <input type="checkbox" id="backward" name="bws" style="visibility:hidden" checked>
-          <!--<label for="backward" style="font-size:10px">Backward propagation</label>-->
-
           <!--&nbsp;| &nbsp;-->
-          <button class="button" id="myBtn" data-toggle="modal" data-target="#addCategoryModal">Add category</button>
+          <button class="btn btn-default btn-xs" id="myBtn" data-toggle="modal" data-target="#addCategoryModal">Add
+            category</button>
           |
-          <button class="button" id="clearEdges" name="clearEdgs">Clear edges</button>
+          <button class="btn btn-default btn-xs" id="clearEdges" name="clearEdgs">Clear edges</button>
 
           &nbsp; &nbsp; &nbsp;
-          <button class="button" id="myBtn" data-toggle="modal" data-target="#exportNetworkModal">Export
+          <button class="btn btn-default btn-xs" id="myBtn" data-toggle="modal" data-target="#exportNetworkModal">Export
             network</button>
           |
-          <button class="button" id="myBtn" data-toggle="modal" data-target="#importNetworkModal">Import
+          <button class="btn btn-default btn-xs" id="myBtn" data-toggle="modal" data-target="#importNetworkModal">Import
             network</button>
-
-          <label id="warning" style="font-size:11px; color:#FF0000"> </label>
 
         </div>
       </div>
       <div class="col-sm-3">
         <div>
-          <select id="model" style="font-size:10px; color:grey;">
-            <!-- Empty DYI -->
-            <option value="empty">Empty model | DIY</option>
-            <!-- Master tracks -->
-            <option> * Master's tracks *</option>
-            <option value="sustainable">Sustainable and regenerative design</option>
-            <option value="race">Urban sociology and critical race </option>
-            <option value="visual" selected>Visual and cultural studies</option>
-            <option value="applied">Applied research in responsible innovation</option>
-            <!-- Faculty tracks -->
-            <option> * Faculty research *</option>
-            <option value="briggs">Briggs</option>
-            <option value="salamanca">Salamanca</option>
-            <option value="mercer">Mercer</option>
-            <option value="ruecker">Ruecker</option>
-            <!-- Students research -->
-            <option> * MFA students research *</option>
-            <option value="moon">Moon_2019</option>
-          </select></div>
+          <p style="margin-top: 1px; margin-bottom: 1px">Library of models</p>
+          <select id="modelChoice" style="font-size:10px; color:grey;">
 
-      </div>
-      <div class="col-sm-1"> <input type="checkbox" id="edit" checked>
-        <label for="edit" style="font-size:10px">Edit mode</label></div>
-      <div class="col-sm-2"></div>
-    </div>
-
-    <div class="row">
-      <div id="firstDiagram" align="center"></div>
-      <div class="col-sm-1"></div>
-      <div class="col-sm-10">
-        <p style="margin-left:20px"> Salamanca, Briggs, Mercer | University of Illinois at Urbana-Champaign | 2019 |
-          Made with p5.js | Contact: jsal@illinois.edu </p>
-      </div>
-      <div class="col-sm-1"></div>
-    </div>
-  </div>
-
-
-
-  <!-- ADD CATEGORY MODAL FORM -->
-  <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModal"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title">Add a category to clusters</h3>
+            <option value="0" selected>0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="5">6</option>
+            <option value="6">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
         </div>
-        <div class="modal-body">
+      </div>
 
-          <h4>Choose the cluster you want to add a category</h4>
-          <form action="" id="clusterChoice">
-            <p>
-              <input type="radio" name="cluster" value="0"> 1 Categories of Awarness
-              <input type="radio" name="cluster" value="1"> 2 Topics of Concern
-              <input type="radio" name="cluster" value="2"> 3 Modes of Inquiry
-              <input type="radio" name="cluster" value="3"> 4 Methods of Design Action
-            </p>
-          </form>
-          <hr>
-          <h4>Category name</h4>
-          <p>The categories in each cluster are <b> mutually exlusive</b>. Verify that none of the current categories
-            encompass the category you inted to add </p>
-          <input id="catName" value="Category name"></input>
-          <hr>
+      <div class="col-sm-3">
 
-          <h4>Category description</h4>
-          <p>Describe briefly the content of the new category. Give credits to third parties if any. </p>
-          <textarea class="form-control" rows="5" id="catDescription">Category description</textarea>
-          <hr>
-          <h4>Polarity</h4>
-          <p>The polarity of a category enables it to connect with categories from the adjacent clusters. These boxes
-            create a connector on either the left,
-            right or on both sides of the category. Connectors can only be linked with others with oposite polarity.</p>
-          <input type='checkbox' id="negative" checked> negative (enable left connectors)</input> <br>
-          <input type='checkbox' id="positive" checked> positive (enable right connectors)</input>
+        <p style="margin-top: 1px; margin-bottom: 1px">Network Propagation</p>
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="SubmitAddCategoryModal">Submit</button>
+        <input type="checkbox" id="forward" name="fwd" checked>
+        <label for="forward" style="font-size:10px">Forward</label>
+
+        <input type="checkbox" id="backward" name="bws" checked>
+        <label for="backward" style="font-size:10px">Backward</label>
+
+        <input type="checkbox" id="edit" style="visibility:hidden" checked>
+        <!--<label for="edit" style="font-size:10px">Edit mode</label></div>-->
+
+        <label id="warning" style="font-size:11px; color:#FF0000"> </label>
+      </div>
+
+      <div class="row">
+        <script>
+          // category size parametrization
+          ClusterFactory.setParameters(140, 35, 110);
+        </script>
+        <!-- Moldel goes here -->
+        <div id="model"></div>
+        <div class="col-sm-12">
+          <p style="margin-left:20px"> Using multi-partite networks tool | University of Illinois at Urbana-Champaign | 2019 |
+            Made with p5.js | Juan Salamanca, Contact: jsal@illinois.edu </p>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- EXPORT NETWORK MODAL FORM -->
-  <div class="modal fade" id="exportNetworkModal" tabindex="-1" role="dialog" aria-labelledby="exportNetworkModal"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title">Export network</h3>
-        </div>
-        <div class="modal-body">
-          <p>Export the current network in json format</p>
-          <input type='checkbox' id="includeNodes" checked> Include nodes</input>
-          &nbsp;
-          <input type='checkbox' id="includeEdges" checked> Include edges</input>
-          <hr>
-          <input id="exportFileSuffix" value="File name"></input>
-          <p>This is the sufix of two separate files, one for nodes and one for edges</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="exportNetwork">Export Network</button>
+
+
+    <!-- ADD CATEGORY MODAL FORM -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModal"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Add a category to clusters</h3>
+          </div>
+          <div class="modal-body">
+
+            <h4>Choose the cluster you want to add a category</h4>
+            <form action="" id="clusterChoice">
+              <p>
+                <input type="radio" name="cluster" value="0"> 1
+                <input type="radio" name="cluster" value="1"> 2
+                <input type="radio" name="cluster" value="2"> 3
+                <input type="radio" name="cluster" value="3"> 4
+              </p>
+            </form>
+            <hr>
+            <h4>Category name</h4>
+            <p>The categories in each cluster are <b> mutually exlusive</b>. Verify that none of the current categories
+              encompass the category you inted to add </p>
+            <input id="catName" value="Category name"></input>
+            <hr>
+
+            <h4>Category description</h4>
+            <p>Describe briefly the content of the new category. Give credits to third parties if any. </p>
+            <textarea class="form-control" rows="5" id="catDescription">Category description</textarea>
+            <hr>
+            <h4>Polarity</h4>
+            <p>The polarity of a category enables it to connect with categories from the adjacent clusters. The boxes
+              below
+              create connectors on either the left,
+              right or on both sides of the category. Connectors from one category can only be connected to connectors
+              attached to categories in adjacent clusters with opposite polarity.</p>
+            <input type='checkbox' id="negative" checked> negative (enable left connectors)</input> <br>
+            <input type='checkbox' id="positive" checked> positive (enable right connectors)</input>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal"
+              id="SubmitAddCategoryModal">Submit</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- IMPORT NETWORK MODAL FORM -->
-  <div class="modal fade" id="importNetworkModal" tabindex="-1" role="dialog" aria-labelledby="importNetworkModal"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title">Import network</h3>
-        </div>
-        <div class="modal-body">
-          <style>
-            .droppable {
-              background: #08c;
-              color: #fff;
-              padding: 50px 0;
-              text-align: center;
-            }
-
-            .droppable.dragover {
-              background: #00CC71;
-            }
-          </style>
-          <div class="droppable" id ="dragDropNodes">Drag and drop the <b>nodes</b> file here
-          <p id="nodesFileName"> no file yet</p>
-        </div>
-          <br>
-          <div class="droppable" id ="dragDropEdges">Drag and drop the <b>edges</b> files here
-          <p id="edgesFileName">no file yet</p></div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="importNetwork">Import network</button>
+    <!-- EXPORT NETWORK MODAL FORM -->
+    <div class="modal fade" id="exportNetworkModal" tabindex="-1" role="dialog" aria-labelledby="exportNetworkModal"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Export network</h3>
+          </div>
+          <div class="modal-body">
+            <p>Export the current network in json format</p>
+            <input type='checkbox' id="includeNodes" checked> Include nodes</input>
+            &nbsp;
+            <input type='checkbox' id="includeEdges" checked> Include edges</input>
+            <hr>
+            <input id="exportFileSuffix" value="File name"></input>
+            <p>This is the sufix of two separate files, one for nodes and one for edges</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="exportNetwork">Export
+              Network</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <!-- IMPORT NETWORK MODAL FORM -->
+    <div class="modal fade" id="importNetworkModal" tabindex="-1" role="dialog" aria-labelledby="importNetworkModal"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Import network</h3>
+          </div>
+          <div class="modal-body">
+            <style>
+              .droppable {
+                background: #08c;
+                color: #fff;
+                padding: 50px 0;
+                text-align: center;
+              }
+
+              .droppable.dragover {
+                background: #00CC71;
+              }
+            </style>
+            <div class="droppable" id="dragDropNodes">Drag and drop the <b>nodes</b> file here
+              <p id="nodesFileName"> no file yet</p>
+            </div>
+            <br>
+            <div class="droppable" id="dragDropEdges">Drag and drop the <b>edges</b> files here
+              <p id="edgesFileName">no file yet</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="importNetwork">Import
+              network</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 </body>
 

@@ -12,13 +12,14 @@ var main = function (p5) {
 	let renderGate;
 	let rendered;
 
-	// form
-	let button,fieldA, fieldB;
+	// files path
+	let pathEdges = './files/Edges/';
+	let pathNodes = './files/Nodes/';
 
 	p5.preload = function () {
 		// Load edge and node files
-		nodesTemp = p5.loadJSON('./files/nodes.json');
-		edgesTemp = [];//p5.loadJSON('./files/edges.json');
+		nodesTemp = p5.loadJSON(pathNodes + '0_nodes.json');
+		edgesTemp = p5.loadJSON(pathEdges + '0_edges.json');
 
 		// Load color palettes
 		ColorFactory.loadPalette("./files/colorPalettes/palette1.txt");
@@ -28,8 +29,11 @@ var main = function (p5) {
 	// Only once
 	p5.setup = function () {
 		// Create cavas
-		p5.createCanvas(920, 700);
+		p5.createCanvas(970, 1000);
 		graphics = p5.createGraphics(p5.width * p5.pixelDensity(), p5.height * p5.pixelDensity());
+
+		// Create clusters of nodes and VNodes
+		buildClusters(nodesTemp);
 
 		// Create edges and vEdges
 		if (edgesTemp) {
@@ -38,13 +42,11 @@ var main = function (p5) {
 
 		// Connect with HTML GUI
 		document.getElementById("clearEdges").onclick = clearEdges;
-		let model = document.getElementById("model");
+		let model = document.getElementById("modelChoice");
 		model.addEventListener('change', () => {
 			switchModel(model.value);
 		})
-		// Create clusters of nodes and VNod
-		//buildClusters(nodesTemp);
-		switchModel(model.value);
+		//switchModel(model.value);
 
 		// form
 		addCategoryModalForm();
@@ -60,9 +62,38 @@ var main = function (p5) {
 			renderOnP5();
 		} else {
 			renderOnGraphics();
-			p5.image(graphics, 0, 0, p5.width, p5.height);
+			p5.image(graphics, 0, 0);
 		}
 		renderGate = false;
+	}
+
+	switchModel = function (value) {
+		try {
+			if (CustomPathParser) {
+				pathNodes = CustomPathParser.getURLNodes(value);
+				pathEdges = CustomPathParser.getURLEdges(value);
+				nodesTemp = p5.loadJSON(pathNodes, buildClusters);
+				edgesTemp = p5.loadJSON(pathEdges, buildEdges);
+			} 
+		} catch {
+			console.log("No CustomPathParser for this multipartite network");
+			buildClusters(nodesTemp);
+			edgesTemp = p5.loadJSON(pathEdges + value + '_edges.json', buildEdges);
+		}
+
+	}
+
+	buildClusters = function (result) {
+		ClusterFactory.reset();
+		ClusterFactory.makeClusters(result);
+		ClusterFactory.refreshColors(1, ColorFactory.palettes[0]);
+		ClusterFactory.refreshColors(2, ColorFactory.palettes[1]);
+	}
+
+	buildEdges = function (result) {
+		EdgeFactory.reset();
+		EdgeFactory.buildEdges(result, ClusterFactory.clusters)
+		renderGate = true;
 	}
 
 	/** Delete edges and re-initialize nodes */
@@ -87,63 +118,6 @@ var main = function (p5) {
 		ClusterFactory.vClusters.forEach(element => {
 			element.mouseClickedEvents();
 		});
-	}
-
-	switchModel = function (currentModel) {
-		buildClusters(nodesTemp)
-		switch (currentModel) {
-			case 'empty':
-				edgesTemp = [];
-				buildEdges(edgesTemp);
-				break;
-			// Masters
-			case 'sustainable':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/sustainable.json', buildEdges);
-				break;
-			case 'race':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/criticalRace.json', buildEdges);
-				break;
-			case 'visual':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/visualAndCultural.json', buildEdges);
-				break;
-			case 'applied':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/appliedResearch.json', buildEdges);
-				break;
-			case 'full':
-				edgesTemp = p5.loadJSON('./files/edges.json', buildEdges);
-				break;
-			// Faculty
-			case 'briggs':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/briggsEdges.json', buildEdges);
-				break;
-			case 'salamanca':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/salamanca.json', buildEdges);
-				break;
-			case 'mercer':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/mercer.json', buildEdges);
-				break;
-
-				case 'ruecker':
-					edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/ruecker.json', buildEdges);
-					break;
-			// Students
-			case 'moon':
-				edgesTemp = p5.loadJSON('./files/ResponsibleInnovationScans/moon.json', buildEdges);
-				break;
-		}
-	}
-
-	buildEdges = function (result) {
-		EdgeFactory.reset();
-		EdgeFactory.buildEdges(result, ClusterFactory.clusters)
-		renderGate = true;
-	}
-
-	buildClusters = function (result) {
-		ClusterFactory.reset();
-		ClusterFactory.makeClusters(result);
-		ClusterFactory.refreshColors(1,ColorFactory.palettes[0]);
-		ClusterFactory.refreshColors(2,ColorFactory.palettes[1]);
 	}
 
 	// render on original p5.Renderer
@@ -194,4 +168,4 @@ var main = function (p5) {
 		}
 	}
 }
-var globalP5 = new p5(main, "firstDiagram");
+var globalP5 = new p5(main, "model");

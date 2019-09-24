@@ -29,7 +29,7 @@ getData = function () {
         }
         let categoryTmp = ClusterFactory.makeCategory(clusterTmp, dataTmp)
 
-        // visual representation of that category
+        // visual representation of the new category
         let vClustTmp = ClusterFactory.getVClusterOf(clusterTmp);
         let vCategoryTmp = new VNode(categoryTmp, vClustTmp.width, vClustTmp.height);
         if (positive) {
@@ -44,7 +44,8 @@ getData = function () {
         vClustTmp.addVCategory(vCategoryTmp);
 
         ClusterFactory.refreshColors(1,ColorFactory.palettes[0]);
-		ClusterFactory.refreshColors(2,ColorFactory.palettes[1]);
+        ClusterFactory.refreshColors(2,ColorFactory.palettes[1]);
+        console.log("category added");
 
     } else {
         alert("You forgot to choose a cluster. Please try again, your data is not lost.")

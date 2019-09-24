@@ -1,0 +1,96 @@
+[
+  {
+    "clusterID": "A",
+    "clusterLabel": "Cluster 1",
+    "clusterDescription": "Cluster description",
+    "nodes": [
+      {
+        "id": 0,
+        "nodeLabel": "1 A",
+        "nodeDescription": "No description",
+        "polarity": "RIGHT"
+      }
+    ]
+  },
+  {
+    "clusterID": "B",
+    "clusterLabel": "Cluster 2",
+    "clusterDescription": "Cluster description",
+    "nodes": [
+      {
+        "id": 0,
+        "nodeLabel": "2 A",
+        "nodeDescription": "No description",
+        "polarity": "BOTH"
+      },
+      {
+        "id": 1,
+        "nodeLabel": "2 B",
+        "nodeDescription": "No description",
+        "polarity": "BOTH"
+      },
+      {
+        "id": 2,
+        "nodeLabel": "2 C",
+        "nodeDescription": "No description",
+        "polarity": "LEFT"
+      }
+    ]
+  },
+  {
+    "clusterID": "C",
+    "clusterLabel": "Cluster 3",
+    "clusterDescription": "Cluster description",
+    "nodes": [
+      {
+        "id": 0,
+        "nodeLabel": "3 A",
+        "nodeDescription": "No description",
+        "polarity": "BOTH"
+      },
+      {
+        "id": 1,
+        "nodeLabel": "3 B",
+        "nodeDescription": "No description",
+        "polarity": "BOTH"
+      },
+      {
+        "id": 2,
+        "nodeLabel": "3 C",
+        "nodeDescription": "No description",
+        "polarity": "BOTH"
+      },
+      {
+        "id": 3,
+        "nodeLabel": "3 D",
+        "nodeDescription": "No description",
+        "polarity": "RIGHT"
+      }
+    ]
+  },
+  {
+    "clusterID": "D",
+    "clusterLabel": "Cluster 4",
+    "clusterDescription": "Cluster description",
+    "nodes": [
+      {
+        "id": 0,
+        "nodeLabel": "4 A",
+        "nodeDescription": "No description",
+        "polarity": "LEFT"
+      },
+      {
+        "id": 1,
+        "nodeLabel": "4 B",
+        "nodeDescription": "No description",
+        "polarity": "BOTH"
+      },
+      {
+        "id": 2,
+        "nodeLabel": "4 C",
+        "nodeDescription": "No description",
+        "polarity": "LEFT"
+      }
+    ]
+  }
+]

@@ -1,141 +1,57 @@
 [
   {
     "source": {
-      "cluster": "B",
-      "cat": 2,
-      "index": 0,
-      "polarity": false
-    },
-    "target": {
       "cluster": "A",
-      "cat": 10,
+      "cat": 0,
       "index": 0,
       "polarity": true
+    },
+    "target": {
+      "cluster": "B",
+      "cat": 0,
+      "index": 0,
+      "polarity": false
     }
   },
   {
     "source": {
-      "cluster": "B",
-      "cat": 3,
-      "index": 0,
-      "polarity": false
-    },
-    "target": {
       "cluster": "A",
-      "cat": 8,
-      "index": 0,
-      "polarity": true
-    }
-  },
-  {
-    "source": {
-      "cluster": "B",
-      "cat": 3,
+      "cat": 0,
       "index": 1,
-      "polarity": false
+      "polarity": true
     },
     "target": {
-      "cluster": "A",
-      "cat": 9,
+      "cluster": "B",
+      "cat": 1,
       "index": 0,
-      "polarity": true
+      "polarity": false
     }
   },
   {
     "source": {
+      "cluster": "A",
+      "cat": 0,
+      "index": 2,
+      "polarity": true
+    },
+    "target": {
+      "cluster": "B",
+      "cat": 3,
+      "index": 0,
+      "polarity": false
+    }
+  },
+  {
+    "source": {
+      "cluster": "A",
+      "cat": 0,
+      "index": 3,
+      "polarity": true
+    },
+    "target": {
       "cluster": "B",
       "cat": 4,
       "index": 0,
-      "polarity": false
-    },
-    "target": {
-      "cluster": "A",
-      "cat": 9,
-      "index": 1,
-      "polarity": true
-    }
-  },
-  {
-    "source": {
-      "cluster": "B",
-      "cat": 2,
-      "index": 0,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "C",
-      "cat": 1,
-      "index": 0,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "B",
-      "cat": 2,
-      "index": 1,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "C",
-      "cat": 3,
-      "index": 0,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "B",
-      "cat": 2,
-      "index": 2,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "C",
-      "cat": 8,
-      "index": 0,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "B",
-      "cat": 3,
-      "index": 0,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "C",
-      "cat": 1,
-      "index": 1,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "B",
-      "cat": 3,
-      "index": 1,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "C",
-      "cat": 3,
-      "index": 1,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "B",
-      "cat": 3,
-      "index": 2,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "C",
-      "cat": 8,
-      "index": 1,
       "polarity": false
     }
   },
@@ -149,7 +65,7 @@
     "target": {
       "cluster": "C",
       "cat": 1,
-      "index": 2,
+      "index": 0,
       "polarity": false
     }
   },
@@ -163,7 +79,7 @@
     "target": {
       "cluster": "C",
       "cat": 3,
-      "index": 2,
+      "index": 0,
       "polarity": false
     }
   },
@@ -176,15 +92,57 @@
     },
     "target": {
       "cluster": "C",
-      "cat": 8,
-      "index": 2,
+      "cat": 5,
+      "index": 0,
+      "polarity": false
+    }
+  },
+  {
+    "source": {
+      "cluster": "B",
+      "cat": 4,
+      "index": 3,
+      "polarity": true
+    },
+    "target": {
+      "cluster": "C",
+      "cat": 7,
+      "index": 0,
+      "polarity": false
+    }
+  },
+  {
+    "source": {
+      "cluster": "B",
+      "cat": 0,
+      "index": 0,
+      "polarity": true
+    },
+    "target": {
+      "cluster": "C",
+      "cat": 0,
+      "index": 0,
+      "polarity": false
+    }
+  },
+  {
+    "source": {
+      "cluster": "B",
+      "cat": 0,
+      "index": 1,
+      "polarity": true
+    },
+    "target": {
+      "cluster": "C",
+      "cat": 11,
+      "index": 0,
       "polarity": false
     }
   },
   {
     "source": {
       "cluster": "C",
-      "cat": 1,
+      "cat": 0,
       "index": 0,
       "polarity": true
     },
@@ -198,49 +156,21 @@
   {
     "source": {
       "cluster": "C",
-      "cat": 1,
-      "index": 1,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "D",
-      "cat": 1,
-      "index": 0,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "C",
-      "cat": 3,
-      "index": 0,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "D",
       "cat": 0,
       "index": 1,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "C",
-      "cat": 3,
-      "index": 1,
       "polarity": true
     },
     "target": {
       "cluster": "D",
       "cat": 1,
-      "index": 1,
+      "index": 0,
       "polarity": false
     }
   },
   {
     "source": {
       "cluster": "C",
-      "cat": 3,
+      "cat": 0,
       "index": 2,
       "polarity": true
     },
@@ -254,42 +184,98 @@
   {
     "source": {
       "cluster": "C",
-      "cat": 3,
+      "cat": 0,
       "index": 3,
       "polarity": true
     },
     "target": {
       "cluster": "D",
+      "cat": 3,
+      "index": 0,
+      "polarity": false
+    }
+  },
+  {
+    "source": {
+      "cluster": "C",
+      "cat": 5,
+      "index": 0,
+      "polarity": true
+    },
+    "target": {
+      "cluster": "D",
+      "cat": 4,
+      "index": 0,
+      "polarity": false
+    }
+  },
+  {
+    "source": {
+      "cluster": "C",
+      "cat": 5,
+      "index": 1,
+      "polarity": true
+    },
+    "target": {
+      "cluster": "D",
+      "cat": 5,
+      "index": 0,
+      "polarity": false
+    }
+  },
+  {
+    "source": {
+      "cluster": "C",
+      "cat": 5,
+      "index": 2,
+      "polarity": true
+    },
+    "target": {
+      "cluster": "D",
+      "cat": 6,
+      "index": 0,
+      "polarity": false
+    }
+  },
+  {
+    "source": {
+      "cluster": "C",
+      "cat": 5,
+      "index": 3,
+      "polarity": true
+    },
+    "target": {
+      "cluster": "D",
+      "cat": 7,
+      "index": 0,
+      "polarity": false
+    }
+  },
+  {
+    "source": {
+      "cluster": "C",
+      "cat": 11,
+      "index": 0,
+      "polarity": true
+    },
+    "target": {
+      "cluster": "D",
+      "cat": 8,
+      "index": 0,
+      "polarity": false
+    }
+  },
+  {
+    "source": {
+      "cluster": "C",
+      "cat": 11,
+      "index": 1,
+      "polarity": true
+    },
+    "target": {
+      "cluster": "D",
       "cat": 9,
       "index": 0,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "C",
-      "cat": 8,
-      "index": 0,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "D",
-      "cat": 0,
-      "index": 2,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "C",
-      "cat": 8,
-      "index": 1,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "D",
-      "cat": 2,
-      "index": 1,
       "polarity": false
     }
   }

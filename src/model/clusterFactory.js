@@ -1,5 +1,5 @@
 class ClusterFactory {
-
+    
     static makeClusters(data) {
         ClusterFactory.clusters = [];
         this.vClusters = [];
@@ -7,15 +7,18 @@ class ClusterFactory {
             this.instantiateCluster(data[index]);
         }
 
-        let gutter = 110;
-        let wdth = 140;
-        let hght = 35;
-        let x = wdth + gutter;
+        let x = ClusterFactory.wdth + ClusterFactory.gutter;
 
         for (let index = 0; index < ClusterFactory.clusters.length; index++) {
-            ClusterFactory.vClusters.push(new VCluster(ClusterFactory.clusters[index], 15 + x * index, 20, wdth, hght));
+            ClusterFactory.vClusters.push(new VCluster(ClusterFactory.clusters[index], 15 + x * index, 20, ClusterFactory.wdth, ClusterFactory.hght));
         }
     }
+
+    static setParameters(wdth, hght, gutter){
+        ClusterFactory.wdth = wdth;
+        ClusterFactory.hght = hght;
+        ClusterFactory.gutter = gutter; 
+    } 
 
     static instantiateCluster(data) {
         let cluster = new Cluster(data.clusterID);
@@ -33,12 +36,12 @@ class ClusterFactory {
         }
     }
 
-    static makeCategory = function (cluster, data) {
+    static makeCategory (cluster, data) {
         let category = new Node(cluster.id, data.id);
         category.setLabel(data.nodeLabel);
         category.setDescription(data.nodeDescription);
         category.setPolarity(data.polarity);
-    
+
         // create connectors
         switch (data.polarity) {
             case 'LEFT':
@@ -58,8 +61,8 @@ class ClusterFactory {
 
     static recordJSON(suffix) {
         let filename = "nodes.json";
-        if (suffix){
-            filename = suffix+"_"+filename;
+        if (suffix) {
+            filename = suffix + "_" + filename;
         }
         let output = [];
         for (let index = 0; index < ClusterFactory.clusters.length; index++) {
@@ -74,18 +77,18 @@ class ClusterFactory {
         ClusterFactory.vClusters = [];
     }
 
-    static getVClusterOf(cluster){
+    static getVClusterOf(cluster) {
         for (const vClust of ClusterFactory.vClusters) {
-            if(vClust.cluster.id == cluster.id)
-            return vClust;
+            if (vClust.cluster.id == cluster.id)
+                return vClust;
         }
     }
 
-    static refreshColors(clusterIndex, palette){
+    static refreshColors(clusterIndex, palette) {
         ClusterFactory.vClusters[clusterIndex].setPalette(palette);
     }
 
-    static resetAllConnectors(){
+    static resetAllConnectors() {
         for (const cluster of ClusterFactory.clusters) {
             for (const node of cluster.categories) {
                 node.resetConnectors();
@@ -96,4 +99,6 @@ class ClusterFactory {
 
 ClusterFactory.clusters = [];
 ClusterFactory.vClusters = [];
-
+ClusterFactory.wdth = 140;
+ClusterFactory.hght = 35;
+ClusterFactory.gutter = 110;

@@ -41,13 +41,17 @@ class VCluster {
         if (palette) {
             this.palette = palette;
         }
-
+        
+        let counter = 0;
         if (this.palette) {
-            let counter = 0;
-            this.vCategories.forEach(element => {
-                element.setColor(this.palette[counter]);
-                counter ++;
-            });
+
+            for (let i = 0; i < this.vCategories.length; i++) {
+                if (counter >= this.palette.length) {
+                    counter = 0;
+                }
+                this.vCategories[i].setColor(this.palette[counter]);
+                counter++;
+            }
         }
     }
 

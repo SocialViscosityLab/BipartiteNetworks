@@ -24,16 +24,16 @@ class VNode extends Button {
         this.updateConnectorsCoords();
     }
 
-    resetVConnectors(){
+    resetVConnectors() {
         this.vPositives = [];
         this.vNegatives = [];
-        if(this.node.polarity == "RIGHT"){
+        if (this.node.polarity == "RIGHT") {
             this.addPositiveVConnector(this.node.positives[0]);
         }
-        if (this.node.polarity == "LEFT"){
+        if (this.node.polarity == "LEFT") {
             this.addNegativeVConnector(this.node.negatives[0]);
         }
-        if (this.node.polarity == "BOTH"){
+        if (this.node.polarity == "BOTH") {
             this.addPositiveVConnector(this.node.positives[0]);
             this.addNegativeVConnector(this.node.negatives[0]);
         }
@@ -77,11 +77,15 @@ class VNode extends Button {
 
     show(builder) {
         builder.strokeWeight(1);
+        // in case the color palette runs out of colors
+        if (!this.color) {
+            this.color = '#d4d4d4';
+        }
 
         if (this.node.inPropagation) {
             builder.fill(this.color.concat('30'));
         } else {
-            builder.noFill();
+            builder.fill(243);
         }
         if (this.clicked | this.mouseIsOver) {
             builder.stroke(200);

@@ -22,6 +22,10 @@ class Connector {
         }
     }
 
+    popThisConnector(){
+        this.nodeObserver.popLastConnector(this.polarity);
+    }
+
     workOnLastEdge() {
         let lastEdge;
         if (document.getElementById("edit").checked) {

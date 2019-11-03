@@ -17,7 +17,6 @@ document.getElementById("importNetwork").onclick = getDataImport;
 }
 
 getDataImport = function () {
-    console.log("something here")
     buildClustersImport(nodesImported);
     buildEdgesImport(edgesImported);
 }
@@ -49,7 +48,6 @@ loadFile = function (file, kind) {
         return function (e) {
             // Read text data and parse to JSON.
             let data = JSON.parse(e.target.result)
-            console.log(data)
             if (kind == 'nodes') {
                 nodesImported = data;
             } else if (kind == 'edges') {

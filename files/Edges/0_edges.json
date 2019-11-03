@@ -1,13 +1,13 @@
 [
   {
     "source": {
-      "cluster": "A",
+      "cluster": "B",
       "cat": 0,
       "index": 0,
       "polarity": true
     },
     "target": {
-      "cluster": "B",
+      "cluster": "C",
       "cat": 0,
       "index": 0,
       "polarity": false
@@ -15,42 +15,14 @@
   },
   {
     "source": {
-      "cluster": "A",
+      "cluster": "B",
       "cat": 0,
       "index": 1,
       "polarity": true
     },
     "target": {
-      "cluster": "B",
-      "cat": 1,
-      "index": 0,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "B",
-      "cat": 2,
-      "index": 0,
-      "polarity": false
-    },
-    "target": {
-      "cluster": "A",
-      "cat": 0,
-      "index": 2,
-      "polarity": true
-    }
-  },
-  {
-    "source": {
-      "cluster": "B",
-      "cat": 0,
-      "index": 0,
-      "polarity": true
-    },
-    "target": {
       "cluster": "C",
-      "cat": 0,
+      "cat": 1,
       "index": 0,
       "polarity": false
     }
@@ -65,48 +37,6 @@
     "target": {
       "cluster": "C",
       "cat": 1,
-      "index": 0,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "B",
-      "cat": 1,
-      "index": 1,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "C",
-      "cat": 2,
-      "index": 0,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "C",
-      "cat": 0,
-      "index": 0,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "D",
-      "cat": 0,
-      "index": 0,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "C",
-      "cat": 1,
-      "index": 0,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "D",
-      "cat": 0,
       "index": 1,
       "polarity": false
     }
@@ -114,55 +44,27 @@
   {
     "source": {
       "cluster": "C",
-      "cat": 1,
-      "index": 1,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "D",
-      "cat": 1,
-      "index": 0,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "C",
-      "cat": 1,
-      "index": 2,
-      "polarity": true
-    },
-    "target": {
-      "cluster": "D",
-      "cat": 2,
-      "index": 0,
-      "polarity": false
-    }
-  },
-  {
-    "source": {
-      "cluster": "C",
-      "cat": 2,
+      "cat": 0,
       "index": 0,
       "polarity": true
     },
     "target": {
       "cluster": "D",
       "cat": 0,
-      "index": 2,
+      "index": 0,
       "polarity": false
     }
   },
   {
     "source": {
       "cluster": "D",
-      "cat": 2,
+      "cat": 0,
       "index": 1,
       "polarity": false
     },
     "target": {
       "cluster": "C",
-      "cat": 3,
+      "cat": 2,
       "index": 0,
       "polarity": true
     }

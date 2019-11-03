@@ -5,7 +5,8 @@ class Node {
         this.negatives = [];
         this.label = "void";
         this.description = "No description yet";
-        this.inPropagation = false;
+        this.inFwdPropagation = false;
+        this.inBkwPropagation = false;
         this.vNodeObserver;
         this.polarity;
     }
@@ -27,6 +28,15 @@ class Node {
         tmpConnector.subscribeNode(this);
         this.negatives.push(tmpConnector);
         return tmpConnector;
+    }
+
+    popLastConnector(polarity) {
+        if (polarity == true) {
+            this.positives.pop();
+        } else {
+            this.negatives.pop();
+        }
+        this.vNodeObserver.popLastVConnector(polarity)
     }
 
     setPolarity(polarity) {
@@ -79,11 +89,12 @@ class Node {
                 }
             }
         }
+        this.updatePropagation()
     }
 
-    resetConnectors(){
-        this.positives=[];
-        this.negatives =[];
+    resetConnectors() {
+        this.positives = [];
+        this.negatives = [];
 
         if (this.polarity == "RIGHT") {
             this.addPositiveConnector(0);
@@ -110,82 +121,108 @@ class Node {
     }
 
     propagate(node, clicked) {
-        if (document.getElementById("forward").checked) {
-            this.propagateForward(node, clicked);
-        }
-        if (document.getElementById("backward").checked) {
-            this.propagateBackward(node, clicked);
-        }
+        this.propagateForward(node, clicked);
+        this.propagateBackward(node, clicked);
+    }
 
+    updatePropagation() {
+        if (this.inFwdPropagation) {
+            this.inFwdPropagation = false;
+            this.propagateForward(this, true);
+        }
+        if (this.inBkwPropagation) {
+            this.inBkwPropagation = false;
+            this.propagateBackward(this, true);
+        }
     }
 
     propagateForward(cat, clicked) {
-        let issuesAt;
-        try {
-            // i) retrive a subset of edges whose SOURCE is this category
-            let edgesTmp = [];
-            cat.inPropagation = clicked;
-            EdgeFactory.edges.forEach(edg => {
-                let obs = edg.source.nodeObserver;
-                if (obs.idCat == cat.idCat) {
-                    // console.log(obs.label);
-                    edgesTmp.push(edg);
+        let warningAt;
+        if (!cat.inFwdPropagation || !clicked) {
+            // console.log("-> 1 In prop " + cat.label)
+            try {
+                // i) retrive a subset of edges whose SOURCE is this category
+                cat.inFwdPropagation = clicked;
+                let edgesTmp = this.getForwardEdges(cat);
+
+                // ii) retrieve the list of TARGET categories linked to this category
+                edgesTmp.forEach(edg => {
+                    if (edg.target == undefined) {
+                        return false;
+                    } else {
+                        let obs = edg.target.nodeObserver;
+                        warningAt = obs.label;
+
+                        // for each of those categories, repeat i), ii)
+                        obs.propagateForward(obs, clicked);
+                    }
+                });
+            } catch (error) {
+                if (error instanceof RangeError) {
+                    console.log("WARNING: INFINTE RECURSION. The path of edges draw a closed loop. Check: " + warningAt)
+                    document.getElementById('warning').innerHTML = "WARNING: Infinite Recursion. Dissable propagation";
+                } else {
+                    console.log(error)
                 }
-            });
-            // ii) retrieve the list of target categories linked to this category
-            edgesTmp.forEach(edg => {
-                if (edg.target == undefined) {
-                    return false;
-                }
-                let obs = edg.target.nodeObserver;
-                issuesAt = obs.label;
-                //console.log(obs.label);
-                obs.inPropagation = clicked;
-                // for each of those categories, repeat i), ii)
-                this.propagateForward(obs, clicked);
-            });
-        } catch (error) {
-            if (error instanceof RangeError) {
-                console.log("WARNING: INFINTE RECURSION. The path of edges draw a closed loop. Check: " + issuesAt)
-                document.getElementById('warning').innerHTML = "WARNING: Infinite Recursion. Dissable propagation";
-            } else {
-                console.log(error)
             }
         }
+        // else { console.log("Blocked forward propagation from "  + cat.label) }
     }
 
     propagateBackward(cat, clicked) {
-        let issuesAt;
-        try {
-            // i) retrive a subset of edges whose TARGET is this category
-            let edgesTmp = [];
-            cat.inPropagation = clicked;
-            EdgeFactory.edges.forEach(edg => {
-                let obs = edg.target.nodeObserver;
-                if (obs.idCat == cat.idCat) {
-                    // console.log(obs.label);
-                    edgesTmp.push(edg);
+        let warningAt;
+        if (!cat.inBkwPropagation || !clicked) {
+            try {
+                // i) retrive a subset of edges whose TARGET is this category
+                cat.inBkwPropagation = clicked;
+                let edgesTmp = this.getBackwardEdges(cat)
+
+                // ii) retrieve the list of source categories linked to this category
+                edgesTmp.forEach(edg => {
+                    if (edg.target == undefined) {
+                        return false;
+                    } else {
+                        let obs = edg.source.nodeObserver;
+                        warningAt = obs.label;
+
+                        // for each of those categories, repeat i), ii)
+                        obs.propagateBackward(obs, clicked);
+                    }
+                });
+            } catch (error) {
+                if (error instanceof RangeError) {
+                    console.log("WARNING: INFINTE RECURSION. The path of edges draw a closed loop. Check Category: " + warningAt)
+                    document.getElementById('warning').innerHTML = "WARNING: Infinite Recursion. Dissable propagation";
+                } else {
+                    console.log(error)
                 }
-            });
-            // ii) retrieve the list of source categories linked to this category
-            edgesTmp.forEach(edg => {
-                if (edg.target == undefined) {
-                    return false;
-                }
-                let obs = edg.source.nodeObserver;
-                issuesAt = obs.label;
-                // console.log(obs.label);
-                obs.inPropagation = clicked;
-                // for each of those categories, repeat i), ii)
-                this.propagateBackward(obs, clicked);
-            });
-        } catch (error) {
-            if (error instanceof RangeError) {
-                console.log("WARNING: INFINTE RECURSION. The path of edges draw a closed loop. Check Category: " + issuesAt)
-            }  else {
-                console.log(error)
             }
         }
+        // else {console.log("Blocked backward propagation from " + cat.label) }
+    }
+
+    getForwardEdges(cat) {
+        let edgesTmp = [];
+        EdgeFactory.edges.forEach(edg => {
+            let obs = edg.source.nodeObserver;
+            if (obs.idCat === cat.idCat) {
+                // console.log(obs.label);
+                edgesTmp.push(edg);
+            }
+        });
+        return edgesTmp;
+    }
+
+    getBackwardEdges(cat) {
+        let edgesTmp = [];
+        EdgeFactory.edges.forEach(edg => {
+            let obs = edg.target.nodeObserver;
+            if (obs.idCat === cat.idCat) {
+                // console.log(obs.label);
+                edgesTmp.push(edg);
+            }
+        });
+        return edgesTmp;
     }
 
     getJSON() {

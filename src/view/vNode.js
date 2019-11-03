@@ -3,7 +3,6 @@ class VNode extends Button {
         super(0, 0, width, height);
         this.node = node;
         this.color = '#d2d2d2';
-        this.clicked = false;
         this.categoryGap = 5;
         this.vPositives = [];
         this.vNegatives = [];
@@ -37,6 +36,15 @@ class VNode extends Button {
             this.addPositiveVConnector(this.node.positives[0]);
             this.addNegativeVConnector(this.node.negatives[0]);
         }
+    }
+
+    popLastVConnector(polarity) {
+        if (polarity == true) {
+            this.vPositives.shift();
+        } else {
+            this.vNegatives.shift();
+        }
+        this.updateConnectorsCoords();
     }
 
     setColor(color) {
@@ -81,19 +89,38 @@ class VNode extends Button {
         if (!this.color) {
             this.color = '#d4d4d4';
         }
-
-        if (this.node.inPropagation) {
-            builder.fill(this.color.concat('30'));
+        if (this.node.inFwdPropagation && document.getElementById("forward").checked && 
+            this.node.inBkwPropagation && document.getElementById("backward").checked) {
+           // console.log("here 1 " + this.node.label);
+            builder.fill(this.color.concat('50'));
+        } else if (this.node.inFwdPropagation && document.getElementById("forward").checked) {
+           // console.log("here 2 " + this.node.label);
+            builder.fill(this.color.concat('50'));
+        } else if (this.node.inBkwPropagation && document.getElementById("backward").checked) {
+            // console.log("here 3 " + this.node.label);
+            builder.fill(this.color.concat('50'));
+            // if it has no linked edges
+        } else if (this.vPositives.length + this.vNegatives.length <= 2) {
+           // console.log("here 4 " + this.node.label);
+            builder.fill(100, 10);
         } else {
-            builder.fill(243);
+           // console.log("here last " + this.node.label);
+            builder.fill(this.color.concat('15'));
         }
+
+        // Highlight rect
         if (this.clicked | this.mouseIsOver) {
-            builder.stroke(200);
+            builder.strokeWeight(2);
+            builder.stroke(200, 0, 0);
         } else {
+            builder.strokeWeight(1);
             builder.stroke(250);
         }
 
+        // draw the rect
         builder.rect(this.pos.x, this.pos.y, this.width, this.height);
+
+        // draw the lable
         builder.fill("#000000");
         builder.textAlign(globalP5.CENTER, globalP5.CENTER);
         builder.noStroke();

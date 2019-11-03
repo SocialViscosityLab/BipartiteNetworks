@@ -2,7 +2,7 @@ class VEdge {
     constructor(edge) {
         this.edge = edge;
         this.source = edge.source;
-        this.target ;
+        this.target;
         if (edge.target) {
             this.target = edge.target;
         }
@@ -13,44 +13,61 @@ class VEdge {
         this.alpha = 30
     }
 
-    setVSource(vConctr){
+    setVSource(vConctr) {
         this.vSource = vConctr;
         this.setColor(vConctr.color);
     }
 
-    setVTarget(vConctr){
+    setVTarget(vConctr) {
         this.vTarget = vConctr;
         vConctr.setColor(this.color);
     }
 
-    setColor(color){
+    setColor(color) {
         this.color = color;
     }
 
     show(builder) {
-        if (document.getElementById("forward").checked) {
-            if (this.source.nodeObserver.inPropagation) {
+
+        if (document.getElementById("forward").checked && document.getElementById("backward").checked) {
+            if (this.source.nodeObserver.inFwdPropagation|| this.edge.target && this.edge.target.nodeObserver.inBkwPropagation) {
                 builder.strokeWeight(5);
                 this.alpha = '99';
             } else {
                 builder.strokeWeight(3);
-                this.alpha = 30;
+                this.alpha = '30';
+            }
+        } else if (document.getElementById("forward").checked) {
+            if (this.source.nodeObserver.inFwdPropagation) {
+                builder.strokeWeight(5);
+                this.alpha = '99';
+            } else {
+                builder.strokeWeight(3);
+                this.alpha = '30';
+            }
+        } else if (document.getElementById("backward").checked) {
+            if (this.edge.target && this.edge.target.nodeObserver.inBkwPropagation) {
+                builder.strokeWeight(5);
+                this.alpha = '99';
+            } else {
+                builder.strokeWeight(3);
+                this.alpha = '30';
             }
 
+        } else {
+            builder.strokeWeight(3);
+                this.alpha = '30';
         }
-        if (document.getElementById("backward").checked) {
-            if (this.edge.target && this.edge.target.nodeObserver.inPropagation) {
-                builder.strokeWeight(5);
-                this.alpha = '99';
-            } else {
-                builder.strokeWeight(3);
-                this.alpha = 30;
-            }
-        }
+        builder.strokeWeight(3);
+        this.showBeziers(builder)
+
+    }
+
+    showBeziers(builder) {
 
         // Id the edge does not have target yet
         if (!this.vTarget) {
-            builder.stroke(this.vSource.color);
+            builder.stroke(this.vSource.color.concat(this.alpha));
             let org = globalP5.createVector(this.vSource.pos.x + (this.vSource.width / 2), this.vSource.pos.y + (this.vSource.height / 2));
             let end = globalP5.createVector(globalP5.mouseX, globalP5.mouseY);
             let arm = globalP5.dist(org.x, org.y, end.x, org.y) / 5;
@@ -92,5 +109,6 @@ class VEdge {
                 builder.endShape();
             }
         }
+
     }
 }

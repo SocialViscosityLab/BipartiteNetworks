@@ -4,6 +4,7 @@ class Button {
         this.width = width;
         this.height = height;
         this.mouseIsOver = false;
+        this.clicked = false;
     }
 
     show() {

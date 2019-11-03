@@ -35,6 +35,10 @@ class EdgeFactory {
                 }
             }
 
+            if(!sourceCtgTemp){
+                console.log("ERROR. trying to add an edge to missing source category");
+                console.log(sourceTemp);
+            }
 
             // get categories connector generator
             let connSource;
@@ -57,6 +61,11 @@ class EdgeFactory {
                     targetCtgTemp = ctgr;
                     break;
                 }
+            }
+
+            if(!targetCtgTemp){
+                console.log("Error trying to add an edge to missing target category");
+                console.log(targetTemp);
             }
 
             // get categories connector generator
@@ -94,6 +103,18 @@ class EdgeFactory {
         console.log('Edges re-initialized');
         EdgeFactory.edges = [];
         EdgeFactory.vEdges = [];
+    }
+
+    static deleteLastEdge(){
+        let lastEdge = EdgeFactory.edges.pop();
+        lastEdge.source.popThisConnector();
+        lastEdge.target.popThisConnector();
+        EdgeFactory.vEdges.pop();
+        console.log(" Edge deleted linking category: " 
+        + lastEdge.source.nodeObserver.label +", in cluster: "
+        + lastEdge.id.source.cluster + " with category: "
+        + lastEdge.target.nodeObserver.label + ", in cluster: "
+        + lastEdge.id.target.cluster);
     }
 }
 

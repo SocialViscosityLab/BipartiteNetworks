@@ -89,7 +89,7 @@ class Node {
                 }
             }
         }
-        this.updatePropagation()
+        this.updatePropagation2()
     }
 
     resetConnectors() {
@@ -121,54 +121,222 @@ class Node {
     }
 
     propagate(node, clicked) {
-        this.propagateForward(node, clicked);
-        this.propagateBackward(node, clicked);
+        console.log("__ From __ " + this.label);
+        this.propagateForward2(node, clicked);
+        this.propagateBackward2(node, clicked);
     }
 
-    updatePropagation() {
-        if (this.inFwdPropagation) {
-            this.inFwdPropagation = false;
-            this.propagateForward(this, true);
+    updatePropagation2() {
+        if (this.inFwdPropagation && document.getElementById('forward').checked) {
+            console.log("______ Updated From __ " + this.label);
+            this.propagateForward2(this, true);
         }
-        if (this.inBkwPropagation) {
-            this.inBkwPropagation = false;
-            this.propagateBackward(this, true);
+        if (this.inBkwPropagation && document.getElementById('backward').checked) {
+            console.log("______ Updated From __ " + this.label);
+            this.propagateBackward2(this, true);
         }
     }
 
-    propagateForward(cat, clicked) {
-        let warningAt;
-        if (!cat.inFwdPropagation || !clicked) {
+    propagateForward2(cat, clicked) {
+
+        //console.log("____ cat: " + cat.label + " fwd_Prop: " + cat.inFwdPropagation + " clicked: " + clicked)
+
+        if (clicked) {
+            //if (!cat.inFwdPropagation) {
             // console.log("-> 1 In prop " + cat.label)
             try {
-                // i) retrive a subset of edges whose SOURCE is this category
-                cat.inFwdPropagation = clicked;
-                let edgesTmp = this.getForwardEdges(cat);
+                if (document.getElementById('forward').checked) {
+                    // i) retrive a subset of edges whose SOURCE is this category
+                    cat.inFwdPropagation = clicked;
+                    let edgesTmp = this.getForwardEdges(cat);
 
-                // ii) retrieve the list of TARGET categories linked to this category
-                edgesTmp.forEach(edg => {
-                    if (edg.target == undefined) {
-                        return false;
-                    } else {
-                        let obs = edg.target.nodeObserver;
-                        warningAt = obs.label;
-
-                        // for each of those categories, repeat i), ii)
-                        obs.propagateForward(obs, clicked);
-                    }
-                });
-            } catch (error) {
-                if (error instanceof RangeError) {
-                    console.log("WARNING: INFINTE RECURSION. The path of edges draw a closed loop. Check: " + warningAt)
-                    document.getElementById('warning').innerHTML = "WARNING: Infinite Recursion. Dissable propagation";
+                    // ii) retrieve the list of TARGET categories linked to this category
+                    edgesTmp.forEach(edg => {
+                        if (edg.target == undefined) {
+                            return false;
+                        } else {
+                            let obs = edg.target.nodeObserver;
+                            // for each of those categories, repeat i), ii)
+                            console.log("__ To " + obs.label)
+                            if (!obs.inFwdPropagation) {
+                                obs.propagateForward2(obs, clicked);
+                            } else {
+                                // in case this node is in propagation but was also clicked
+                                if (obs.vNodeObserver.clicked) {
+                                    console.log("Forward propagation stopped at node " + obs.label + ". Already in propagation chain")
+                                }
+                                // in case this node is not the end of the propagation branch.
+                                else if (this.getForwardEdges(obs).length != 0) {
+                                    // console.log("Blocked successor propagation from " + cat.label + ".\n** Recursion Error thrown **")
+                                    let nError = new Error(cat.label);
+                                    nError.name = "Recursion"
+                                    throw (nError);
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+            catch (error) {
+                if (error.name == "Recursion") {
+                    alert("** RECURSIVE PROPAGATION **\nThere is a closed loop of successors that might crash the application. Successors propagation will be dissabled\nTry to delete the last edge (by pressing SHIFT+E)");
+                    document.getElementById('forward').checked = "";
+                } else if (error instanceof RangeError) {
+                    alert("infinite forward propadation. \nThe path of successors from " + cat.label + " draws a closed loop. \nPropagation will be dissabled");
+                    document.getElementById('forward').checked = "";
                 } else {
-                    console.log(error)
+                    console.log(error.name + " Warning: error catched in forward propagation")
                 }
             }
         }
-        // else { console.log("Blocked forward propagation from "  + cat.label) }
+        else if (cat.inFwdPropagation) {
+            //** RESET CURRENT and ALL SUCCESSORS **
+            cat.inFwdPropagation = false;
+            try {
+                let edgesTmp = this.getForwardEdges(cat);
+                edgesTmp.forEach(edg => {
+                    let obs = edg.target.nodeObserver;
+                    obs.propagateForward2(obs, false);
+                });
+            } catch {
+                if (error.name == "Recursion") {
+                    console.log(" ** End of prop for cat: " + cat.label + " fwd_Prop: " + cat.inFwdPropagation + " clicked: " + clicked)
+
+                }
+            }
+        }
     }
 
+    propagateBackward2(cat, clicked) {
+
+        //console.log("____ cat: " + cat.label + " fwd_Prop: " + cat.inFwdPropagation + " clicked: " + clicked)
+
+        if (clicked) {
+            // console.log("-> 1 In prop " + cat.label)
+            try {
+                if (document.getElementById('backward').checked) {
+                    // i) retrive a subset of edges whose TARGET is this category
+                    cat.inBkwPropagation = clicked;
+                    let edgesTmp = this.getBackwardEdges(cat);
+
+                    // ii) retrieve the list of SOURCE categories linked to this category
+                    edgesTmp.forEach(edg => {
+                        if (edg.source == undefined) {
+                            return false;
+                        } else {
+                            let obs = edg.source.nodeObserver;
+                            // for each of those categories, repeat i), ii)
+                            console.log("__ To " + obs.label)
+                            if (!obs.inBkwPropagation) {
+                                obs.propagateBackward2(obs, clicked);
+                            } else {
+                                // in case this node is in propagation but was also clicked
+                                if (obs.vNodeObserver.clicked) {
+                                    console.log("Backward propagation stopped at node" + obs.label + ". Already in propagation chain")
+                                }
+                                // in case this node is not the end of the propagation branch.
+                                else if (this.getBackwardEdges(obs).length != 0) {
+                                    console.log("Blocked predecessor propagation from " + cat.label + ".\n** Recursion Error thrown **")
+                                    let nError = new Error(cat.label);
+                                    nError.name = "Recursion"
+                                    throw (nError);
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+            catch (error) {
+                if (error.name == "Recursion") {
+                    alert("** RECURSIVE PROPAGATION **\nThere is a closed loop of predecessors that might crash the application. Predecessors propagation will be dissabled\nTry to delete the last edge (by pressing SHIFT+E)");
+                    document.getElementById('backward').checked = "";
+                } else if (error instanceof RangeError) {
+                    alert("infinite backward propadation. \nThe path of predecessors from " + cat.label + " draws a closed loop. \nPropagation will be dissabled");
+                    document.getElementById('backward').checked = "";
+                } else {
+                    console.log(error.name + " Warning: error catched in backward propagation")
+                }
+            }
+        }
+        else if (cat.inBkwPropagation) {
+            //** RESET CURRENT and ALL SUCCESSORS **
+            cat.inBkwPropagation = false;
+            try {
+                let edgesTmp = this.getBackwardEdges(cat);
+                edgesTmp.forEach(edg => {
+                    let obs = edg.source.nodeObserver;
+                    obs.propagateBackward2(obs, false);
+                });
+            } catch {
+                if (error.name == "Recursion") {
+                    console.log(" ** End of prop for cat: " + cat.label + " fwd_Prop: " + cat.inBkwPropagation + " clicked: " + clicked)
+
+                }
+            }
+        }
+    }
+
+
+    /**  @deprecated */
+    propagateForward(cat, clicked) {
+
+        console.log("____ cat: " + cat.label + " fwd_Prop: " + cat.inFwdPropagation + " clicked: " + clicked)
+
+        if (clicked) {
+            if (!cat.inFwdPropagation) {
+                // console.log("-> 1 In prop " + cat.label)
+                try {
+                    // i) retrive a subset of edges whose SOURCE is this category
+                    cat.inFwdPropagation = clicked;
+                    let edgesTmp = this.getForwardEdges(cat);
+
+                    // ii) retrieve the list of TARGET categories linked to this category
+                    edgesTmp.forEach(edg => {
+                        if (edg.target == undefined) {
+                            return false;
+                        } else {
+                            let obs = edg.target.nodeObserver;
+
+                            // for each of those categories, repeat i), ii)
+                            console.log("__ To " + obs.label)
+                            obs.propagateForward(obs, clicked);
+                        }
+                    });
+                }
+                catch (error) {
+                    if (error.name == "Recursion") {
+                        alert("INFINTE RECURSION. \n The path of successors from " + error.message + " draws a closed loop. Propagation will be dissabled");
+                        document.getElementById('forward').checked = "";
+                    } else if (error instanceof RangeError) {
+                        document.getElementById('warning').innerHTML = "WARNING: Infinite Recursion. Propagation dissabled";
+                        console.log("WARNING: INFINTE RECURSION. The path draws a closed loop. Check: " + cat.label);
+                        alert("Forward infinite recursion. \nThe path of successors from " + cat.label + " draws a closed loop. Propagation will be dissabled");
+                        document.getElementById('forward').checked = "";
+                    } else {
+                        console.log(error)
+                    }
+                }
+            } else {
+                console.log("Blocked successor propagation from " + cat.label + ". ** Recursion Error thrown **")
+                let nError = new Error(cat.label);
+                nError.name = "Recursion"
+                throw (nError);
+            }
+        } else {
+            console.log(" ** RESET ALL SUCCESSORS **")
+            //** RESET CURRENT and ALL SUCCESSORS **
+            cat.inFwdPropagation = false;
+            let edgesTmp = this.getForwardEdges(cat);
+            edgesTmp.forEach(edg => {
+                let obs = edg.target.nodeObserver;
+                obs.propagateForward(obs, clicked);
+            });
+            console.log(" ** End of prop for cat: " + cat.label + " fwd_Prop: " + cat.inFwdPropagation + " clicked: " + clicked)
+
+        }
+    }
+
+    /**  @deprecated */
     propagateBackward(cat, clicked) {
         let warningAt;
         if (!cat.inBkwPropagation || !clicked) {
@@ -190,15 +358,39 @@ class Node {
                     }
                 });
             } catch (error) {
-                if (error instanceof RangeError) {
-                    console.log("WARNING: INFINTE RECURSION. The path of edges draw a closed loop. Check Category: " + warningAt)
-                    document.getElementById('warning').innerHTML = "WARNING: Infinite Recursion. Dissable propagation";
+                if (error.name == "Recursion") {
+                    alert("INFINTE RECURSION. \n The path of predecessors from " + error.message + " draws a closed loop. Propagation will be dissabled");
+                    document.getElementById('forward').checked = "";
+                } else if (error instanceof RangeError) {
+                    document.getElementById('warning').innerHTML = "WARNING: Infinite Recursion. Propagation dissabled";
+                    console.log("WARNING: INFINTE RECURSION. The path draws a closed loop. Check: " + cat.label);
+                    alert("Backward infinite recursion. \nThe path of predecessors from " + cat.label + " draws a closed loop. Propagation will be dissabled");
+                    document.getElementById('forward').checked = "";
                 } else {
                     console.log(error)
                 }
             }
         }
-        // else {console.log("Blocked backward propagation from " + cat.label) }
+        else {
+            console.log("Blocked predecessor propagation from " + cat.label + ". ** Recursion Error thrown **")
+            let nError = new Error(cat.label);
+            nError.name = "Recursion"
+            throw (nError);
+        }
+    }
+
+    /**  @deprecated */
+    updatePropagation() {
+        if (this.inFwdPropagation && document.getElementById('forward').checked) {
+            this.inFwdPropagation = false;
+            console.log("______ Updated From __ " + this.label);
+            this.propagateForward(this, true);
+        }
+        if (this.inBkwPropagation && document.getElementById('backward').checked) {
+            this.inBkwPropagation = false;
+            console.log("______ Updated From __ " + this.label);
+            this.propagateBackward(this, true);
+        }
     }
 
     getForwardEdges(cat) {

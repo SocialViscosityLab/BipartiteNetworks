@@ -124,6 +124,16 @@
           |
           <button class="btn btn-default btn-xs" id="myBtn" data-toggle="modal" data-target="#importNetworkModal">Import
             network</button>
+          <br>
+          <br>
+          <p>
+            Propagation:
+            <input type="checkbox" id="forward" name="fwd" checked>
+            <label for="forward" style="font-size:10px">Succesors</label>
+
+            <input type="checkbox" id="backward" name="bws" checked>
+            <label for="backward" style="font-size:10px">Predecesors</label>
+          </p>
 
         </div>
       </div>
@@ -147,25 +157,17 @@
       </div>
 
       <div class="col-sm-3">
-
-        <p style="margin-top: 1px; margin-bottom: 1px">Propagation from selected node</p>
-
-        <input type="checkbox" id="forward" name="fwd" checked>
-        <label for="forward" style="font-size:10px">Succesors</label>
-
-        <input type="checkbox" id="backward" name="bws" checked>
-        <label for="backward" style="font-size:10px">Predecessors</label>
-
-        <input type="checkbox" id="edit" style="visibility:hidden" checked>
-        <label for="edit" style="font-size:10px; visibility:hidden">Edit mode</label></div>
-
         <p>
+          <input type="checkbox" id="edit" checked>
+          <label for="edit" style="font-size:10px">Edit mode</label><br>
+
           <input type="checkbox" id="backgroundContrast">
-          
-          <label for="backgroundContrast" style="font-size:10px">Change contrast</label>
+          <label for="backgroundContrast" style="font-size:10px">Change contrast</label><br>
+
+          <input type="checkbox" id="filterLinked">
+          <label for="filterLinked" style="font-size:10px">Filter linked</label>
         </p>
 
-        <label id="warning" style="font-size:11px; color:#FF0000"> </label>
       </div>
 
       <div class="row">
@@ -176,7 +178,8 @@
         <!-- Moldel goes here -->
         <div id="model"></div>
         <div class="col-sm-12">
-          <p style="margin-left:20px"> Using multi-partite networks tool | University of Illinois at Urbana-Champaign | 2019 |
+          <p style="margin-left:20px"> Using multi-partite networks tool | University of Illinois at Urbana-Champaign |
+            2019 |
             Made with p5.js | Juan Salamanca, Contact: jsal@illinois.edu </p>
         </div>
       </div>

@@ -89,27 +89,33 @@ class VNode extends Button {
         if (!this.color) {
             this.color = '#d4d4d4';
         }
-        if (this.node.inFwdPropagation && document.getElementById("forward").checked && 
+        let normal = 40;
+        let accent = 80;
+        if (this.mouseIsOver) {
+            accent += 19;
+            normal += 19;
+        }
+        if (this.node.inFwdPropagation && document.getElementById("forward").checked &&
             this.node.inBkwPropagation && document.getElementById("backward").checked) {
-           // console.log("here 1 " + this.node.label);
-            builder.fill(this.color.concat('50'));
+            // console.log("here 1 " + this.node.label);
+            builder.fill(this.color.concat(accent));
         } else if (this.node.inFwdPropagation && document.getElementById("forward").checked) {
-           // console.log("here 2 " + this.node.label);
-            builder.fill(this.color.concat('50'));
+            // console.log("here 2 " + this.node.label);
+            builder.fill(this.color.concat(accent));
         } else if (this.node.inBkwPropagation && document.getElementById("backward").checked) {
             // console.log("here 3 " + this.node.label);
-            builder.fill(this.color.concat('50'));
+            builder.fill(this.color.concat(accent));
             // if it has no linked edges
         } else if (this.vPositives.length + this.vNegatives.length <= 2) {
-           // console.log("here 4 " + this.node.label);
-            builder.fill(100, 10);
+            // console.log("here 4 " + this.node.label);
+            builder.fill(this.color.concat(normal));
         } else {
-           // console.log("here last " + this.node.label);
-            builder.fill(this.color.concat('15'));
+            // console.log("here last " + this.node.label);
+            builder.fill(this.color.concat(normal));
         }
 
         // Highlight rect
-        if (this.clicked | this.mouseIsOver) {
+        if (this.clicked) {
             builder.strokeWeight(2);
             builder.stroke(200, 0, 0);
         } else {
@@ -117,37 +123,87 @@ class VNode extends Button {
             builder.stroke(250);
         }
 
-        // draw the rect
-        builder.rect(this.pos.x, this.pos.y, this.width, this.height);
+        // Show linked only
+        if (document.getElementById('filterLinked').checked) {
+            // filter by edge number
+            if ((this.node.polarity == "BOTH" && this.vPositives.length + this.vNegatives.length > 2) |
+                (this.node.polarity != "BOTH" && this.vPositives.length + this.vNegatives.length > 1) &&
+                document.getElementById('filterLinked').checked) {
+                // draw the rect
+                builder.rect(this.pos.x, this.pos.y, this.width, this.height);
 
-        // draw the lable
-        builder.fill("#000000");
-        builder.textAlign(globalP5.CENTER, globalP5.CENTER);
-        builder.noStroke();
-        builder.textSize(10);
-        builder.text(this.node.label, this.pos.x, this.pos.y, this.width, this.height);
+                // draw the label
+                builder.fill("#000000");
+                builder.textAlign(globalP5.CENTER, globalP5.CENTER);
+                builder.noStroke();
+                builder.textSize(10);
+                if (this.clicked) {
+                    builder.textStyle(builder.BOLD);
+                }
+                builder.text(this.node.label, this.pos.x, this.pos.y, this.width, this.height);
+                builder.textStyle(builder.NORMAL);
 
-        //let positives = this.getConnectors(true);
-        for (let index = 0; index < this.vPositives.length; index++) {
-            const element = this.vPositives[index];
-            if (index == this.vPositives.length - 1) {
-                element.showAsButton(builder);
-            } else {
-                element.show(builder)
+                //let positives = this.getConnectors(true);
+                for (let index = 0; index < this.vPositives.length; index++) {
+                    const element = this.vPositives[index];
+                    if (index == this.vPositives.length - 1) {
+                        element.showAsButton(builder);
+                    } else {
+                        element.show(builder)
+                    }
+                }
+                //let negatives = this.getConnectors(false);
+                for (let index = 0; index < this.vNegatives.length; index++) {
+                    const element = this.vNegatives[index];
+                    if (index == this.vNegatives.length - 1) {
+                        element.showAsButton(builder);
+                    } else {
+                        element.show(builder)
+                    }
+                }
+
+                if (this.mouseIsOver) {
+                    this.showDescription(builder);
+                }
             }
-        }
-        //let negatives = this.getConnectors(false);
-        for (let index = 0; index < this.vNegatives.length; index++) {
-            const element = this.vNegatives[index];
-            if (index == this.vNegatives.length - 1) {
-                element.showAsButton(builder);
-            } else {
-                element.show(builder)
-            }
-        }
+        } else {
+            // draw the rect
+            builder.rect(this.pos.x, this.pos.y, this.width, this.height);
 
-        if (this.mouseIsOver) {
-            this.showDescription(builder);
+            // draw the label
+            builder.fill("#000000");
+            builder.textAlign(globalP5.CENTER, globalP5.CENTER);
+            builder.noStroke();
+            builder.textSize(10);
+            if (this.clicked) {
+                builder.textStyle(builder.BOLD);
+            }
+            builder.text(this.node.label, this.pos.x, this.pos.y, this.width, this.height);
+            builder.textStyle(builder.NORMAL);
+
+            //let positives = this.getConnectors(true);
+            for (let index = 0; index < this.vPositives.length; index++) {
+                const element = this.vPositives[index];
+                if (index == this.vPositives.length - 1) {
+                    element.showAsButton(builder);
+                } else {
+                    element.show(builder)
+                }
+            }
+            //let negatives = this.getConnectors(false);
+            for (let index = 0; index < this.vNegatives.length; index++) {
+                const element = this.vNegatives[index];
+                if (index == this.vNegatives.length - 1) {
+                    element.showAsButton(builder);
+                } else {
+                    element.show(builder)
+                }
+            }
+
+            if (this.mouseIsOver) {
+                this.showDescription(builder);
+            }
+
         }
     }
 
@@ -165,9 +221,9 @@ class VNode extends Button {
 
     // **** EVENTS *****
     mouseMovedEvents() {
-        if (this.clicked) {
-            this.node.propagate(this.node, this.clicked);
-        }
+        // if (this.clicked) {
+        //     this.node.propagate(this.node, this.clicked);
+        // }
     }
 
     mouseOverEvents() {
@@ -185,9 +241,6 @@ class VNode extends Button {
         this.vNegatives.forEach(connector => {
             connector.mouseClickedEvents();
         });
-        if (!document.getElementById("forward").checked && !document.getElementById("backward").checked) {
-            document.getElementById('warning').innerHTML = "";
-        }
     }
 
 }

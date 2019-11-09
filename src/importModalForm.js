@@ -6,11 +6,11 @@ importNetworkModalForm = function () {
 
     var nodesFile = document.getElementById('dragDropNodes');
     var edgesFile = document.getElementById('dragDropEdges');
+    var networkFile = document.getElementById('dragDropNetwork');
 
-
-    makeDroppable(nodesFile, callbackNodes);
-    makeDroppable(edgesFile, callbackEdges);
-
+   //  makeDroppable(nodesFile, callbackNodes);
+   //  makeDroppable(edgesFile, callbackEdges);
+    makeDroppable(networkFile, callbackNetwork);
 
 // Get user click button
 document.getElementById("importNetwork").onclick = getDataImport;
@@ -41,6 +41,16 @@ callbackEdges = function (files) {
     }
 }
 
+callbackNetwork = function (files) {
+    //Only process json files.
+    if (files[0].type.endsWith('json')) {
+        document.getElementById('networkFileName').innerHTML = files[0].name
+        loadFile(files[0], 'network');
+    } else {
+        alert("Wrong file format. Must be a JSON file")
+    }
+}
+
 loadFile = function (file, kind) {
     let reader = new FileReader();
     // Closure to capture the file information.
@@ -52,6 +62,9 @@ loadFile = function (file, kind) {
                 nodesImported = data;
             } else if (kind == 'edges') {
                 edgesImported = data;
+            } else if (kind == 'network'){
+                nodesImported= data.nodes;
+                edgesImported= data.edges;
             }
         };
     })(file);
@@ -110,14 +123,16 @@ makeDroppable = function (element, callback) {
     }
 }
 
-buildEdgesImport = function (result) {
-    EdgeFactory.reset();
-    EdgeFactory.buildEdges(result, ClusterFactory.clusters)
-}
-
 buildClustersImport = function (result) {
     ClusterFactory.reset();
     ClusterFactory.makeClusters(result);
-    ClusterFactory.refreshColors(1,ColorFactory.palettes[0]);
-    ClusterFactory.refreshColors(2,ColorFactory.palettes[1]);
+    ClusterFactory.refreshColors(0, ColorFactory.palettes[0]);
+    ClusterFactory.refreshColors(1, ColorFactory.palettes[1]);
+    ClusterFactory.refreshColors(2, ColorFactory.palettes[2]);
+    ClusterFactory.refreshColors(3, ColorFactory.palettes[3]);
+}
+
+buildEdgesImport = function (result) {
+    EdgeFactory.reset();
+    EdgeFactory.buildEdges(result, ClusterFactory.clusters)
 }

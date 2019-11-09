@@ -244,11 +244,11 @@
             <h3 class="modal-title">Export network</h3>
           </div>
           <div class="modal-body">
-            <p>Export the current network in json format</p>
+            <!--<p>Export the current network in json format</p>
             <input type='checkbox' id="includeNodes" checked> Include nodes</input>
             &nbsp;
             <input type='checkbox' id="includeEdges" checked> Include edges</input>
-            <hr>
+            <hr>-->
             <input id="exportFileSuffix" value="File name"></input>
             <p>This is the sufix of two separate files, one for nodes and one for edges</p>
           </div>
@@ -281,12 +281,19 @@
                 background: #00CC71;
               }
             </style>
-            <div class="droppable" id="dragDropNodes">Drag and drop the <b>nodes</b> file here
-              <p id="nodesFileName"> no file yet</p>
+
+            <div class="droppable" id="dragDropNetwork">Drag and drop the <b>NETWORK</b> file here.
+              <p id="networkFileName">No file yet.</p>
             </div>
             <br>
-            <div class="droppable" id="dragDropEdges">Drag and drop the <b>edges</b> files here
-              <p id="edgesFileName">no file yet</p>
+            <p>If you have separate files for nodes and edges drop the files in the corresponding box:
+            </p>
+            <div class="droppable" id="dragDropNodes">Drag and drop the <b>NODES</b> file here.
+              <p id="nodesFileName">No file yet.</p>
+            </div>
+            <br>
+            <div class="droppable" id="dragDropEdges">Drag and drop the <b>EDGES</b> files here.
+              <p id="edgesFileName">No file yet.</p>
             </div>
           </div>
           <div class="modal-footer">

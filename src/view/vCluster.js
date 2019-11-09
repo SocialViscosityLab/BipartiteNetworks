@@ -25,7 +25,7 @@ class VCluster {
             }
 
             // set color
-            vCatTemp.setColor('#d2d2d2');
+            vCatTemp.setColor('#adadad');
 
             // add to colecction
             this.addVCategory(vCatTemp);

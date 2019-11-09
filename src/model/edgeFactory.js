@@ -13,12 +13,13 @@ class EdgeFactory {
             let targetTemp;
             for (const c of clusters) {
                 let foundST = { source: false, target: false };
-                try{
-                if (c.id == e.source.cluster) {
-                    sourceTemp = c;
-                    foundST.source = true;
-                }} catch(error){
-console.log(edgs)
+                try {
+                    if (c.id == e.source.cluster) {
+                        sourceTemp = c;
+                        foundST.source = true;
+                    }
+                } catch (error) {
+                    console.log(edgs)
                 }
                 if (c.id == e.target.cluster) {
                     targetTemp = c;
@@ -38,7 +39,7 @@ console.log(edgs)
                 }
             }
 
-            if(!sourceCtgTemp){
+            if (!sourceCtgTemp) {
                 console.log("ERROR. trying to add an edge to missing source category");
                 console.log(sourceTemp);
             }
@@ -66,7 +67,7 @@ console.log(edgs)
                 }
             }
 
-            if(!targetCtgTemp){
+            if (!targetCtgTemp) {
                 console.log("Error trying to add an edge to missing target category");
                 console.log(targetTemp);
             }
@@ -86,14 +87,14 @@ console.log(edgs)
         }
     }
 
-    static get EDGES(){
+    static get EDGES() {
         return EdgeFactory.edges;
     }
 
     static recordJSON(suffix) {
         let filename = "edges.json";
-        if (suffix){
-            filename = suffix+"_"+filename;
+        if (suffix) {
+            filename = suffix + "_" + filename;
         }
         let output = [];
         for (let index = 0; index < EdgeFactory.edges.length; index++) {
@@ -102,22 +103,22 @@ console.log(edgs)
         globalP5.saveJSON(output, filename);
     }
 
-    static reset(){
+    static reset() {
         console.log('Edges re-initialized');
         EdgeFactory.edges = [];
         EdgeFactory.vEdges = [];
     }
 
-    static deleteLastEdge(){
+    static deleteLastEdge() {
         let lastEdge = EdgeFactory.edges.pop();
         lastEdge.source.popThisConnector();
         lastEdge.target.popThisConnector();
         EdgeFactory.vEdges.pop();
-        console.log(" Edge deleted linking category: " 
-        + lastEdge.source.nodeObserver.label +", in cluster: "
-        + lastEdge.id.source.cluster + " with category: "
-        + lastEdge.target.nodeObserver.label + ", in cluster: "
-        + lastEdge.id.target.cluster);
+        console.log(" Edge deleted linking category: "
+            + lastEdge.source.nodeObserver.label + ", in cluster: "
+            + lastEdge.id.source.cluster + " with category: "
+            + lastEdge.target.nodeObserver.label + ", in cluster: "
+            + lastEdge.id.target.cluster);
     }
 }
 

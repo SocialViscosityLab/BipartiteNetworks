@@ -15,6 +15,7 @@ var main = function (p5) {
 	// files path
 	let pathEdges = './files/Edges/';
 	let pathNodes = './files/Nodes/';
+	let pathNetworks = './files/Networks/';
 	let pathPalettes = './files/colorPalettes/';
 
 	// current model
@@ -31,34 +32,52 @@ var main = function (p5) {
 		ColorFactory.loadPalette(pathPalettes + "palette4.txt");
 
 		// Load edge and node files
-		p5.loadJSON(pathNodes + '0_nodes.json', onLoadNodes);
+		//p5.loadJSON(pathNodes + '0_nodes.json', onLoadNodes);
+		p5.loadJSON(pathNetworks + 'Sustainable_network.json', onLoadNetwork);
 	}
 
-	onLoadNodes = function (data) {
-		nodesTemp = data;
+	onLoadNetwork = function (data) {
+		nodesTemp = data.nodes;
 		buildClusters(nodesTemp);
 
-		// Connect with HTML GUI
-		document.getElementById("clearEdges").onclick = clearEdges;
-		model = document.getElementById("modelChoice");
-		model.addEventListener('change', () => {
-			switchModel(model.value);
-		})
-
-		p5.loadJSON(pathEdges + '0_edges.json', onLoadEdges);
+		edgesTemp = data.edges;
+		buildEdges(edgesTemp);
 	}
 
-	onLoadEdges = function (data) {
-		edgesTemp = data;
-		EdgeFactory.buildEdges(edgesTemp, ClusterFactory.clusters);
-		switchModel(model.value);
-	}
+	// onLoadNodes = function (data) {
+	// 	nodesTemp = data;
+	// 	buildClusters(nodesTemp);
+
+	// 	// Connect with HTML GUI
+	// 	document.getElementById("clearEdges").onclick = clearEdges;
+	// 	model = document.getElementById("modelChoice");
+	// 	model.addEventListener('change', () => {
+	// 		switchModel(model.value);
+	// 	})
+
+	// 	p5.loadJSON(pathEdges + '0_edges.json', onLoadEdges);
+	// }
+
+	// onLoadEdges = function (data) {
+	// 	edgesTemp = data;
+	// 	EdgeFactory.buildEdges(edgesTemp, ClusterFactory.clusters);
+	// 	switchModel(model.value);
+	// }
 
 	// Only once
 	p5.setup = function () {
 		// Create cavas
 		p5.createCanvas(970, 700);
 		graphics = p5.createGraphics(p5.width * p5.pixelDensity(), p5.height * p5.pixelDensity());
+
+		// Enable the model dorpdown selector
+		model = document.getElementById("modelChoice");
+		model.addEventListener('change', () => {
+			switchModel(model.value);
+		})
+
+		// Connect with HTML GUI
+		document.getElementById("clearEdges").onclick = clearEdges;
 
 		// Add elements form
 		addCategoryModalForm();
@@ -99,9 +118,11 @@ var main = function (p5) {
 				});
 			}
 		} catch {
-			console.log("No CustomPathParser for this multipartite network");
-			buildClusters(nodesTemp);
-			edgesTemp = p5.loadJSON(pathEdges + value + '_edges.json', buildEdges);
+			//console.log("No CustomPathParser for this multipartite network");
+			console.log("Switched to " + value + " network");
+			// buildClusters(nodesTemp);
+			// edgesTemp = p5.loadJSON(pathEdges + value + '_edges.json', buildEdges);
+			p5.loadJSON(pathNetworks + value + '_network.json', onLoadNetwork);
 		}
 
 	}
@@ -156,7 +177,7 @@ var main = function (p5) {
 	// render on original p5.Renderer
 	renderOnP5 = function () {
 		// draw description box
-		p5.fill(250,150);
+		p5.fill(250, 150);
 		p5.noStroke();
 		p5.rect(0, p5.height - 90, p5.width, 90)
 
@@ -181,7 +202,7 @@ var main = function (p5) {
 			graphics.background(backColor);
 
 			// draw description box
-			graphics.fill(250,150);
+			graphics.fill(250, 150);
 			graphics.noStroke();
 			graphics.rect(0, p5.height - 90, p5.width, 90)
 

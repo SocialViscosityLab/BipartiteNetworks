@@ -10,7 +10,7 @@ class VEdge {
         this.vTarget;
         this.color;
         this.open = false;
-        this.alpha = 30
+        this.alpha = 50
     }
 
     setVSource(vConctr) {
@@ -35,7 +35,7 @@ class VEdge {
                 this.alpha = '99';
             } else {
                 builder.strokeWeight(3);
-                this.alpha = '30';
+                this.alpha = '50';
             }
         } else if (document.getElementById("forward").checked) {
             if (this.source.nodeObserver.inFwdPropagation) {
@@ -43,7 +43,7 @@ class VEdge {
                 this.alpha = '99';
             } else {
                 builder.strokeWeight(3);
-                this.alpha = '30';
+                this.alpha = '50';
             }
         } else if (document.getElementById("backward").checked) {
             if (this.edge.target && this.edge.target.nodeObserver.inBkwPropagation) {
@@ -51,12 +51,12 @@ class VEdge {
                 this.alpha = '99';
             } else {
                 builder.strokeWeight(3);
-                this.alpha = '30';
+                this.alpha = '50';
             }
 
         } else {
             builder.strokeWeight(3);
-                this.alpha = '30';
+                this.alpha = '50';
         }
         builder.strokeWeight(3);
         this.showBeziers(builder)

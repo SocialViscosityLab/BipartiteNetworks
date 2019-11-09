@@ -7,7 +7,7 @@ class VCluster {
         this.cluster = cluster;
         this.populateVCategories(cluster);
         this.palette = palette;
-        this.setPalette();
+     //   this.setPalette();
     }
 
     populateVCategories(cluster) {

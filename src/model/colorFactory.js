@@ -1,11 +1,14 @@
 class ColorFactory {
 
     static loadPalette(fileName) {
-        globalP5.loadStrings(fileName, ColorFactory.splitTokens);
+        return new Promise(function(resolve,reject){
+            resolve(globalP5.loadStrings(fileName, ColorFactory.splitTokens));
+        }); 
     }
 
     static splitTokens(data) {
         ColorFactory.palettes.push(data);
+        return true;
     }
 
     static getPalette(n) {

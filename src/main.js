@@ -24,51 +24,13 @@ var main = function (p5) {
 	// current background
 	let backColor = 250;
 
-	p5.preload = function () {
-		// Load color palettes
-		ColorFactory.loadPalette(pathPalettes + "palette1.txt");
-		ColorFactory.loadPalette(pathPalettes + "palette2.txt");
-		ColorFactory.loadPalette(pathPalettes + "palette3.txt");
-		ColorFactory.loadPalette(pathPalettes + "palette4.txt");
-
-		// Load edge and node files
-		//p5.loadJSON(pathNodes + '0_nodes.json', onLoadNodes);
-		p5.loadJSON(pathNetworks + 'Sustainable_network.json', onLoadNetwork);
-	}
-
-	onLoadNetwork = function (data) {
-		nodesTemp = data.nodes;
-		buildClusters(nodesTemp);
-
-		edgesTemp = data.edges;
-		buildEdges(edgesTemp);
-	}
-
-	// onLoadNodes = function (data) {
-	// 	nodesTemp = data;
-	// 	buildClusters(nodesTemp);
-
-	// 	// Connect with HTML GUI
-	// 	document.getElementById("clearEdges").onclick = clearEdges;
-	// 	model = document.getElementById("modelChoice");
-	// 	model.addEventListener('change', () => {
-	// 		switchModel(model.value);
-	// 	})
-
-	// 	p5.loadJSON(pathEdges + '0_edges.json', onLoadEdges);
-	// }
-
-	// onLoadEdges = function (data) {
-	// 	edgesTemp = data;
-	// 	EdgeFactory.buildEdges(edgesTemp, ClusterFactory.clusters);
-	// 	switchModel(model.value);
-	// }
-
 	// Only once
 	p5.setup = function () {
 		// Create cavas
 		p5.createCanvas(970, 700);
 		graphics = p5.createGraphics(p5.width * p5.pixelDensity(), p5.height * p5.pixelDensity());
+
+		preload();
 
 		// Enable the model dorpdown selector
 		model = document.getElementById("modelChoice");
@@ -126,6 +88,46 @@ var main = function (p5) {
 		}
 
 	}
+
+	preload = function () {
+		// Load color palettes
+		ColorFactory.loadPalette(pathPalettes + "palette1.txt")
+		.then(ColorFactory.loadPalette(pathPalettes + "palette2.txt"))
+		.then(ColorFactory.loadPalette(pathPalettes + "palette3.txt"))
+		.then(ColorFactory.loadPalette(pathPalettes + "palette4.txt"))
+		.catch((err)=> console.log(err))
+
+		// Load edge and node files
+		p5.loadJSON(pathNetworks + 'Sustainable_network.json', onLoadNetwork);
+	}
+
+	onLoadNetwork = function (data) {
+		nodesTemp = data.nodes;
+		buildClusters(nodesTemp);
+
+		edgesTemp = data.edges;
+		buildEdges(edgesTemp);
+	}
+
+	// onLoadNodes = function (data) {
+	// 	nodesTemp = data;
+	// 	buildClusters(nodesTemp);
+
+	// 	// Connect with HTML GUI
+	// 	document.getElementById("clearEdges").onclick = clearEdges;
+	// 	model = document.getElementById("modelChoice");
+	// 	model.addEventListener('change', () => {
+	// 		switchModel(model.value);
+	// 	})
+
+	// 	p5.loadJSON(pathEdges + '0_edges.json', onLoadEdges);
+	// }
+
+	// onLoadEdges = function (data) {
+	// 	edgesTemp = data;
+	// 	EdgeFactory.buildEdges(edgesTemp, ClusterFactory.clusters);
+	// 	switchModel(model.value);
+	// }
 
 	buildClusters = function (result) {
 		ClusterFactory.reset();

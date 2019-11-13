@@ -1,7 +1,7 @@
 class Connector {
-    constructor(id, _index, polarity) {
+    constructor(id, _index, polarity, _count) {
         this.polarity = polarity;
-        this.id = { cluster: id.cluster, cat: id.index, index: _index, polarity: this.polarity }
+        this.id = { cluster: id.cluster, cat: id.index, index: _index, polarity: this.polarity, pajekIndex:_count }
         this.taken = false;
         // observer pattern
         this.nodeObserver; // the collection of subscribed nodes

@@ -87,7 +87,7 @@ class VNode extends Button {
         builder.strokeWeight(1);
         // in case the color palette runs out of colors
         if (!this.color) {
-            //this.color = '#d4d4d4';
+            this.color = '#d4d4d4';
         }
         let normal = 40;
         let accent = 80;
@@ -130,7 +130,7 @@ class VNode extends Button {
                 (this.node.polarity != "BOTH" && this.vPositives.length + this.vNegatives.length > 1) &&
                 document.getElementById('filterLinked').checked) {
                 // draw the rect
-               // builder.rect(this.pos.x, this.pos.y, this.width, this.height);
+                builder.rect(this.pos.x, this.pos.y, this.width, this.height);
 
                 // draw the label
                 builder.fill("#000000");
@@ -147,7 +147,7 @@ class VNode extends Button {
                 for (let index = 0; index < this.vPositives.length; index++) {
                     const element = this.vPositives[index];
                     if (index == this.vPositives.length - 1) {
-                        //element.showAsButton(builder);
+                        element.showAsButton(builder);
                     } else {
                         element.show(builder)
                     }
@@ -156,7 +156,7 @@ class VNode extends Button {
                 for (let index = 0; index < this.vNegatives.length; index++) {
                     const element = this.vNegatives[index];
                     if (index == this.vNegatives.length - 1) {
-                       // element.showAsButton(builder);
+                        element.showAsButton(builder);
                     } else {
                         element.show(builder)
                     }

@@ -1,6 +1,6 @@
 class Node {
-    constructor(clusterID, _index) {
-        this.idCat = { cluster: clusterID, index: _index }
+    constructor(clusterID, _index, _count) {
+        this.idCat = { cluster: clusterID, index: _index, pajekIndex: _count}
         this.positives = [];
         this.negatives = [];
         this.label = "void";
@@ -17,14 +17,14 @@ class Node {
 
 
     addPositiveConnector(index) {
-        let tmpConnector = new Connector(this.idCat, index, true);
+        let tmpConnector = new Connector(this.idCat, index, true, this.idCat.pajekIndex);
         tmpConnector.subscribeNode(this);
         this.positives.push(tmpConnector);
         return tmpConnector;
     }
 
     addNegativeConnector(index) {
-        let tmpConnector = new Connector(this.idCat, index, false);
+        let tmpConnector = new Connector(this.idCat, index, false, this.idCat.pajekIndex);
         tmpConnector.subscribeNode(this);
         this.negatives.push(tmpConnector);
         return tmpConnector;
@@ -423,6 +423,7 @@ class Node {
             nodeLabel: this.label,
             nodeDescription: this.description,
             polarity: this.polarity,
+            pajekIndex: this.idCat.pajekIndex
         }
         return rtn;
     }

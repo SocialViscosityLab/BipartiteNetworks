@@ -33,14 +33,16 @@ class ClusterFactory {
         for (let index = 0; index < data.nodes.length; index++) {
             let category = this.makeCategory(cluster, data.nodes[index]);
             cluster.addCategory(category);
+            
         }
     }
 
     static makeCategory (cluster, data) {
-        let category = new Node(cluster.id, data.id);
+        let category = new Node(cluster.id, data.id, ClusterFactory.countCat);
         category.setLabel(data.nodeLabel);
         category.setDescription(data.nodeDescription);
         category.setPolarity(data.polarity);
+        ClusterFactory.countCat++;
 
         // create connectors
         switch (data.polarity) {
@@ -75,6 +77,7 @@ class ClusterFactory {
         console.log("Clusters re-intialized")
         ClusterFactory.clusters = [];
         ClusterFactory.vClusters = [];
+        ClusterFactory.countCat = 1;
     }
 
     static getVClusterOf(cluster) {
@@ -102,3 +105,4 @@ ClusterFactory.vClusters = [];
 ClusterFactory.wdth = 140;
 ClusterFactory.hght = 35;
 ClusterFactory.gutter = 110;
+ClusterFactory.countCat = 1;

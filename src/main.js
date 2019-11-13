@@ -30,10 +30,9 @@ var main = function (p5) {
 		p5.createCanvas(970, 700);
 		graphics = p5.createGraphics(p5.width * p5.pixelDensity(), p5.height * p5.pixelDensity());
 
-		preload();
-
 		// Enable the model dorpdown selector
 		model = document.getElementById("modelChoice");
+		preload(model.value);
 		model.addEventListener('change', () => {
 			switchModel(model.value);
 		})
@@ -82,31 +81,36 @@ var main = function (p5) {
 		} catch {
 			//console.log("No CustomPathParser for this multipartite network");
 			console.log("Switched to " + value + " network");
-			// buildClusters(nodesTemp);
-			// edgesTemp = p5.loadJSON(pathEdges + value + '_edges.json', buildEdges);
-			p5.loadJSON(pathNetworks + value + '_network.json', onLoadNetwork);
+			let json = p5.loadJSON(pathNetworks + value + '_network.json', onLoadNetwork);
 		}
 
 	}
 
-	preload = function () {
+	preload = function (value) {
 		// Load color palettes
 		ColorFactory.loadPalette(pathPalettes + "palette1.txt")
-		.then(ColorFactory.loadPalette(pathPalettes + "palette2.txt"))
-		.then(ColorFactory.loadPalette(pathPalettes + "palette3.txt"))
-		.then(ColorFactory.loadPalette(pathPalettes + "palette4.txt"))
-		.catch((err)=> console.log(err))
+			.then(ColorFactory.loadPalette(pathPalettes + "palette2.txt"))
+			.then(ColorFactory.loadPalette(pathPalettes + "palette3.txt"))
+			.then(ColorFactory.loadPalette(pathPalettes + "palette4.txt"))
+			.catch((err) => console.log(err))
 
 		// Load edge and node files
-		p5.loadJSON(pathNetworks + 'Sustainable_network.json', onLoadNetwork);
+		try {
+			let json = p5.loadJSON(pathNetworks + value +'_network.json', onLoadNetwork);
+		} catch (error) {
+			console.log("Wrong path to file " + pathNetworks + value +'_network.json')
+		}
 	}
 
-	onLoadNetwork = function (data) {
+	onLoadNetwork = function (data,name) {
 		nodesTemp = data.nodes;
 		buildClusters(nodesTemp);
 
 		edgesTemp = data.edges;
 		buildEdges(edgesTemp);
+
+		//convertJSONtoPajek(data, model.value);
+		
 	}
 
 	// onLoadNodes = function (data) {

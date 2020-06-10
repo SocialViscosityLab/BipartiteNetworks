@@ -10,7 +10,7 @@ class ClusterFactory {
         let x = ClusterFactory.wdth + ClusterFactory.gutter;
 
         for (let index = 0; index < ClusterFactory.clusters.length; index++) {
-            ClusterFactory.vClusters.push(new VCluster(ClusterFactory.clusters[index], 15 + x * index, 20, ClusterFactory.wdth, ClusterFactory.hght));
+            ClusterFactory.vClusters.push(new VCluster(ClusterFactory.clusters[index], 15 + x * index, 20, ClusterFactory.wdth, ClusterFactory.hght, ColorFactory.getPalette(index)));
         }
     }
 

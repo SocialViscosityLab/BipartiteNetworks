@@ -5,9 +5,9 @@ class VCluster {
         this.height = height;
         this.vCategories = [];
         this.cluster = cluster;
-        this.populateVCategories(cluster);
         this.palette = palette;
-     //   this.setPalette();
+        this.populateVCategories(cluster);
+        //   this.setPalette();
     }
 
     populateVCategories(cluster) {
@@ -25,7 +25,14 @@ class VCluster {
             }
 
             // set color
-            vCatTemp.setColor('#adadad');
+            if (!this.palette) {
+                vCatTemp.setColor("#adadad");
+            } else if (this.palette.length < 1) {
+                vCatTemp.setColor(this.palette[0])
+            } else {
+                let tmpIndex = index % this.palette.length;
+                vCatTemp.setColor(this.palette[tmpIndex]);
+            }
 
             // add to colecction
             this.addVCategory(vCatTemp);
@@ -41,7 +48,7 @@ class VCluster {
         if (palette) {
             this.palette = palette;
         }
-        
+
         let counter = 0;
         if (this.palette) {
 

@@ -91,6 +91,7 @@ class VNode extends Button {
         }
         let normal = 40;
         let accent = 80;
+        let dimmed = 10;
         if (this.mouseIsOver) {
             accent += 19;
             normal += 19;
@@ -110,9 +111,9 @@ class VNode extends Button {
         //     // console.log("here 4 " + this.node.label);
         //     builder.fill(this.color.concat(normal));
         // } else {
-            // console.log("here last " + this.node.label);
-            builder.fill(this.color.concat(normal));
-       // }
+        // console.log("here last " + this.node.label);
+        builder.fill(this.color.concat(normal));
+        // }
 
         // Highlight rect
         if (this.clicked) {
@@ -130,6 +131,8 @@ class VNode extends Button {
                 (this.node.polarity != "BOTH" && this.vPositives.length + this.vNegatives.length > 1) &&
                 document.getElementById('filterLinked').checked) {
                 // draw the rect
+                builder.strokeWeight(2);
+                builder.stroke(this.color);
                 builder.rect(this.pos.x, this.pos.y, this.width, this.height);
 
                 // draw the label
@@ -162,6 +165,21 @@ class VNode extends Button {
                     }
                 }
 
+                if (this.mouseIsOver) {
+                    this.showDescription(builder);
+                }
+            } else {
+                // draw the rect
+                builder.fill(this.color.concat(dimmed));
+                builder.rect(this.pos.x, this.pos.y, this.width, this.height);
+
+                // draw the label
+                builder.fill("#00000070");
+                builder.textAlign(globalP5.CENTER, globalP5.CENTER);
+                builder.noStroke();
+                builder.textSize(10);
+                builder.text(this.node.label, this.pos.x, this.pos.y, this.width, this.height);
+                builder.textStyle(builder.NORMAL);
                 if (this.mouseIsOver) {
                     this.showDescription(builder);
                 }

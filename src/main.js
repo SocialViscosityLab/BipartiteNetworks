@@ -22,6 +22,26 @@ var main = function(p5) {
     // current background
     let backColor = 250;
 
+    // Preload
+    p5.preload = function() {
+        // Enable the model dropdown selector
+        model = document.getElementById("modelChoice");
+        //preload(model.value);
+        model.addEventListener('change', () => {
+            switchModel(model.value);
+        })
+
+        // Load color palettes
+        Promise.all([ColorFactory.loadPalette2(pathPalettes + "palette1.txt"),
+                ColorFactory.loadPalette2(pathPalettes + "palette2.txt"),
+                ColorFactory.loadPalette2(pathPalettes + "palette3.txt"),
+                ColorFactory.loadPalette2(pathPalettes + "palette4.txt")
+            ])
+            .then(data => {
+                p5.loadJSON(pathNetworks + model.value + '_network.json', onLoadNetwork)
+            }).catch((err) => console.log(err))
+    }
+
     // Only once
     p5.setup = function() {
         // Create cavas
@@ -82,26 +102,6 @@ var main = function(p5) {
             let json = p5.loadJSON(pathNetworks + value + '_network.json', onLoadNetwork);
         }
 
-    }
-
-    p5.preload = function() {
-
-        // Enable the model dorpdown selector
-        model = document.getElementById("modelChoice");
-        //preload(model.value);
-        model.addEventListener('change', () => {
-            switchModel(model.value);
-        })
-
-        // Load color palettes
-        Promise.all([ColorFactory.loadPalette(pathPalettes + "palette1.txt"),
-                ColorFactory.loadPalette(pathPalettes + "palette2.txt"),
-                ColorFactory.loadPalette(pathPalettes + "palette3.txt"),
-                ColorFactory.loadPalette(pathPalettes + "palette4.txt")
-            ])
-            .then(data => {
-                p5.loadJSON(pathNetworks + model.value + '_network.json', onLoadNetwork)
-            }).catch((err) => console.log(err))
     }
 
     onLoadNetwork = function(data) {

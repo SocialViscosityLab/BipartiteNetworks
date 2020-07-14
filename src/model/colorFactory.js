@@ -1,16 +1,21 @@
 class ColorFactory {
 
     static loadPalette(fileName) {
-        return Promise.resolve(globalP5.loadStrings(fileName, 
+        return Promise.resolve(globalP5.loadStrings(fileName,
             data => Promise.resolve(ColorFactory.palettes.push(data)).then(p => {
-            if (data.length > 0) {
-                return true
-            } else {
-                return false
-            }
-        })
-        )
-        )
+                if (data.length > 0) {
+                    return true
+                } else {
+                    return false
+                }
+            })
+        ))
+    }
+
+    static async loadPalette2(fileName) {
+        let fileData = await globalP5.loadStrings(fileName);
+        ColorFactory.palettes.push(fileData);
+        console.log(ColorFactory.palettes);
     }
 
     static getPalette(n) {

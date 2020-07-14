@@ -1,207 +1,201 @@
 {
-  "nodes": [
-    {
-      "clusterID": "A",
-      "clusterLabel": "Wicked Problems",
-      "clusterDescription": "Reasons that justify the design of improved futures",
-      "nodes": [
-        {
-          "id": 0,
-          "nodeLabel": "Impact of manufacturing & consumption",
-          "nodeDescription": "The social and environmental impact of extracting and transforming raw materials to produce goods. It also takes into account the impact of transporting and making the offering available in remote markets for mass consumption.",
-          "polarity": "RIGHT",
-          "pajekIndex": 1
+    "nodes": [{
+            "clusterID": "A",
+            "clusterLabel": "Matters of Concern",
+            "clusterDescription": "Reasons that justify the design of improved futures",
+            "nodes": [{
+                    "id": 0,
+                    "nodeLabel": "Impact of manufacturing & consumption",
+                    "nodeDescription": "The social and environmental impact of extracting and transforming raw materials to produce goods. It also takes into account the impact of transporting and making the offering available in remote markets for mass consumption.",
+                    "polarity": "RIGHT",
+                    "pajekIndex": 1
+                },
+                {
+                    "id": 1,
+                    "nodeLabel": "Controversiality of truth",
+                    "nodeDescription": "Post-truth: relating to or denoting circumstances in which objective facts are less influential in shaping public opinion than appeals to emotion and personal belief. Source: Oxford.",
+                    "polarity": "RIGHT",
+                    "pajekIndex": 2
+                },
+                {
+                    "id": 2,
+                    "nodeLabel": "Global warming and climate change",
+                    "nodeDescription": "Global warming is the long-term rise in the average temperature of the Earth's climate system, an aspect of current climate change shown by temperature measurements and by multiple effects of the warming. Source: Wikipedia.",
+                    "polarity": "RIGHT",
+                    "pajekIndex": 3
+                },
+                {
+                    "id": 3,
+                    "nodeLabel": "Sustainable urban sociality",
+                    "nodeDescription": "Long-lasting conviviality in urban settings promoted by positive social interactions and recursive encounters that create virtuous bonds over generations.",
+                    "polarity": "RIGHT",
+                    "pajekIndex": 4
+                }
+            ]
         },
         {
-          "id": 1,
-          "nodeLabel": "Controversiality of truth",
-          "nodeDescription": "Post-truth: relating to or denoting circumstances in which objective facts are less influential in shaping public opinion than appeals to emotion and personal belief. Source: Oxford.",
-          "polarity": "RIGHT",
-          "pajekIndex": 2
+            "clusterID": "B",
+            "clusterLabel": "Ethical Stakes",
+            "clusterDescription": "Central topics at the core of unsettling issues of awareness",
+            "nodes": [{
+                    "id": 0,
+                    "nodeLabel": "Sustainability and conservation",
+                    "nodeDescription": "The process of people maintaining change in a balanced environment, in which the exploitation of resources, the direction of investments, the orientation of technological development and institutional change are all in harmony and enhance both current and future potential to meet human needs and aspirations. Source : Wikipedia",
+                    "polarity": "BOTH",
+                    "pajekIndex": 5
+                },
+                {
+                    "id": 1,
+                    "nodeLabel": "Ecology",
+                    "nodeDescription": "The branch of biology which studies the interactions among organisms and their environment. Objects of study include interactions of organisms that include biotic and abiotic components of their environment. Topics of interest include the biodiversity, distribution, biomass, and populations of organisms, as well as cooperation and competition within and between species. Source: Wikipedia",
+                    "polarity": "BOTH",
+                    "pajekIndex": 6
+                },
+                {
+                    "id": 2,
+                    "nodeLabel": "Urban social practices",
+                    "nodeDescription": "Social practice is a theory within psychology that seeks to determine the link between practice and context within social situations. Emphasized as a commitment to change, social practice occurs in two forms: activity and inquiry. Most often applied within the context of human development, social practice involves knowledge production and the theorization and analysis of both institutional and intervention practices. Source: Wikipedia",
+                    "polarity": "BOTH",
+                    "pajekIndex": 7
+                },
+                {
+                    "id": 3,
+                    "nodeLabel": "Ethics, morals and values",
+                    "nodeDescription": "Ethics or moral philosophy is a branch of philosophy that involves systematizing, defending, and recommending concepts of right and wrong conduct. A value denotes the degree of importance of some thing or action, with the aim of determining what actions are best to do or what way is best to live. Source: Wikipedia.",
+                    "polarity": "BOTH",
+                    "pajekIndex": 8
+                }
+            ]
         },
         {
-          "id": 2,
-          "nodeLabel": "Global warming and climate change",
-          "nodeDescription": "Global warming is the long-term rise in the average temperature of the Earth's climate system, an aspect of current climate change shown by temperature measurements and by multiple effects of the warming. Source: Wikipedia.",
-          "polarity": "RIGHT",
-          "pajekIndex": 3
+            "clusterID": "C",
+            "clusterLabel": "Research Methodologies",
+            "clusterDescription": "Research traditions used to explore topics of concern",
+            "nodes": [{
+                    "id": 0,
+                    "nodeLabel": "Sytems thinking",
+                    "nodeDescription": "Systems theory provided a solid framework to analyze systems by identifying functional elements and tracking their relationships, and by instantiating modular architectures from abstract systems. For designers, modular architectures permit a system to be divided into more manageable parts that can be developed, produced and modified relatively independently. Source: From modularity ot emergence. Chen & Crilly",
+                    "polarity": "BOTH",
+                    "pajekIndex": 9
+                },
+                {
+                    "id": 1,
+                    "nodeLabel": "Ethnography",
+                    "nodeDescription": "The systematic study of people and cultures. It is designed to explore cultural phenomena where the researcher observes society from the point of view of the subject of the study. As a method of data collection, ethnography entails examining the behaviour of the participants in a certain specific social situation and also understanding their interpretation of such behaviour. Source: Wikipedia.",
+                    "polarity": "BOTH",
+                    "pajekIndex": 10
+                }
+            ]
         },
         {
-          "id": 3,
-          "nodeLabel": "Sustainable urban sociality",
-          "nodeDescription": "Long-lasting conviviality in urban settings promoted by positive social interactions and recursive encounters that create virtuous bonds over generations.",
-          "polarity": "RIGHT",
-          "pajekIndex": 4
+            "clusterID": "D",
+            "clusterLabel": "Design Modes + Methods",
+            "clusterDescription": "",
+            "nodes": [{
+                    "id": 0,
+                    "nodeLabel": "Participatory design",
+                    "nodeDescription": "It is an approach to design attempting to actively involve all stakeholders in the design process to help ensure the result meets their needs and is usable.",
+                    "polarity": "LEFT",
+                    "pajekIndex": 11
+                },
+                {
+                    "id": 1,
+                    "nodeLabel": "Empirical interventions",
+                    "nodeDescription": "Evidence based analysis, continuum of integrated policies, strategies, activities, and services whose effectiveness has been proven or informed by research and evaluation",
+                    "polarity": "LEFT",
+                    "pajekIndex": 12
+                },
+                {
+                    "id": 2,
+                    "nodeLabel": "Modeling and simulation",
+                    "nodeDescription": "The use of a physical or logical representation of a given system to generate data and help determine decisions or make predictions about the system",
+                    "polarity": "LEFT",
+                    "pajekIndex": 13
+                },
+                {
+                    "id": 3,
+                    "nodeLabel": "Interaction design",
+                    "nodeDescription": "The design of interactive products and services in which a designer's focus goes beyond the item in development to include the way users will interact with it",
+                    "polarity": "LEFT",
+                    "pajekIndex": 14
+                },
+                {
+                    "id": 4,
+                    "nodeLabel": "Visual and cultural studies",
+                    "nodeDescription": "Theorists working within contemporary culture often overlapping with traditional artistic media, digital media, and emerging media.",
+                    "polarity": "LEFT",
+                    "pajekIndex": 15
+                }
+            ]
         }
-      ]
-    },
-    {
-      "clusterID": "B",
-      "clusterLabel": "Ethical Stakes",
-      "clusterDescription": "Central topics at the core of unsettling issues of awareness",
-      "nodes": [
-        {
-          "id": 0,
-          "nodeLabel": "Sustainability and conservation",
-          "nodeDescription": "The process of people maintaining change in a balanced environment, in which the exploitation of resources, the direction of investments, the orientation of technological development and institutional change are all in harmony and enhance both current and future potential to meet human needs and aspirations. Source : Wikipedia",
-          "polarity": "BOTH",
-          "pajekIndex": 5
+    ],
+    "edges": [{
+            "source": {
+                "cluster": "A",
+                "cat": 0,
+                "index": 0,
+                "polarity": true,
+                "pajekIndex": 1
+            },
+            "target": {
+                "cluster": "B",
+                "cat": 1,
+                "index": 0,
+                "polarity": false,
+                "pajekIndex": 6
+            },
+            "weight": 1
         },
         {
-          "id": 1,
-          "nodeLabel": "Ecology",
-          "nodeDescription": "The branch of biology which studies the interactions among organisms and their environment. Objects of study include interactions of organisms that include biotic and abiotic components of their environment. Topics of interest include the biodiversity, distribution, biomass, and populations of organisms, as well as cooperation and competition within and between species. Source: Wikipedia",
-          "polarity": "BOTH",
-          "pajekIndex": 6
+            "source": {
+                "cluster": "B",
+                "cat": 1,
+                "index": 0,
+                "polarity": true,
+                "pajekIndex": 6
+            },
+            "target": {
+                "cluster": "C",
+                "cat": 0,
+                "index": 0,
+                "polarity": false,
+                "pajekIndex": 9
+            },
+            "weight": 1
         },
         {
-          "id": 2,
-          "nodeLabel": "Urban social practices",
-          "nodeDescription": "Social practice is a theory within psychology that seeks to determine the link between practice and context within social situations. Emphasized as a commitment to change, social practice occurs in two forms: activity and inquiry. Most often applied within the context of human development, social practice involves knowledge production and the theorization and analysis of both institutional and intervention practices. Source: Wikipedia",
-          "polarity": "BOTH",
-          "pajekIndex": 7
+            "source": {
+                "cluster": "B",
+                "cat": 2,
+                "index": 0,
+                "polarity": true,
+                "pajekIndex": 7
+            },
+            "target": {
+                "cluster": "C",
+                "cat": 0,
+                "index": 1,
+                "polarity": false,
+                "pajekIndex": 9
+            },
+            "weight": 1
         },
         {
-          "id": 3,
-          "nodeLabel": "Ethics, morals and values",
-          "nodeDescription": "Ethics or moral philosophy is a branch of philosophy that involves systematizing, defending, and recommending concepts of right and wrong conduct. A value denotes the degree of importance of some thing or action, with the aim of determining what actions are best to do or what way is best to live. Source: Wikipedia.",
-          "polarity": "BOTH",
-          "pajekIndex": 8
+            "source": {
+                "cluster": "C",
+                "cat": 0,
+                "index": 0,
+                "polarity": true,
+                "pajekIndex": 9
+            },
+            "target": {
+                "cluster": "D",
+                "cat": 0,
+                "index": 0,
+                "polarity": false,
+                "pajekIndex": 11
+            },
+            "weight": 1
         }
-      ]
-    },
-    {
-      "clusterID": "C",
-      "clusterLabel": "Research Methodologies",
-      "clusterDescription": "Research traditions used to explore topics of concern",
-      "nodes": [
-        {
-          "id": 0,
-          "nodeLabel": "Sytems thinking",
-          "nodeDescription": "Systems theory provided a solid framework to analyze systems by identifying functional elements and tracking their relationships, and by instantiating modular architectures from abstract systems. For designers, modular architectures permit a system to be divided into more manageable parts that can be developed, produced and modified relatively independently. Source: From modularity ot emergence. Chen & Crilly",
-          "polarity": "BOTH",
-          "pajekIndex": 9
-        },
-        {
-          "id": 1,
-          "nodeLabel": "Ethnography",
-          "nodeDescription": "The systematic study of people and cultures. It is designed to explore cultural phenomena where the researcher observes society from the point of view of the subject of the study. As a method of data collection, ethnography entails examining the behaviour of the participants in a certain specific social situation and also understanding their interpretation of such behaviour. Source: Wikipedia.",
-          "polarity": "BOTH",
-          "pajekIndex": 10
-        }
-      ]
-    },
-    {
-      "clusterID": "D",
-      "clusterLabel": "Design Modes + Methods",
-      "clusterDescription": "",
-      "nodes": [
-        {
-          "id": 0,
-          "nodeLabel": "Participatory design",
-          "nodeDescription": "It is an approach to design attempting to actively involve all stakeholders in the design process to help ensure the result meets their needs and is usable.",
-          "polarity": "LEFT",
-          "pajekIndex": 11
-        },
-        {
-          "id": 1,
-          "nodeLabel": "Empirical interventions",
-          "nodeDescription": "Evidence based analysis, continuum of integrated policies, strategies, activities, and services whose effectiveness has been proven or informed by research and evaluation",
-          "polarity": "LEFT",
-          "pajekIndex": 12
-        },
-        {
-          "id": 2,
-          "nodeLabel": "Modeling and simulation",
-          "nodeDescription": "The use of a physical or logical representation of a given system to generate data and help determine decisions or make predictions about the system",
-          "polarity": "LEFT",
-          "pajekIndex": 13
-        },
-        {
-          "id": 3,
-          "nodeLabel": "Interaction design",
-          "nodeDescription": "The design of interactive products and services in which a designer's focus goes beyond the item in development to include the way users will interact with it",
-          "polarity": "LEFT",
-          "pajekIndex": 14
-        },
-        {
-          "id": 4,
-          "nodeLabel": "Visual and cultural studies",
-          "nodeDescription": "Theorists working within contemporary culture often overlapping with traditional artistic media, digital media, and emerging media.",
-          "polarity": "LEFT",
-          "pajekIndex": 15
-        }
-      ]
-    }
-  ],
-  "edges": [
-    {
-      "source": {
-        "cluster": "A",
-        "cat": 0,
-        "index": 0,
-        "polarity": true,
-        "pajekIndex": 1
-      },
-      "target": {
-        "cluster": "B",
-        "cat": 1,
-        "index": 0,
-        "polarity": false,
-        "pajekIndex": 6
-      },
-      "weight": 1
-    },
-    {
-      "source": {
-        "cluster": "B",
-        "cat": 1,
-        "index": 0,
-        "polarity": true,
-        "pajekIndex": 6
-      },
-      "target": {
-        "cluster": "C",
-        "cat": 0,
-        "index": 0,
-        "polarity": false,
-        "pajekIndex": 9
-      },
-      "weight": 1
-    },
-    {
-      "source": {
-        "cluster": "B",
-        "cat": 2,
-        "index": 0,
-        "polarity": true,
-        "pajekIndex": 7
-      },
-      "target": {
-        "cluster": "C",
-        "cat": 0,
-        "index": 1,
-        "polarity": false,
-        "pajekIndex": 9
-      },
-      "weight": 1
-    },
-    {
-      "source": {
-        "cluster": "C",
-        "cat": 0,
-        "index": 0,
-        "polarity": true,
-        "pajekIndex": 9
-      },
-      "target": {
-        "cluster": "D",
-        "cat": 0,
-        "index": 0,
-        "polarity": false,
-        "pajekIndex": 11
-      },
-      "weight": 1
-    }
-  ]
+    ]
 }

@@ -1,14 +1,14 @@
 {
     "nodes": [{
             "clusterID": "A",
-            "clusterLabel": "Wicked Problems",
+            "clusterLabel": "Matters of Concern",
             "clusterDescription": "Reasons that justify the design of improved futures",
             "nodes": []
         },
         {
             "clusterID": "B",
             "clusterLabel": "Ethical Stakes",
-            "clusterDescription": "Central topics at the core of unsettling issues of awareness",
+            "clusterDescription": "Central topics at the core of unsettling issues",
             "nodes": []
         },
         {

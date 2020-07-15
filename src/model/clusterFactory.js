@@ -1,5 +1,5 @@
 class ClusterFactory {
-    
+
     static makeClusters(data) {
         ClusterFactory.clusters = [];
         this.vClusters = [];
@@ -14,11 +14,11 @@ class ClusterFactory {
         }
     }
 
-    static setParameters(wdth, hght, gutter){
+    static setParameters(wdth, hght, gutter) {
         ClusterFactory.wdth = wdth;
         ClusterFactory.hght = hght;
-        ClusterFactory.gutter = gutter; 
-    } 
+        ClusterFactory.gutter = gutter;
+    }
 
     static instantiateCluster(data) {
         let cluster = new Cluster(data.clusterID);
@@ -33,11 +33,11 @@ class ClusterFactory {
         for (let index = 0; index < data.nodes.length; index++) {
             let category = this.makeCategory(cluster, data.nodes[index]);
             cluster.addCategory(category);
-            
+
         }
     }
 
-    static makeCategory (cluster, data) {
+    static makeCategory(cluster, data) {
         let category = new Node(cluster.id, data.id, ClusterFactory.countCat);
         category.setLabel(data.nodeLabel);
         category.setDescription(data.nodeDescription);
@@ -48,12 +48,10 @@ class ClusterFactory {
         switch (data.polarity) {
             case 'LEFT':
                 category.addNegativeConnector(category.negatives.length);
-                break;
-                ;
+                break;;
             case 'RIGHT':
                 category.addPositiveConnector(category.positives.length);
-                break;
-                ;
+                break;;
             default:
                 category.addNegativeConnector(category.negatives.length);
                 category.addPositiveConnector(category.positives.length);

@@ -31,16 +31,14 @@ var main = function(p5) {
             switchModel(model.value);
         })
 
-        // Load color palettes
-        Promise.all([ColorFactory.loadPalette2(pathPalettes + "palette1.txt"),
-                ColorFactory.loadPalette2(pathPalettes + "palette2.txt"),
-                ColorFactory.loadPalette2(pathPalettes + "palette3.txt"),
-                ColorFactory.loadPalette2(pathPalettes + "palette4.txt")
-            ])
-            .then(data => {
-                p5.loadJSON(pathNetworks + model.value + '_network.json', onLoadNetwork)
-            }).catch((err) => console.log(err))
+        let paletteNames = ["palette1.txt", "palette2.txt", "palette3.txt", "palette4.txt"]
+        ColorFactory.loadPalettes(pathPalettes, paletteNames, loadAfter)
     }
+
+    function loadAfter() {
+        p5.loadJSON(pathNetworks + model.value + '_network.json', onLoadNetwork)
+    }
+
 
     // Only once
     p5.setup = function() {
